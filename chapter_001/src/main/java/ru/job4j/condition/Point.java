@@ -31,6 +31,6 @@ public class Point {
      */
 
     public double distanceTo(Point b) {
-        return sqrt(pow(b.x-this.x,2)+pow(b.y-this.y,2));
+        return sqrt(pow(b.x - this.x, 2) + pow(b.y - this.y, 2));
     }
 }

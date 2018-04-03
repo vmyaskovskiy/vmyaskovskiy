@@ -17,8 +17,7 @@ public class DummyBot {
         String rsl = "Это ставит меня в тупик. Спросите другой вопрос.";
         if (question.equals("Привет, Бот.")) {
             rsl = "Привет, умник.";
-        }
-        else if(question.equals("Пока.")) {
+        } else if (question.equals("Пока.")) {
             rsl = "До скорой встречи.";
         }
         return rsl;

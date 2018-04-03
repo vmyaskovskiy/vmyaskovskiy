@@ -10,18 +10,18 @@ public class Fit {
     private double fixConst = 1.15;
     /**
      * Идеальный вес для мужчины.
-     * @param hight Рост.
+     * @param high Рост.
      * @return идеальный вес.
      */
-    public double manWaight(double hight) {
-        return (hight - manConst)*fixConst;
+    public double manWeight(double high) {
+        return (high - manConst) * fixConst;
     }
     /**
      * Идеальный вес для женщины.
-     * @param hight Рост.
+     * @param high Рост.
      * @return идеальный вес.
      */
-     public double womanWaight(double hight) {
-         return (hight - womanConst)*fixConst;
+     public double womanWeight(double high) {
+         return (high - womanConst) * fixConst;
      }
 }
