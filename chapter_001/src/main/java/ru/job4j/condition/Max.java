@@ -10,12 +10,13 @@ package ru.job4j.condition;
 public class Max {
 
     /**
-     * метод для класса Max.
-     * @param  a и  b  входные параметры.
-     * @return max выходной параметр.
+     * метод maxN вычисляет максимальное значение из двух чисел.
+     * @param  a входной параметр.
+     * @param  b входной параметр.
+     * @return max выходной параметр, возвращает максимальное значение из двух чисел.
      */
 
     public int maxN(int a, int b) {
-       return (a > b ? a : b);
+       return a > b ? a : b;
     }
 }
