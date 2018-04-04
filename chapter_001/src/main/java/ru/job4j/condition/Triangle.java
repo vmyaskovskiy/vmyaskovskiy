@@ -12,6 +12,25 @@ public class Triangle {
     private Point c;
 
     /**
+     * Метод проверяет можно ли построить треугольник с такими длинами сторон.
+     * если сумма двух сторон равна третьей, то все точки лежат на одной линии.
+     * если две или три координаты лежат в одной точке, то длинна одной или всех сторон равна 0.
+     * @param ab Длина от точки a b.
+     * @param ac Длина от точки a c.
+     * @param bc Длина от точки b c.
+     * @return true если треугольник существует, false  если нет.
+     */
+    private boolean exist(double ab, double ac, double bc) {
+       boolean res = true;
+        if (ab + bc == ac) {
+          res = false;
+        } else if (ab * bc * ac  == 0) {
+            res = false;
+        }
+        return res;
+    }
+
+    /**
      * конструктор Triangle для класса Point.
      * @param a входной параметр.
      * @param b входной параметр.
@@ -32,10 +51,9 @@ public class Triangle {
         double ab = this.a.distanceTo(this.b);
         double ac = this.a.distanceTo(this.c);
         double bc = this.b.distanceTo(this.c);
-        double res1 = (ab + bc + ac) / 2;
-        double res2 = Math.sqrt(res1 * (res1 - ab) * (res1 - ac) * (res1 - bc));
-        if (res2 != 0) {
-             res = res2;
+        if (this.exist(ab, ac, bc)) {
+            double res1 = (ab + bc + ac) / 2;
+             res = Math.sqrt(res1 * (res1 - ab) * (res1 - ac) * (res1 - bc));
         }
         return res;
     }
