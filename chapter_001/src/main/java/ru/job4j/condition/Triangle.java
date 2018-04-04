@@ -28,13 +28,14 @@ public class Triangle {
      * @return res  возвращает площадь треугольника если он существует, -1 если треугольник не существует.
      */
     public double area() {
+        double res = -1;
         double ab = this.a.distanceTo(this.b);
         double ac = this.a.distanceTo(this.c);
         double bc = this.b.distanceTo(this.c);
         double res1 = (ab + bc + ac) / 2;
-        double res = Math.sqrt(res1 * (res1 - ab) * (res1 - ac) * (res1 - bc));
-        if (res == 0) {
-            return -1;
+        double res2 = Math.sqrt(res1 * (res1 - ab) * (res1 - ac) * (res1 - bc));
+        if (res2 != 0) {
+             res = res2;
         }
         return res;
     }
