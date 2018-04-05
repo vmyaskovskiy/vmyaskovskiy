@@ -19,4 +19,19 @@ public class Max {
     public int maxN(int a, int b) {
        return a > b ? a : b;
     }
+
+    /**
+     * метод maxN вычисляет максимальное значение из двух чисел.
+     * @param  first входной параметр.
+     * @param  second входной параметр.
+     * @param  third входной параметр.
+     * @return   возвращает максимальное значение из трех чисел.
+     */
+
+    public int max(int first, int second, int third) {
+         int temp = this.maxN(first, second);
+         int temp1 = this.maxN(temp, third);
+         return this.maxN(temp, temp1);
+    }
+
 }

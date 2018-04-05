@@ -44,4 +44,28 @@ public class MaxTest {
         int res = max.maxN(-1, 0);
         assertThat(res, is(0));
     }
+
+    @Test
+
+    public void maxFromThreeNumberOneAndTwoAndThreeReturnThree() {
+        Max max = new Max();
+        int res = max.max(1, 2, 3);
+        assertThat(res, is(3));
+    }
+
+    @Test
+
+    public void maxFromThreeNumberThreeAndTwoAndOneReturnThree() {
+        Max max = new Max();
+        int res = max.max(3, 2, 1);
+        assertThat(res, is(3));
+    }
+
+    @Test
+
+    public void maxFromThreeNumberMinusThreeAndTwoAndOneReturnTwo() {
+        Max max = new Max();
+        int res = max.max(-3, 2, 1);
+        assertThat(res, is(2));
+    }
 }
