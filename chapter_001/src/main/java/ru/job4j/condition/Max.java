@@ -30,8 +30,6 @@ public class Max {
 
     public int max(int first, int second, int third) {
          int temp = this.maxN(first, second);
-         int temp1 = this.maxN(temp, third);
-         return this.maxN(temp, temp1);
+         return this.maxN(temp, third);
     }
-
 }
