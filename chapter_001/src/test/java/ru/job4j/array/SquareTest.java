@@ -1,16 +1,15 @@
 package ru.job4j.array;
 
+import org.junit.Test;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+
 /**
  * Class SquareTest тестирование задачи части 001 - урок Заполнить массив степенями чисел. 5.0.
  * @author vmyaskovskiy
  * @version $Id$
  * @since 0.1
  */
-
-
-import org.junit.Test;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 
 public class SquareTest {
     @Test
