@@ -41,4 +41,12 @@ public class TestArrayTest {
         boolean expect = false;
         assertThat(res, is(expect));
     }
+    @Test
+    public void arrayTurn4221Doun() {
+        TestArray testArray = new TestArray();
+        int[] array = new int[]{4, 2, 2, 1};
+        boolean res = testArray.arrayTestDown(array);
+        boolean expect = false;
+        assertThat(res, is(expect));
+    }
 }

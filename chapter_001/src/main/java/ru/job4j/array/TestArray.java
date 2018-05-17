@@ -14,7 +14,7 @@ public class TestArray {
     public boolean arrayTestUp(int[] array) {
         boolean r = true;
         for (int i = 0; i < array.length - 1; i++) {
-            if (array[i] > array[i + 1]) {
+            if (array[i] >= array[i + 1]) {
                 r = false;
             }
         }
@@ -28,7 +28,7 @@ public class TestArray {
     public boolean arrayTestDown(int[] array) {
         boolean r = true;
         for (int i = 0; i < array.length - 1; i++) {
-            if (array[i] < array[i + 1]) {
+            if (array[i] <= array[i + 1]) {
                 r = false;
             }
         }
