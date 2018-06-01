@@ -1,9 +1,7 @@
 package ru.job4j.condition;
-
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
-
 public class PointTest {
     @Test
     public void distanceTo() {

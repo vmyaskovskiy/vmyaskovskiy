@@ -1,18 +1,15 @@
 package ru.job4j.array;
-
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertThat;
-
 /**
  * Class BubbleSortTest тестирование задачи части 001 - урок Создать программу для сортировки массива методом перестановки. 5.3.
  * @author vmyaskovskiy
  * @version $Id$
  * @since 0.1
  */
-
 public class BubbleSortTest {
     @Test
     public void bubbleSort51273To12357() {

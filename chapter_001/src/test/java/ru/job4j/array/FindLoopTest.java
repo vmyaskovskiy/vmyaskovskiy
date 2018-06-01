@@ -1,16 +1,13 @@
 package ru.job4j.array;
-
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-
 /**
  * Class FindLoopTest тестирование задачи части 001 - урок Классический поиск перебором. 5.1.
  * @author vmyaskovskiy
  * @version $Id$
  * @since 0.1
  */
-
 public class FindLoopTest {
     @Test
     //ищем индекс элемента со значением 5.
@@ -22,7 +19,6 @@ public class FindLoopTest {
         int expect = 0;
         assertThat(res, is(expect));
     }
-
     @Test
     //если искомого элемента нет в массиве результат -1.
     public void whenArrayNotHas5ThenMinusOne() {

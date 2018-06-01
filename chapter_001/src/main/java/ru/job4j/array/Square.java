@@ -1,12 +1,10 @@
 package ru.job4j.array;
-
 /**
  * Class Square решение задачи части 001 - урок Заполнить массив степенями чисел. 5.0.
  * @author vmyaskovskiy
  * @version $Id$
  * @since 0.1
  */
-
 public class Square {
     /**
      * метод calculate Заполнить массив степенями чисел.

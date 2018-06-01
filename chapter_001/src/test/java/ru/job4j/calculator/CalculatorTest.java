@@ -1,9 +1,7 @@
 package ru.job4j.calculator;
-
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-
 /**
 * Test.
 *
@@ -16,9 +14,6 @@ import static org.junit.Assert.assertThat;
 * Test Calculator.
 */ 
 	@Test
-	
-
-		
 		public void whenAddOneOnOneThenTwo() {
 		Calculator calc = new Calculator();
 		calc.add(1D, 1D);
@@ -26,11 +21,7 @@ import static org.junit.Assert.assertThat;
 		double expected = 2D;
 		assertThat(result, is(expected));
 		}
-		
 	@Test
-	
-
-
     	public void whenSubtractTwoOneThenOne() {
 		Calculator calc = new Calculator();
 		calc.subtract(2D, 1D);
@@ -38,11 +29,7 @@ import static org.junit.Assert.assertThat;
 		double expected = 1D;
 		assertThat(result, is(expected));
 		}
-		
     @Test
-	
-
-
     	public void whenDivFourOnTwoThenTwo() {
 		Calculator calc = new Calculator();
 		calc.div(4D, 2D);
@@ -50,10 +37,7 @@ import static org.junit.Assert.assertThat;
 		double expected = 2D;
 		assertThat(result, is(expected));
 		}
- 
     @Test
-	
-
     	public void whenMultipleTwoOnTwoThenFour() {
 		Calculator calc = new Calculator();
 		calc.multiple(2D, 2D);
@@ -61,8 +45,6 @@ import static org.junit.Assert.assertThat;
 		double expected = 4D;
 		assertThat(result, is(expected));
 		}
- 
- 
 	}
 		
 		

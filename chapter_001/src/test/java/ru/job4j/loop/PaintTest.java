@@ -1,19 +1,15 @@
 package ru.job4j.loop;
-
 import org.junit.Test;
 import java.util.StringJoiner;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-
 /**
  * Class PaintTest тестирование задачи части 001 - урок Построить пирамиду в псевдографике 4.4.
  * @author vmyaskovskiy
  * @version $Id$
  * @since 0.1
  */
-
 public class PaintTest {
-
     /**
      * Метод рисует пирамиду с высотой 3
      */

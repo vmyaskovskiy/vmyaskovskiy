@@ -1,9 +1,7 @@
 package ru.job4j.calculator;
-
 /**
  * Программа расчета идеального веса.
  */
-
 public class Fit {
     private double manConst = 100;
     private double womanConst = 110;

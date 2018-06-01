@@ -1,12 +1,10 @@
 package ru.job4j.array;
-
 /**
  * Class Turn решение задачи части 001 - урок Перевернуть массив. 5.2.
  * @author vmyaskovskiy
  * @version $Id$
  * @since 0.1
  */
-
 public class Turn {
     /**
      * метод turn Переворачивает массив.

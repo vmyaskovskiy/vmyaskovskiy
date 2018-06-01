@@ -5,16 +5,13 @@ package ru.job4j.loop;
  * @version $Id$
  * @since 0.1
  */
-
 public class Counter {
-
     /**
      * метод add Подсчет суммы чётных чисел в диапазоне.
      * @param  start входной параметр - начало диапазона.
      * @param  finish входной параметр- конец диапазона.
      * @return res выходной параметр, возвращает сумму чётных чисел в диапазоне.
      */
-
    public int add(int start, int finish) {
         int res = 0;
         for (int i = start; i <= finish; i++) {

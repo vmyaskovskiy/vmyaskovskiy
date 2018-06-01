@@ -18,7 +18,6 @@ public class ArrayChar {
     public boolean startWith(String prefix) {
         boolean res = true;
         char[] value = prefix.toCharArray();
-
         for (int i = 0; i < value.length; i++) {
             if (value[i] != this.date[i]) {
                 res = false;

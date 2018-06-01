@@ -53,20 +53,17 @@ public class TestTwoArray {
                                 leftRightTwo[k] = right[j];
                                 k++;
                             }
-
                         }
                   } else {
                   leftRightTwo[k] = right[j];
                   k++;
                   h++;
-
                     if (j == r - 1) {
                         for (i = z; i < l; i++) {
                             leftRightTwo[k] = left[i];
                             k++;
                         }
                     }
-
                   }
               }
           }

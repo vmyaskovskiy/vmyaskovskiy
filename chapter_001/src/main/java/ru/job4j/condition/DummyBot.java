@@ -6,13 +6,11 @@ package ru.job4j.condition;
  * @since 0.1
  */
 public class DummyBot {
-
     /**
      * конструктор для класса DummyBot.
      * @param question входной параметр вопрос к Боту.
      * @return rsl выходной параметр Ответ Бота.
      */
-
     public String respBot(String question) {
         String rsl = "Это ставит меня в тупик. Спросите другой вопрос.";
         if (question.equals("Привет, Бот.")) {

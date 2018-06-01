@@ -1,16 +1,13 @@
 package ru.job4j.loop;
-
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-
 /**
  * Class CounterTest тестирование задачи части 001 - урок Подсчет суммы чётных чисел в диапазоне 4.1.
  * @author vmyaskovskiy
  * @version $Id$
  * @since 0.1
  */
-
 public class CounterTest {
     @Test
     // Проверка правильности подсчета от 1 до 10 = 30
