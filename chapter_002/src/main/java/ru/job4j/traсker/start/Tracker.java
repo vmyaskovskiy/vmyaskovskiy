@@ -26,30 +26,36 @@ public class Tracker {
      * метод replace редактирует, заменяет заявки в массиве.
      * @param  item входной параметр -  заявка.
      * @param id  входной параметр - id заявки по которой ищем нужную заявку.
+     * @return res выходной параметр - true если заявка была изменена
      */
-    public void replace(String id, Item item) {
+    public boolean replace(String id, Item item) {
+        boolean res = false;
         Item result = item;
         for (int i = 0; i < position; i++) {
             if (this.items[i] != null && this.items[i].getId().equals(id)) {
                 this.items[i].setName(result.getName());
                 this.items[i].setDescription(result.getDescription());
                 this.items[i].setCreate(result.getCreate());
+                res = true;
                 break;
             }
-        }
+        }return res;
     }
     /**
      * метод delete удаляет заявки из массива.
      * @param id  входной параметр - id заявки по которой ищем нужную заявку.
+     * @return result выходной параметр - true если заявка была удалена
      */
-    public void delete(String id) {
+    public boolean delete(String id) {
+        boolean result = false;
         for (int i = 0; i < position; i++) {
             if (this.items != null && this.items[i].getId().equals(id)) {
                 System.arraycopy(items, i + 1, items, i, items.length - (i + 1));
                 this.position = this.position - 1;
+                result = true;
                 break;
             }
-        }
+        } return result;
     }
     /**
      * метод getAll находит все заявки в массиве.
@@ -76,6 +82,8 @@ public class Tracker {
                 j = j + 1;
             }
         }
+        Item[] res = new Item[j];
+        res = result;
         return result;
     }
     /**
@@ -97,7 +105,7 @@ public class Tracker {
      * метод generateId генерирует уникальный id.
      * @return  String.valueOf(System.currentTimeMillis() + RN.nextInt())  выходной параметр - уникальный id.
      */
-    String generateId() {
+    private  String generateId() {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
 }
