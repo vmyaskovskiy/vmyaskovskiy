@@ -83,8 +83,8 @@ public class Tracker {
             }
         }
         Item[] res = new Item[j];
-        res = result;
-        return result;
+        res = Arrays.copyOf(result, j);
+        return res;
     }
     /**
      * метод findById находит заявку с нужным Id.
