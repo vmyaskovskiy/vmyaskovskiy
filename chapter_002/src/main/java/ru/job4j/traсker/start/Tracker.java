@@ -78,13 +78,10 @@ public class Tracker {
         int j = 0;
         for (int i = 0; i < this.position; i++) {
             if (this.items[i] != null && this.items[i].getName().equals(name)) {
-                result[j] = items[i];
-                j = j + 1;
+                result[j++] = items[i];
             }
         }
-        Item[] res = new Item[j];
-        res = Arrays.copyOf(result, j);
-        return res;
+        return Arrays.copyOf(result, j);
     }
     /**
      * метод findById находит заявку с нужным Id.
