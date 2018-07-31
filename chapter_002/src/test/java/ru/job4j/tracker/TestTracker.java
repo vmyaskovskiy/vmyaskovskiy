@@ -15,7 +15,7 @@ public class TestTracker {
     @Test
     public void addNewItem() {
         Tracker tracker = new Tracker();
-        Item item = new Item("sekond", "desk2", 0102);
+        Item item = new Item("sekond", "desk2");
         tracker.add(item);
         assertThat(tracker.getAll()[0], is(item));
         String resId = item.getId();
@@ -26,20 +26,20 @@ public class TestTracker {
     @Test
     public void replaceItem() {
         Tracker tracker = new Tracker();
-        Item previous = new Item("первый", "desk2", 0102);
+        Item previous = new Item("первый", "desk2");
         tracker.add(previous);
-        Item next = new Item("второй", "desk3", 0103);
+        Item next = new Item("второй", "desk3");
         tracker.replace(previous.getId(), next);
         assertThat(tracker.findById(previous.getId()).getName(), is("второй"));
     }
     @Test
     public void deleteItem() {
         Tracker tracker = new Tracker();
-        Item previous = new Item("sekond", "desk2", 0102);
+        Item previous = new Item("sekond", "desk2");
         tracker.add(previous);
-        Item next = new Item("therd", "desk3", 0103);
+        Item next = new Item("therd", "desk3");
         tracker.add(next);
-        Item nextNext = new Item("four", "desk4", 0104);
+        Item nextNext = new Item("four", "desk4");
         tracker.add(nextNext);
         tracker.delete(next.getId());
         assertThat(tracker.findById(next.getId()), is(new Item()));
@@ -48,11 +48,11 @@ public class TestTracker {
     @Test
     public void deleteItemNext() {
         Tracker tracker = new Tracker();
-        Item previous = new Item("sekond", "desk2", 0102);
+        Item previous = new Item("sekond", "desk2");
         tracker.add(previous);
-        Item next = new Item("therd", "desk3", 0103);
+        Item next = new Item("therd", "desk3");
         tracker.add(next);
-        Item nextNext = new Item("four", "desk4", 0104);
+        Item nextNext = new Item("four", "desk4");
         tracker.add(nextNext);
         tracker.delete(nextNext.getId());
         assertThat(tracker.findById(nextNext.getId()), is(new Item()));
@@ -61,11 +61,11 @@ public class TestTracker {
     @Test
     public void deleteItemPrevious() {
         Tracker tracker = new Tracker();
-        Item previous = new Item("sekond", "desk2", 0102);
+        Item previous = new Item("sekond", "desk2");
         tracker.add(previous);
-        Item next = new Item("therd", "desk3", 0103);
+        Item next = new Item("therd", "desk3");
         tracker.add(next);
-        Item nextNext = new Item("four", "desk4", 0104);
+        Item nextNext = new Item("four", "desk4");
         tracker.add(nextNext);
         tracker.delete(previous.getId());
         assertThat(tracker.findById(previous.getId()), is(new Item()));
@@ -74,8 +74,8 @@ public class TestTracker {
     @Test
     public void getAll() {
         Tracker tracker = new Tracker();
-        Item item = new Item("первый", "desk1", 0101);
-        Item item2 = new Item("первый", "desk2", 0102);
+        Item item = new Item("первый", "desk1");
+        Item item2 = new Item("первый", "desk2");
         tracker.add(item);
         tracker.add(item2);
         Item[] items = tracker.getAll();
@@ -89,9 +89,9 @@ public class TestTracker {
     @Test
     public void findByName() {
         Tracker tracker = new Tracker();
-        Item item = new Item("первый", "desk1", 0101);
-        Item item2 = new Item("первый", "desk2", 0102);
-        Item item3 = new Item("третий", "desk3", 0103);
+        Item item = new Item("первый", "desk1");
+        Item item2 = new Item("первый", "desk2");
+        Item item3 = new Item("третий", "desk3");
         tracker.add(item);
         tracker.add(item2);
         tracker.add(item3);
@@ -103,7 +103,7 @@ public class TestTracker {
     @Test
     public void findById() {
         Tracker tracker = new Tracker();
-        Item item = new Item("первый", "desk1", 0101);
+        Item item = new Item("первый", "desk1");
         tracker.add(item);
         String resId = item.getId();
         assertThat(tracker.findById(resId).getId(), is(resId));

@@ -39,7 +39,7 @@ public class Tracker {
                 res = true;
                 break;
             }
-        }return res;
+        } return res;
     }
     /**
      * метод delete удаляет заявки из массива.
@@ -102,6 +102,11 @@ public class Tracker {
      * метод generateId генерирует уникальный id.
      * @return  String.valueOf(System.currentTimeMillis() + RN.nextInt())  выходной параметр - уникальный id.
      */
+
+    public int getPosition() {
+        return this.position;
+    }
+
     private  String generateId() {
         return String.valueOf(System.currentTimeMillis() + RN.nextInt());
     }
