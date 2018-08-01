@@ -5,6 +5,7 @@ import ru.job4j.traсker.start.Tracker;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertNull;
 /**
  * Class TestProf тестирование задачи части 002 - урок 2. Наследование.
  * @author vmyaskovskiy
@@ -42,7 +43,7 @@ public class TestTracker {
         Item nextNext = new Item("four", "desk4");
         tracker.add(nextNext);
         tracker.delete(next.getId());
-        assertThat(tracker.findById(next.getId()), is(new Item()));
+        assertNull(tracker.findById(next.getId()));
         assertThat(tracker.findById(nextNext.getId()).getName(), is("four"));
     }
     @Test
@@ -55,7 +56,7 @@ public class TestTracker {
         Item nextNext = new Item("four", "desk4");
         tracker.add(nextNext);
         tracker.delete(nextNext.getId());
-        assertThat(tracker.findById(nextNext.getId()), is(new Item()));
+        assertNull(tracker.findById(nextNext.getId()));
         assertThat(tracker.findById(previous.getId()).getName(), is("sekond"));
     }
     @Test
@@ -68,7 +69,7 @@ public class TestTracker {
         Item nextNext = new Item("four", "desk4");
         tracker.add(nextNext);
         tracker.delete(previous.getId());
-        assertThat(tracker.findById(previous.getId()), is(new Item()));
+        assertNull(tracker.findById(previous.getId()));
         assertThat(tracker.findById(next.getId()).getName(), is("therd"));
     }
     @Test

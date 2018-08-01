@@ -77,12 +77,19 @@ public class StartUi {
         * Метод реализует редактирование заявок.
         */
         private void editItem() {
+
+            if (tracker.getPosition() != 0) {
             String id = this.input.ask("Введите ID");
-            String name = this.input.ask("Введите имя заявки :");
-            String desc = this.input.ask("Введите описание заявки :");
-            Item itemRes = new Item(name, desc);
-            this.tracker.replace(id, itemRes);
-            System.out.println("Id -- " + itemRes.getId() + " " + ";  Имя -- " + itemRes.getName() + " " + ";  Описание -- " + itemRes.getDescription() + " " + ";  Data -- " + itemRes.getCreate());
+             Item itemR = tracker.findById(id);
+                if (itemR != null && itemR.getId().equals(id)) {
+                    String name = this.input.ask("Введите имя заявки :");
+                    String desc = this.input.ask("Введите описание заявки :");
+                    Item itemRes = new Item(name, desc);
+                    this.tracker.replace(id, itemRes);
+                    System.out.println(itemRes);
+
+            } else System.out.println("---заявка не найдена----");
+            } else System.out.println("---заявки не найдены----");
         }
         /**
         * Метод реализует поиск заявки по имени.
@@ -93,7 +100,7 @@ public class StartUi {
             if (this.tracker.getPosition() != 0) {
                 System.out.println("----------Найденные заявки------------" );
                 for (Item item: this.tracker.findByName(name)) {
-                    System.out.println("Id -- " + item.getId() + " " + ";  Имя -- " + item.getName() + " " + ";  Описание -- " + item.getDescription() + " " + ";  Data -- " + item.getCreate());
+                    System.out.println(item);
                 }
             } else System.out.println("-- ничего не найдено---");
         }
@@ -116,8 +123,9 @@ public class StartUi {
             System.out.println("--------Удалить заявку------------");
            if (tracker.getPosition() != 0) {
                String id = this.input.ask("Введите ID");
-               this.tracker.delete(id);
-               System.out.println("-- заявка удалена---");
+               if (this.tracker.delete(id) == true) {
+                   System.out.println("-- заявка удалена---");
+               } else System.out.println("----заявка не найдена---");
            }  else  System.out.println("-- ничего не найдено---");
         }
           /**
@@ -127,7 +135,10 @@ public class StartUi {
              System.out.println("---------Найти заявку по ID-------------");
              if (tracker.getPosition() != 0) {
                  String id = this.input.ask("Введите ID");
-                 System.out.println(" Найдена заявка-- " + " " + "Id -- " + this.tracker.findById(id).getId() + " " + ";  Имя -- " + this.tracker.findById(id).getName() + " " + ";  Описание -- " + this.tracker.findById(id).getDescription() + " " + ";  Data -- " + this.tracker.findById(id).getCreate());
+                 Item itemRes = this.tracker.findById(id);
+                 if (itemRes != null) {
+                     System.out.println(" Найдена заявка-- " + " " + itemRes);
+                 } else  System.out.println("-- заявка не найдена---");
              } else  System.out.println("-- ничего не найдено---");
          }
      /**

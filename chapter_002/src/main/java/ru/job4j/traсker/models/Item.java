@@ -1,5 +1,6 @@
 package ru.job4j.traсker.models;
 import java.util.Objects;
+import java.util.Date;
 /**
  * Class Item решение задачи части 002 - урок Инкапсуляция.Реализовать класс Tracker 2.
  * @author vmyaskovskiy
@@ -10,14 +11,15 @@ public class Item {
     private  String id;
     private String name;
     private String description;
-    private long create;
+    private Date create;
 
     public Item() {
     }
-    public Item(String name, String description, long create) {
+    public Item(String name, String description) {
         this.name = name;
         this.description = description;
-        this.create = create;
+        Date date = new Date();
+        this.create = date;
     }
     public String getName() {
         return this.name;
@@ -31,10 +33,10 @@ public class Item {
     public void setDescription(String description) {
         this.description = description;
     }
-    public  long getCreate() {
+    public  Date getCreate() {
         return this.create;
     }
-    public void setCreate(long create) {
+    public void setCreate(Date create) {
         this.create = create;
     }
     public String getId() {
@@ -60,10 +62,10 @@ public class Item {
     @Override
     public String toString() {
         return "Item{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", create=" + create +
+                "id='" + this.id + '\'' +
+                ", name='" + this.name + '\'' +
+                ", description='" + this.description + '\'' +
+                ", create=" + this.create +
                 '}';
     }
 }

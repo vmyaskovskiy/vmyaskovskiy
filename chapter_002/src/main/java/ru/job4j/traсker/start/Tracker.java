@@ -89,7 +89,7 @@ public class Tracker {
      * @return  result  выходной параметр - возвращает  заявку с нужным Id.
      */
     public Item findById(String id) {
-        Item result = new Item();
+        Item result = null;
         for (Item item : items) {
            if (item != null && item.getId().equals(id)) {
               result = item;
