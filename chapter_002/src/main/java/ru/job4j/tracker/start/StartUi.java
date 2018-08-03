@@ -1,5 +1,5 @@
-package ru.job4j.traсker.start;
-import ru.job4j.traсker.models.*;
+package ru.job4j.tracker.start;
+import ru.job4j.tracker.models.*;
 /**
  * Class StartUi решение задачи части 002 - урок Полиморфизм. Реализовать класс ConsoleInput в классе StartUI .
  * @author vmyaskovskiy
@@ -88,8 +88,12 @@ public class StartUi {
                     this.tracker.replace(id, itemRes);
                     System.out.println(itemRes);
 
-            } else System.out.println("---заявка не найдена----");
-            } else System.out.println("---заявки не найдены----");
+            } else {
+                    System.out.println("---заявка не найдена----");
+                }
+            } else {
+                System.out.println("---заявки не найдены----");
+            }
         }
         /**
         * Метод реализует поиск заявки по имени.
@@ -98,11 +102,13 @@ public class StartUi {
             System.out.println("------поиск заявки по имени-----------");
             String name = this.input.ask("Введите имя заявки :");
             if (this.tracker.getPosition() != 0) {
-                System.out.println("----------Найденные заявки------------" );
+                System.out.println("----------Найденные заявки------------");
                 for (Item item: this.tracker.findByName(name)) {
                     System.out.println(item);
                 }
-            } else System.out.println("-- ничего не найдено---");
+            } else {
+                System.out.println("-- ничего не найдено---");
+            }
         }
         /**
         * Метод реализует отображение всех заявок.
@@ -110,11 +116,13 @@ public class StartUi {
         private void showAllItem() {
             System.out.println("----------Показать все заявки---------");
             if (tracker.getPosition() != 0) {
-                System.out.println("----------Найденные заявки------------" );
+                System.out.println("----------Найденные заявки------------");
                 for (Item item: this.tracker.getAll()) {
                     System.out.println("Id -- " + item.getId() + " " + ";  Имя -- " + item.getName() + " " + ";  Описание -- " + item.getDescription() + " " + ";  Data -- " + item.getCreate());
                 }
-            } else System.out.println("-- ничего не найдено---");
+            } else {
+                System.out.println("-- ничего не найдено---");
+            }
         }
         /**
         * Метод реализует удаление  заявки.
@@ -123,10 +131,14 @@ public class StartUi {
             System.out.println("--------Удалить заявку------------");
            if (tracker.getPosition() != 0) {
                String id = this.input.ask("Введите ID");
-               if (this.tracker.delete(id) == true) {
+               if (this.tracker.delete(id)) {
                    System.out.println("-- заявка удалена---");
-               } else System.out.println("----заявка не найдена---");
-           }  else  System.out.println("-- ничего не найдено---");
+               } else {
+                   System.out.println("----заявка не найдена---");
+               }
+           }  else  {
+               System.out.println("-- ничего не найдено---");
+           }
         }
           /**
           * Метод реализует поиск заявки по ID.
@@ -138,8 +150,12 @@ public class StartUi {
                  Item itemRes = this.tracker.findById(id);
                  if (itemRes != null) {
                      System.out.println(" Найдена заявка-- " + " " + itemRes);
-                 } else  System.out.println("-- заявка не найдена---");
-             } else  System.out.println("-- ничего не найдено---");
+                 } else  {
+                     System.out.println("-- заявка не найдена---");
+                 }
+             } else  {
+                 System.out.println("-- ничего не найдено---");
+             }
          }
      /**
      * метод отображающий меню на экране

@@ -1,5 +1,5 @@
-package ru.job4j.traсker.start;
-import ru.job4j.traсker.models.*;
+package ru.job4j.tracker.start;
+import ru.job4j.tracker.models.*;
 
 import java.awt.*;
 import java.util.Random;

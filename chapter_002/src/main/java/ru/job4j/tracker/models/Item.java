@@ -1,4 +1,4 @@
-package ru.job4j.traсker.models;
+package ru.job4j.tracker.models;
 import java.util.Objects;
 import java.util.Date;
 /**
@@ -15,7 +15,7 @@ public class Item {
 
     public Item() {
     }
-    public Item(String name, String description) {
+    public  Item(String name, String description) {
         this.name = name;
         this.description = description;
         Date date = new Date();
@@ -47,8 +47,12 @@ public class Item {
     }
     @Override
     public boolean equals(Object o) {
-        if(this == o) return true;
-        if(o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Item item = (Item) o;
         return Objects.equals(name, item.name)
                 &&
@@ -61,11 +65,23 @@ public class Item {
     }
     @Override
     public String toString() {
-        return "Item{" +
-                "id='" + this.id + '\'' +
-                ", name='" + this.name + '\'' +
-                ", description='" + this.description + '\'' +
-                ", create=" + this.create +
+        return "Item{"
+                +
+                "id='"
+                + this.id
+                + '\''
+                +
+                ", name='"
+                + this.name
+                + '\''
+                +
+                ", description='"
+                + this.description
+                + '\''
+                +
+                ", create="
+                + this.create
+                +
                 '}';
     }
 }

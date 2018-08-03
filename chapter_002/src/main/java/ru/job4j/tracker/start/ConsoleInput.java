@@ -1,4 +1,4 @@
-package ru.job4j.traсker.start;
+package ru.job4j.tracker.start;
 import java.util.*;
 /**
  * Class ConsoleInput решение задачи части 002 - урок Полиморфизм. Реализовать класс ConsoleInput в классе StartUI .
