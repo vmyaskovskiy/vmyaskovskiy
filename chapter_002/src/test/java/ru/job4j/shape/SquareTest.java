@@ -1,4 +1,6 @@
 package ru.job4j.shape;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -13,32 +15,22 @@ import static org.junit.Assert.assertThat;
  * @since 0.1
  */
 public class SquareTest {
-    @Test
-    public void testSquare() {
-        Square square = new Square();
-        StringBuilder picRes = new StringBuilder();
-        picRes.append("++++");
-        picRes.append("+  +");
-        picRes.append("+  +");
-        picRes.append("++++");
-        assertThat(square.draw(), is(picRes.toString()));
+    private final PrintStream stdout = System.out;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    @Before
+    public void loadOutput() {
+        System.out.println("выполнять перед вызовом метода");
+        System.setOut(new PrintStream(this.out));
     }
-    @Test
-    public void testTriangle() {
-        Triangle triangle = new Triangle();
-        StringBuilder picTriRes = new StringBuilder();
-        picTriRes.append("  +  ");
-        picTriRes.append(" + + ");
-        picTriRes.append("+++++");
-        assertThat(triangle.draw(), is(picTriRes.toString()));
+    @After
+    public void backOutput() {
+        System.setOut(this.stdout);
+        System.out.println("выполнять после вызова метода");
     }
     @Test
     public void testPaintSquare() {
-        PrintStream stdout = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
         new Paint().draw(new Square());
-        assertThat(new String(out.toByteArray()), is(new StringBuilder()
+        assertThat(new String(this.out.toByteArray()), is(new StringBuilder()
                 .append("++++")
                 .append("+  +")
                 .append("+  +")
@@ -47,13 +39,9 @@ public class SquareTest {
                 .toString()
         )
         );
-        System.setOut(stdout);
     }
     @Test
     public void testPaintTriangle() {
-        PrintStream stdout = System.out;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
         new Paint().draw(new Triangle());
         assertThat(new String(out.toByteArray()), is(new StringBuilder()
                         .append("  +  ")
@@ -63,6 +51,5 @@ public class SquareTest {
                         .toString()
                 )
         );
-        System.setOut(stdout);
     }
 }
