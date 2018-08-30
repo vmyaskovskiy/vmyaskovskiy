@@ -47,14 +47,17 @@ public class MenuTracker {
      */
     private Tracker tracker;
     private UserAction[] actions = new UserAction[10];
+    private StartUiNew su;
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
      * @param tracker хранилище заявок.
      */
-    public MenuTracker(Input input, Tracker tracker) {
+    public MenuTracker(Input input, Tracker tracker, StartUiNew su) {
         this.input = input;
         this.tracker = tracker;
+        this.su = su;
+
     }
     /**
      * Метод заполняет массив.
@@ -219,11 +222,13 @@ public class MenuTracker {
      * @since 0.1
      */
     private class Exit implements UserAction {
-        public int key() {
+
+       public int key() {
             return 6;
         }
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Выход из программы --------------");
+            MenuTracker.this.su.setExit(true);
         }
         public String info() {
             return String.format("%s. %s", this.key(), "Exit");

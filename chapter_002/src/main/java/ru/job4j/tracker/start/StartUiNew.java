@@ -6,7 +6,9 @@ package ru.job4j.tracker.start;
  * @since 0.1
  */
 public class StartUiNew {
+    private int[] range = new int[] {0,1,2,3,4,5,6};
     private Input input;
+    private boolean exit = false;
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
@@ -19,22 +21,20 @@ public class StartUiNew {
      */
     public void init() {
         Tracker tracker = new Tracker();
-        MenuTracker menu = new MenuTracker(this.input, tracker);
+        MenuTracker menu = new MenuTracker(this.input, tracker, this);
         menu.fillAction();
-        boolean exit = false;
-        while (!exit) {
+        while (exit != true) {
             menu.show();
-            int key = Integer.valueOf(input.ask("Select"));
-            if (key != 6) {
+            int key = input.ask("Select", range);
             menu.select(key);
-            } else {
-                menu.select(key);
-                exit = true;
-            }
         }
     }
     public static void main(String[] args) {
         Input input = new ConsoleInput();
         new StartUiNew(input).init();
+    }
+
+    public void setExit (boolean exit) {
+        this.exit = exit;
     }
 }
