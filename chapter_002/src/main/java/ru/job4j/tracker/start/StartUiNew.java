@@ -6,7 +6,6 @@ package ru.job4j.tracker.start;
  * @since 0.1
  */
 public class StartUiNew {
-    private int[] range = new int[] {0,1,2,3,4,5,6};
     private Input input;
     private boolean exit = false;
     /**
@@ -23,7 +22,8 @@ public class StartUiNew {
         Tracker tracker = new Tracker();
         MenuTracker menu = new MenuTracker(this.input, tracker, this);
         menu.fillAction();
-        while (exit != true) {
+        int[] range =  menu.range();
+        while (exit == false) {
             menu.show();
             int key = input.ask("Select", range);
             menu.select(key);
@@ -34,7 +34,7 @@ public class StartUiNew {
         new StartUiNew(input).init();
     }
 
-    public void setExit (boolean exit) {
+    public void setExit(boolean exit) {
         this.exit = exit;
     }
 }

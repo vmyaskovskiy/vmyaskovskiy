@@ -1,6 +1,9 @@
 package ru.job4j.tracker.start;
 
 import ru.job4j.tracker.models.Item;
+
+import java.util.Arrays;
+
 /**
  * Class EditItems внешний внутренний класс. реализовывает редактирование заявок.
  * @author vmyaskovskiy
@@ -8,27 +11,33 @@ import ru.job4j.tracker.models.Item;
  * @since 0.1
  */
 class  EditItems implements UserAction {
+
+    private String name;
+    private int key;
     public int key() {
-        return 2;
+        return this.key;
+    }
+    public EditItems(int key, String name) {
+        this.name = name;
+        this.key = key;
     }
     public void execute(Input input, Tracker tracker) {
         if (tracker.getPosition() != 0) {
             String id = input.ask("Введите Id заявки :");
-            Item itemR = tracker.findById(id);
-            if (itemR != null && itemR.getId().equals(id)) {
+            if (tracker.findById(id) != null) {
                 String name = input.ask("Введите имя заявки :");
                 String desc = input.ask("Введите описание заявки :");
                 Item itemRes = new Item(name, desc);
                 tracker.replace(id, itemRes);
             } else {
-                System.out.println("---заявка не найдена----");
-            }
-        } else {
-            System.out.println("---заявки не найдены----");
+                System.out.println("---введен некоректный Id----");
+              }
+            } else {
+                System.out.println("---заявки не найдены----");
         }
     }
     public String info() {
-        return String.format("%s. %s", this.key(), "Edit items");
+        return String.format("%s. %s", this.key, this.name);
     }
 }
 /**
@@ -46,7 +55,7 @@ public class MenuTracker {
      * хранит ссылку на объект .
      */
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[10];
+    private UserAction[] actions = new UserAction[100];
     private StartUiNew su;
     /**
      * Конструтор инициализирующий поля.
@@ -57,20 +66,35 @@ public class MenuTracker {
         this.input = input;
         this.tracker = tracker;
         this.su = su;
-
     }
     /**
      * Метод заполняет массив.
      */
     public void fillAction() {
-         this.actions[0] = new AddItem();
-         this.actions[1] = new MenuTracker.ShowItems();
-         this.actions[2] = new EditItems();
-         this.actions[3] = new DeleteItem();
-         this.actions[4] = new FindItemsById();
-         this.actions[5] = new FindItemsByName();
-         this.actions[6] = new Exit();
+         this.actions[0] = new AddItem(0, "Add the new item");
+         this.actions[1] = new MenuTracker.ShowItems(1, "Show all itms");
+         this.actions[2] = new EditItems(2, "Edit items");
+         this.actions[3] = new DeleteItem(3, "Delete item");
+         this.actions[4] = new FindItemsById(4, "Find items by id");
+         this.actions[5] = new FindItemsByName(5, "Find items by name");
+         this.actions[6] = new Exit(6, "Exit");
     }
+    /**
+     * Метод определяет диапазон доступных ключей.
+     */
+    public int[] range() {
+        int[] range = new int[this.actions.length];
+        int count = 0;
+        for (UserAction action: this.actions) {
+            if (action != null) {
+                range[count++] = action.key();
+            } else {
+                break;
+            }
+        }
+        return Arrays.copyOf(range, count);
+    }
+
     /**
      * Метод в зависимости от указанного ключа, выполняет соотвествующие действие.
      *
@@ -96,8 +120,16 @@ public class MenuTracker {
      * @since 0.1
      */
     private class AddItem implements UserAction {
+        private String name;
+        private int key;
+
         public int key() {
-            return 0;
+            return this.key;
+        }
+
+        public AddItem(int key, String name) {
+            this.name = name;
+            this.key = key;
         }
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Добавление новой заявки --------------");
@@ -105,9 +137,8 @@ public class MenuTracker {
             String desc = input.ask("Введите описание заявки :");
             tracker.add(new Item(name, desc));
         }
-
         public String info() {
-            return String.format("%s. %s", this.key(), "Add the new item");
+            return String.format("%s. %s", this.key, this.name);
         }
     }
     /**
@@ -117,8 +148,14 @@ public class MenuTracker {
      * @since 0.1
      */
     private static class ShowItems implements UserAction {
+        private String name;
+        private int key;
         public int key() {
-            return 1;
+            return this.key;
+        }
+        public ShowItems(int key, String name) {
+            this.name = name;
+            this.key = key;
         }
         public void execute(Input input, Tracker tracker) {
             if (tracker.getPosition() != 0) {
@@ -133,7 +170,7 @@ public class MenuTracker {
             }
         }
         public String info() {
-            return String.format("%s. %s", this.key(), "Show all itms");
+            return String.format("%s. %s", this.key, this.name);
         }
     }
     /**
@@ -143,23 +180,26 @@ public class MenuTracker {
      * @since 0.1
      */
     private class DeleteItem implements UserAction {
+        private String name;
+        private int key;
         public int key() {
-            return 3;
+            return this.key;
+        }
+        public DeleteItem(int key, String name) {
+            this.name = name;
+            this.key = key;
         }
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Удаление заявки --------------");
             String id = input.ask("Введите ID :");
-            Item item = tracker.findById(id);
-            if (item != null && item.getId().equals(id)) {
-                tracker.delete(id);
+            if (tracker.delete(id)) {
                 System.out.println("------------ Заявка удалена успешно --------------");
             } else {
                 System.out.println("------------ Заявка не найдена --------------");
             }
         }
-
         public String info() {
-            return String.format("%s. %s", this.key(), "Delete item");
+            return String.format("%s. %s", this.key, this.name);
         }
     }
     /**
@@ -169,8 +209,14 @@ public class MenuTracker {
      * @since 0.1
      */
     private class FindItemsById implements UserAction {
+        private String name;
+        private int key;
         public int key() {
-            return 4;
+            return this.key;
+        }
+        public FindItemsById(int key, String name) {
+            this.name = name;
+            this.key = key;
         }
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Поиск заявки --------------");
@@ -185,7 +231,7 @@ public class MenuTracker {
         }
 
         public String info() {
-            return String.format("%s. %s", this.key(), "Find items by id");
+            return String.format("%s. %s", this.key, this.name);
         }
     }
     /**
@@ -195,8 +241,14 @@ public class MenuTracker {
      * @since 0.1
      */
     private class FindItemsByName implements UserAction {
+        private String name;
+        private int key;
         public int key() {
-            return 5;
+            return this.key;
+        }
+        public FindItemsByName(int key, String name) {
+            this.name = name;
+            this.key = key;
         }
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Поиск заявки --------------");
@@ -212,7 +264,7 @@ public class MenuTracker {
 
         }
         public String info() {
-            return String.format("%s. %s", this.key(), "Find items by name");
+            return String.format("%s. %s", this.key, this.name);
         }
     }
     /**
@@ -223,15 +275,23 @@ public class MenuTracker {
      */
     private class Exit implements UserAction {
 
-       public int key() {
-            return 6;
+        private String name;
+        private int key;
+        public int key() {
+            return this.key;
+        }
+        public Exit(int key, String name) {
+            this.name = name;
+            this.key = key;
         }
         public void execute(Input input, Tracker tracker) {
             System.out.println("------------ Выход из программы --------------");
+         //   System.out.println(MenuTracker.this.range().length - 1);
             MenuTracker.this.su.setExit(true);
+
         }
         public String info() {
-            return String.format("%s. %s", this.key(), "Exit");
+            return String.format("%s. %s", this.key, this.name);
         }
     }
 }

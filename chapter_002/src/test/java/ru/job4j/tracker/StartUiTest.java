@@ -60,7 +60,7 @@ public class StartUiTest {
         Tracker tracker = new Tracker();
         Item item = new Item("d", "c");
         tracker.add(item);
-        Input input = new StubInput(new String[]{"4", item.getId(), "1", "6"});
+        Input input = new StubInput(new String[]{"4", item.getId(), "6"});
         new StartUi(input, tracker).init();
         assertThat(tracker.findById(item.getId()).getName(), is("d"));
     }

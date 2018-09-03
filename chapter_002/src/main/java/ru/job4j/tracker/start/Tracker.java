@@ -38,6 +38,8 @@ public class Tracker {
                 this.items[i].setCreate(result.getCreate());
                 res = true;
                 break;
+            } else {
+                System.out.println("---заявки не найдены----");
             }
         } return res;
     }
@@ -94,7 +96,11 @@ public class Tracker {
            if (item != null && item.getId().equals(id)) {
               result = item;
               break;
+           } else {
+               result = null;
+               System.out.println("---заявки не найдены----");
            }
+           break;
         }
         return result;
     }
