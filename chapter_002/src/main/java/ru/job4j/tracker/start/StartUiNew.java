@@ -22,7 +22,7 @@ public class StartUiNew {
         Tracker tracker = new Tracker();
         MenuTracker menu = new MenuTracker(this.input, tracker, this);
         menu.fillAction();
-        int[] range =  menu.range();
+        int[] range = menu.range(); //{1,2,3,4,5,6,7};
         while (exit == false) {
             menu.show();
             int key = input.ask("Select", range);
@@ -30,7 +30,7 @@ public class StartUiNew {
         }
     }
     public static void main(String[] args) {
-        Input input = new ConsoleInput();
+        Input input = new ValidateInput();
         new StartUiNew(input).init();
     }
 
