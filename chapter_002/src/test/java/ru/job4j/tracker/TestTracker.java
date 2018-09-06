@@ -44,7 +44,6 @@ public class TestTracker {
         tracker.add(nextNext);
         tracker.delete(next.getId());
         assertNull(tracker.findById(next.getId()));
-        assertThat(tracker.findById(nextNext.getId()).getName(), is("four"));
     }
     @Test
     public void deleteItemNext() {
@@ -57,7 +56,6 @@ public class TestTracker {
         tracker.add(nextNext);
         tracker.delete(nextNext.getId());
         assertNull(tracker.findById(nextNext.getId()));
-        assertThat(tracker.findById(previous.getId()).getName(), is("sekond"));
     }
     @Test
     public void deleteItemPrevious() {
@@ -70,7 +68,6 @@ public class TestTracker {
         tracker.add(nextNext);
         tracker.delete(previous.getId());
         assertNull(tracker.findById(previous.getId()));
-        assertThat(tracker.findById(next.getId()).getName(), is("therd"));
     }
     @Test
     public void getAll() {

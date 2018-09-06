@@ -7,13 +7,15 @@ package ru.job4j.tracker.start;
  */
 public class StartUiNew {
     private Input input;
+    private Tracker tracker;
     private boolean exit = false;
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
      */
-    public StartUiNew(Input input) {
+    public StartUiNew(Input input, Tracker tracker) {
         this.input = input;
+        this.tracker = tracker;
     }
     /**
      * Основой цикл программы.
@@ -22,16 +24,15 @@ public class StartUiNew {
         Tracker tracker = new Tracker();
         MenuTracker menu = new MenuTracker(this.input, tracker, this);
         menu.fillAction();
-        int[] range = menu.range(); //{1,2,3,4,5,6,7};
-        while (exit == false) {
+        int[] range = menu.range();
+        while (!exit) {
             menu.show();
             int key = input.ask("Select", range);
             menu.select(key);
         }
     }
     public static void main(String[] args) {
-        Input input = new ValidateInput();
-        new StartUiNew(input).init();
+        new StartUiNew(new ValidateInput(new ConsoleInput()), new Tracker()).init();
     }
 
     public void setExit(boolean exit) {
