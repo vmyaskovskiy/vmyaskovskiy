@@ -9,13 +9,11 @@ import ru.job4j.tracker.start.Input;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertNull;
 import static org.hamcrest.core.Is.is;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import org.junit.After;
+import org.junit.Before;
 
-/**
- * Class StartUiTest тестирование задачи части 002 - урок 4. Полиморфизм.
- * @author vmyaskovskiy
- * @version $Id$
- * @since 0.1
- */
 public class StartUiTest {
     @Test
     public void addItem() {
@@ -80,8 +78,62 @@ public class StartUiTest {
         assertThat(items[1].getName(), is("d"));
         assertThat(tracker.getAll()[2].getName(), is("v"));
     }
+    private final PrintStream stdout = System.out;
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+    @Before
+    public void loadOutput() {
+        //System.out.println("выполнять перед вызовом метода");
+        System.setOut(new PrintStream(this.out));
+    }
+    @After
+    public void backOutput() {
+        System.setOut(this.stdout);
+        //System.out.println("выполнять после вызова метода");
+    }
+    String ls = System.lineSeparator();
+    private StringBuilder menu = new StringBuilder()
+            //.append("Меню.").append(ls)
+            .append("0. Add the new item").append(ls)
+            .append("1. Show all items").append(ls)
+            .append("2. Edit items").append(ls)
+            .append("3. Delete item").append(ls)
+            .append("4. Find items by id").append(ls)
+            .append("5. Find items by name").append(ls)
+            .append("6. Exit").append(ls);
+
+    @Test
+    public void showAllItemOne() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("d", "c");
+        tracker.add(item);
+        Input input = new StubInput(new String[]{"1", "6"});
+        new StartUi(input, tracker).init();
+        assertThat(new String(this.out.toByteArray()), is(new StringBuilder()
+                        .append(this.menu)
+                        .append("------------ Найденные заявки --------------").append(ls)
+                        .append(item.getId() + ". d. c. " + item.getCreate() + "").append(ls)
+                        .append(this.menu)
+                        .append("------------ Выход из программы --------------").append(ls)
+                        .toString()
+                )
+        );
+    }
+    @Test
+    public void findItemByIdOne() {
+        Tracker tracker = new Tracker();
+        Item item = new Item("d", "c");
+        tracker.add(item);
+        Input input = new StubInput(new String[]{"4", item.getId(), "6"});
+        new StartUi(input, tracker).init();
+        assertThat(new String(this.out.toByteArray()), is(new StringBuilder()
+                        .append(this.menu)
+                        .append("------------ Поиск заявки --------------").append(System.lineSeparator())
+                        .append("------------ Найденная заявка --------------").append(ls)
+                        .append("Item{id='" + item.getId() + "', name='d', description='c', create=" + item.getCreate() + "}").append(System.lineSeparator())
+                        .append(this.menu)
+                        .append("------------ Выход из программы --------------").append(ls)
+                        .toString()
+                )
+        );
+    }
 }
-
-
-
-

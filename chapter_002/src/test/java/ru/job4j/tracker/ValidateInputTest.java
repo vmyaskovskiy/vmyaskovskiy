@@ -3,11 +3,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import ru.job4j.tracker.start.ValidateInput;
-import ru.job4j.tracker.models.Item;
-import ru.job4j.tracker.start.StartUi;
 import ru.job4j.tracker.start.StubInput;
-import ru.job4j.tracker.start.Tracker;
-import ru.job4j.tracker.start.Input;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 

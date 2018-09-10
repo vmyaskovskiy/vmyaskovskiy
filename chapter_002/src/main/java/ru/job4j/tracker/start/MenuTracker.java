@@ -56,13 +56,13 @@ public class MenuTracker {
      */
     private Tracker tracker;
     private UserAction[] actions = new UserAction[100];
-    private StartUiNew su;
+    private StartUi su;
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
      * @param tracker хранилище заявок.
      */
-    public MenuTracker(Input input, Tracker tracker, StartUiNew su) {
+    public MenuTracker(Input input, Tracker tracker, StartUi su) {
         this.input = input;
         this.tracker = tracker;
         this.su = su;
@@ -72,7 +72,7 @@ public class MenuTracker {
      */
     public void fillAction() {
          this.actions[0] = new AddItem(0, "Add the new item");
-         this.actions[1] = new MenuTracker.ShowItems(1, "Show all itms");
+         this.actions[1] = new MenuTracker.ShowItems(1, "Show all items");
          this.actions[2] = new EditItems(2, "Edit items");
          this.actions[3] = new DeleteItem(3, "Delete item");
          this.actions[4] = new FindItemsById(4, "Find items by id");
