@@ -1,5 +1,10 @@
 package ru.job4j.tracker.start;
-
+/**
+ * Class ValidateInput выполенение задачи части 002 - ООП. Шаблон Декоратор для валидатора.
+ * @author vmyaskovskiy
+ * @version $Id$
+ * @since 0.1
+ */
 public class ValidateInput implements Input {
     private final Input input;
     public ValidateInput(final Input input) {

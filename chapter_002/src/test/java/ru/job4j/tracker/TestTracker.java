@@ -7,7 +7,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertNull;
 /**
- * Class TestProf тестирование задачи части 002 - урок 2. Наследование.
+ * Class TestTracker тестирование задачи части 002 - урок 3. тестирование класса Tracker.
  * @author vmyaskovskiy
  * @version $Id$
  * @since 0.1

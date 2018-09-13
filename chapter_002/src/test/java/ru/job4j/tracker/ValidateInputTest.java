@@ -10,12 +10,15 @@ import java.io.PrintStream;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-
-
+/**
+ * Class ValidateInputTest тестирование задачи части 002 - ООП. Шаблон Декоратор для валидатора.
+ * @author vmyaskovskiy
+ * @version $Id$
+ * @since 0.1
+ */
 public class ValidateInputTest {
     private final PrintStream out = System.out;
     private final ByteArrayOutputStream stdout = new ByteArrayOutputStream();
-
     @Before
     public void loadMem() {
         System.setOut(new PrintStream(this.stdout));
@@ -31,5 +34,4 @@ public class ValidateInputTest {
         assertThat(this.stdout.toString(), is(String.format("введите корректные данные%n"))
         );
     }
-
 }

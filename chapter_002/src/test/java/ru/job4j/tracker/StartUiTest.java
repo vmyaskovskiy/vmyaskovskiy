@@ -13,7 +13,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.After;
 import org.junit.Before;
-
+/**
+ * Class StartUiTest тестирование задачи части 002 - ООП. тестирование класса StartUi.
+ * @author vmyaskovskiy
+ * @version $Id$
+ * @since 0.1
+ */
 public class StartUiTest {
     @Test
     public void addItem() {
@@ -82,17 +87,14 @@ public class StartUiTest {
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     @Before
     public void loadOutput() {
-        //System.out.println("выполнять перед вызовом метода");
         System.setOut(new PrintStream(this.out));
     }
     @After
     public void backOutput() {
         System.setOut(this.stdout);
-        //System.out.println("выполнять после вызова метода");
     }
     String ls = System.lineSeparator();
     private StringBuilder menu = new StringBuilder()
-            //.append("Меню.").append(ls)
             .append("0. Add the new item").append(ls)
             .append("1. Show all items").append(ls)
             .append("2. Edit items").append(ls)
@@ -100,7 +102,6 @@ public class StartUiTest {
             .append("4. Find items by id").append(ls)
             .append("5. Find items by name").append(ls)
             .append("6. Exit").append(ls);
-
     @Test
     public void showAllItemOne() {
         Tracker tracker = new Tracker();
