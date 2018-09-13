@@ -10,25 +10,25 @@ import static org.junit.Assert.assertThat;
  */
 public class CheckTest {
   @Test
-  public void checkTrueTrue ()  {
+  public void checkTrueTrue()  {
       Check check = new Check();
       boolean[] table = new boolean[] {true, true, true};
       assertThat(check.mono(table), is(true));
   }
     @Test
-    public void checkFalseTrue ()  {
+    public void checkFalseTrue()  {
         Check check = new Check();
         boolean[] table = new boolean[] {false, false, false};
         assertThat(check.mono(table), is(true));
     }
     @Test
-    public void checkFalseFalse ()  {
+    public void checkFalseFalse()  {
         Check check = new Check();
         boolean[] table = new boolean[] {false, true, false};
         assertThat(check.mono(table), is(false));
     }
     @Test
-    public void checkFalseFalseTrue ()  {
+    public void checkFalseFalseTrue()  {
         Check check = new Check();
         boolean[] table = new boolean[] {false, false, true};
         assertThat(check.mono(table), is(false));

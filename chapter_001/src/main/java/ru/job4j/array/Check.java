@@ -16,8 +16,7 @@ public class Check {
                  result = false;
                  break;
              }
-             r = data[i + 1];
             result = true;
-        }return result;
+        } return result;
     }
 }
