@@ -23,7 +23,6 @@ public class RookBlack implements Figure {
     }
     /**
      * Метод way просчитывает правильный путь фигуры, выдает исключение если фигура движется неправильн.
-     *
      * @param source  координаты ячейки откуда ходят
      * @param dest  координаты ячейки куда ходят
      */
@@ -48,7 +47,6 @@ public class RookBlack implements Figure {
                         x += deltaX;
                         y += deltaY;
                         steps[i] = Cell.values()[8 * x + y];
-                        System.out.println(x + " " + y);
                     } else {
                         throw new ImpossibleMoveException("Так нельзя ходить");
                     }

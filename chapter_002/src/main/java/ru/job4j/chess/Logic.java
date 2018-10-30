@@ -23,7 +23,6 @@ public class Logic {
     }
     /**
      * Метод move просчитывает возможность двигаться фигуре, если встречаются исключения они обрабатываются.
-     *
      * @param source  координаты ячейки откуда ходят
      * @param dest  координаты ячейки куда ходят
      */
@@ -44,7 +43,7 @@ public class Logic {
                         break;
                     }
                 }
-                }
+            }
             catch (ImpossibleMoveException ime) {
                 this.figures[index] = this.figures[index].copy(source);
                 System.out.println(ime.getMessage());

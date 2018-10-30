@@ -4,6 +4,8 @@ import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 import ru.job4j.chess.firuges.OccupiedWeyException;
 
+import java.util.Objects;
+
 /**
  * Class PawnBlack решение задачи части 002 - Контрольные вопросы.  Решение задачи - Каркас шахматной доски.
  * @author vmyaskovskiy
@@ -40,5 +42,26 @@ public class PawnBlack implements Figure {
     @Override
     public Figure copy(Cell dest) {
         return new PawnBlack(dest);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PawnBlack pawnBlack = (PawnBlack) o;
+        return position == pawnBlack.position;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(position);
+    }
+
+    @Override
+    public String toString() {
+        return "PawnBlack{" +
+                "position=" + position +
+                '}';
     }
 }
