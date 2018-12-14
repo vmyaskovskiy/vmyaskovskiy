@@ -71,7 +71,7 @@ public class PhoneDictionaryTest {
         Person person1 = new Person("Ivan", "Petrov", "55", "vol2");
         phone.add(person);
         phone.add(person1);
-        List<Person> personList = phone.find("vol2");
-        assertThat(personList.iterator().next().getAdress(), is("vol2"));
+        int size = phone.find("vol").size();
+        assertThat(size, is(2));
     }
 }
