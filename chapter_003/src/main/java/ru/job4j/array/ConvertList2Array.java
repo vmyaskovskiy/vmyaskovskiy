@@ -26,4 +26,15 @@ public class ConvertList2Array {
         }
         return array;
     }
+
+    public List<Integer> convertToList(List<int[]> list) {
+        List<Integer> out = new ArrayList<>();
+        for(int i = 0; i < list.size(); i++ ) {
+            int[] res = list.get(i);
+            for (int j : res) {
+                out.add(j);
+            }
+        }
+        return out;
+    }
 }
