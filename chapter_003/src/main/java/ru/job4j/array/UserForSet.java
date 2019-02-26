@@ -20,10 +20,6 @@ public class UserForSet implements Comparable<UserForSet> {
     }
    @Override
     public int compareTo(UserForSet o) {
-        Integer o1 = this.getAge();
-        Integer o2 = o.getAge();
-        if(o1.toString().compareTo(o2.toString()) == 0) {
-            return this.getName().compareTo(o.getName());
-        }return o1.toString().compareTo(o2.toString());
+       return Integer.compare(this.getAge(), o.getAge());
     }
 }

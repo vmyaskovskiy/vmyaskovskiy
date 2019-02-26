@@ -16,10 +16,6 @@ public class UserSet  {
         return this.user;
     }
      public Set<UserForSet> sort (List<UserForSet> o) {
-        TreeSet<UserForSet> res = new TreeSet<>();
-        for(UserForSet set: o) {
-            res.add(set);
-        }
-        return res;
+        return new TreeSet<>(o);
      }
 }
