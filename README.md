@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/vmyaskovskiy/vmyaskovskiy.svg?branch=master)](https://travis-ci.org/vmyaskovskiy/vmyaskovskiy)
+[![codecov](https://codecov.io/gh/vmyaskovskiy/vmyaskovskiy/branch/master/graph/badge.svg)](https://codecov.io/gh/vmyaskovskiy/vmyaskovskiy)
 # vmyaskovskiy
-your_name
-http://job4j.ru/ цель - изучить автоматизацию тестирования с помощью Java к 2019 году.
+цель - изучить автоматизацию тестирования с помощью Java к 2019 году.
