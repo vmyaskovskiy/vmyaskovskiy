@@ -1,4 +1,4 @@
 [![Build Status](https://travis-ci.org/vmyaskovskiy/vmyaskovskiy.svg?branch=master)](https://travis-ci.org/vmyaskovskiy/vmyaskovskiy)
 [![codecov](https://codecov.io/gh/vmyaskovskiy/vmyaskovskiy/branch/master/graph/badge.svg)](https://codecov.io/gh/vmyaskovskiy/vmyaskovskiy)
 # vmyaskovskiy
-цель - изучить автоматизацию тестирования с помощью Java к 2019 году.
+С†РµР»СЊ - РёР·СѓС‡РёС‚СЊ Р°РІС‚РѕРјР°С‚РёР·Р°С†РёСЋ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ СЃ РїРѕРјРѕС‰СЊСЋ Java Рє 2019 РіРѕРґСѓ.
