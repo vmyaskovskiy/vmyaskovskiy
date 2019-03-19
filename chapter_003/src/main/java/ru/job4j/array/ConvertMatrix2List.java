@@ -11,8 +11,8 @@ import java.util.List;
 public class ConvertMatrix2List {
     public List<Integer> toList(int[][] array) {
         List<Integer> list = new ArrayList<>();
-        for(int[] innerArray : array) {
-            for(int res : innerArray) {
+        for (int[] innerArray : array) {
+            for (int res : innerArray) {
                 list.add(res);
             }
         }

@@ -24,17 +24,6 @@ public class TestTrackerTwo {
         assertThat(trackerTwo.getAll().iterator().next().getId(), is(item.getId()));
     }
     @Test
-    public void replaceItemTwo() {
-        TrackerTwo trackerTwo = new TrackerTwo();
-        Item item = new Item("sekond", "desk2");
-        Item itemOne = new Item("Bob", "desk3");
-        Item itemTwo = new Item("Roy", "desk3");
-        trackerTwo.add(item);
-        trackerTwo.add(itemOne);
-        trackerTwo.replace(item.getId(), itemTwo);
-        assertThat(item.getName(), is("Roy"));
-    }
-    @Test
     public void dellItemTwo() {
         TrackerTwo trackerTwo = new TrackerTwo();
         Item item = new Item("sekond", "desk2");

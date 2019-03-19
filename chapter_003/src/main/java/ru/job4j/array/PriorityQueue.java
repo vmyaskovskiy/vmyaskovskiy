@@ -21,8 +21,9 @@ public class PriorityQueue {
                 tasks.add(i + 1, task);
                 return;
             }
+        } else {
+            tasks.add(0, task);
         }
-        else { tasks.add(0, task); }
     }
     public Task take() {
         return this.tasks.poll();

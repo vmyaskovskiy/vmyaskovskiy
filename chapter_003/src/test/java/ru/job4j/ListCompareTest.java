@@ -18,41 +18,48 @@ public class ListCompareTest {
         ListCompare list = new ListCompare();
         String res1 = "Ivanov";
         String res2 = "Ivanov";
-        assertThat(list.compare(res1,res2), is(0));
+        assertThat(list.compare(res1, res2), is(0));
     }
     @Test
     public void whenLeftLessThanRightResultShouldBeNegative() {
         ListCompare list = new ListCompare();
         String res1 = "Ivanov";
         String res2 = "Ivanova";
-        assertThat(list.compare(res1,res2), lessThan(0));
+        assertThat(list.compare(res1, res2), lessThan(0));
     }
     @Test
     public void whenLeftGreaterThanRightResultShouldBePositive() {
         ListCompare list = new ListCompare();
         String res1 = "Petrov";
         String res2 = "Ivanova";
-        assertThat(list.compare(res1,res2), greaterThan(0));
+        assertThat(list.compare(res1, res2), greaterThan(0));
     }
     @Test
     public void secondCharOfLeftGreaterThanRightShouldBePositiveTwo() {
         ListCompare list = new ListCompare();
         String res1 = "Ivanov";
         String res2 = "Patrova";
-        assertThat(list.compare(res1,res2), lessThan(0));
+        assertThat(list.compare(res1, res2), lessThan(0));
     }
     @Test
     public void secondCharOfLeftGreaterThanRightShouldBePositive() {
         ListCompare list = new ListCompare();
         String res1 = "Petrov";
         String res2 = "Patrov";
-        assertThat(list.compare(res1,res2), greaterThan(0));
+        assertThat(list.compare(res1, res2), greaterThan(0));
     }
     @Test
     public void secondCharOfLeftLessThanRightShouldBeNegative() {
-        ListCompare list = new ListCompare();;
+        ListCompare list = new ListCompare();
         String res1 = "Patrova";
         String res2 = "Petrov";
-        assertThat(list.compare(res1,res2), lessThan(0));
+        assertThat(list.compare(res1, res2), lessThan(0));
+    }
+    @Test
+    public void whenLeftGreaterThanRightResultShouldBePositiveTwo() {
+        ListCompare list = new ListCompare();
+        String res1 = "Patrova";
+        String res2 = "Patrov";
+        assertThat(list.compare(res1, res2), greaterThan(0));
     }
 }

@@ -58,7 +58,7 @@ public class StartUiTestRefTwo {
         TrackerTwo tracker = new TrackerTwo();
         Item item = new Item("d", "c");
         tracker.add(item);
-        Input input = new StubInput(new String[]{"4", item.getId(), "6"});
+        Input input = new StubInput(new String[]{"4", String.valueOf(item.getId()), "6"});
         new StartUiNewTwo(input, tracker).init();
         assertThat(new String(this.out.toByteArray()), is(new StringBuilder()
                         .append(this.menu)

@@ -43,12 +43,10 @@ public class Logic {
                         break;
                     }
                 }
-            }
-            catch (ImpossibleMoveException ime) {
+            } catch (ImpossibleMoveException ime) {
                 this.figures[index] = this.figures[index].copy(source);
                 System.out.println(ime.getMessage());
-            }
-            catch (OccupiedWeyException owe) {
+            } catch (OccupiedWeyException owe) {
                 this.figures[index] = this.figures[index].copy(source);
                 System.out.println(owe.getMessage());
             }

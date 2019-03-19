@@ -13,7 +13,6 @@ import ru.job4j.tracker.models.Item;
 public class MenuTrackerTwo {
     private Input input;
     private TrackerTwo trackerTwo;
-   // private UserActionTwo[] actionsTwo = new UserActionTwo[100];
     private List<UserActionTwo> actionsTwoList = new ArrayList<>();
     private StartUiNewTwo su;
     /**
@@ -78,8 +77,8 @@ public class MenuTrackerTwo {
         }
         public void execute(Input input, TrackerTwo trackerTwo) {
             System.out.println("------------ Добавление новой заявки --------------");
-            String name = input.ask("Введите имя заявки :");
-            String desc = input.ask("Введите описание заявки :");
+            String name = input.askTwo("Введите имя заявки :");
+            String desc = input.askTwo("Введите описание заявки :");
             trackerTwo.add(new Item(name, desc));
         }
     }
@@ -118,10 +117,10 @@ public class MenuTrackerTwo {
         }
         public void execute(Input input, TrackerTwo trackerTwo) {
             if (trackerTwo.getAll().size() != 0) {
-                String id = input.ask("Введите Id заявки :");
+                Integer id = input.ask("Введите Id заявки :");
                 if (trackerTwo.findById(id) != null) {
-                    String name = input.ask("Введите имя заявки :");
-                    String desc = input.ask("Введите описание заявки :");
+                    String name = input.askTwo("Введите имя заявки :");
+                    String desc = input.askTwo("Введите описание заявки :");
                     Item itemRes = new Item(name, desc);
                     trackerTwo.replace(id, itemRes);
                 } else {
@@ -144,7 +143,7 @@ public class MenuTrackerTwo {
         }
         public void execute(Input input, TrackerTwo tracker) {
             System.out.println("------------ Удаление заявки --------------");
-            String id = input.ask("Введите ID :");
+            Integer id = input.ask("Введите ID :");
             if (tracker.delete(id)) {
                 System.out.println("------------ Заявка удалена успешно --------------");
             } else {
@@ -164,9 +163,9 @@ public class MenuTrackerTwo {
         }
         public void execute(Input input, TrackerTwo tracker) {
             System.out.println("------------ Поиск заявки --------------");
-            String id = input.ask("Введите ID :");
+            Integer id = input.ask("Введите ID :");
             Item item = tracker.findById(id);
-            if (item != null && item.getId().equals(id)) {
+            if (item != null && item.getId() == id) {
                 System.out.println("------------ Найденная заявка --------------");
                 System.out.println(item);
             } else {
@@ -187,7 +186,7 @@ public class MenuTrackerTwo {
         public void execute(Input input, TrackerTwo tracker) {
             System.out.println("------------ Поиск заявки --------------");
             if (trackerTwo.getAll().size() != 0) {
-                String name = input.ask("Введите имя заявки :");
+                String name = input.askTwo("Введите имя заявки :");
                 System.out.println("------------ Найденные заявки --------------");
                 for (Item item: tracker.findByName(name)) {
                     System.out.println(item);

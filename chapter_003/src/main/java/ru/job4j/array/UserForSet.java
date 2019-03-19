@@ -5,8 +5,7 @@ package ru.job4j.array;
  * @version $Id$
  * @since 0.1
  */
-public class UserForSet implements Comparable<UserForSet>
-{
+public class UserForSet implements Comparable<UserForSet> {
     private String name;
     private int age;
     public UserForSet(String name, int age) {

@@ -8,7 +8,7 @@ import java.util.Date;
  * @since 0.1
  */
 public class Item {
-    private  String id;
+    private  Integer id;
     private String name;
     private String description;
     private Date create;
@@ -39,10 +39,10 @@ public class Item {
     public void setCreate(Date create) {
         this.create = create;
     }
-    public String getId() {
+    public int getId() {
         return this.id;
     }
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     @Override

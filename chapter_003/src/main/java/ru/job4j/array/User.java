@@ -3,12 +3,12 @@ package ru.job4j.array;
 public class User {
     private int id;
     private String name;
-    private String City;
+    private String city;
 
-    public User (int id, String name, String City) {
+    public User(int id, String name, String city) {
         this.id = id;
         this.name = name;
-        this.City = City;
+        this.city = city;
     }
     public int getId() {
         return id;
@@ -17,6 +17,6 @@ public class User {
         return name;
     }
     public String getCity() {
-        return City;
+        return city;
     }
 }

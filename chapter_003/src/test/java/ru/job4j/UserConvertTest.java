@@ -19,7 +19,7 @@ import static org.junit.Assert.assertThat;
  */
 public class UserConvertTest {
     @Test
-    public void list2Map (){
+    public void list2Map() {
         UserConvert res = new UserConvert();
         List<User> resU = new ArrayList<>();
         resU.add(new User(1, "Petr", "Moscow"));

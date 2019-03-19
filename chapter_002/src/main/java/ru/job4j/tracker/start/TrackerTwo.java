@@ -18,13 +18,16 @@ public class TrackerTwo {
     private  String generateId() {
         return String.valueOf(RN.nextInt());
     }
+    private int generateIdTwo() {
+        return Integer.valueOf(RN.nextInt());
+    }
 
     /**
      * метод add добавляет заявки в массив.
      * @param  item входной параметр -  заявка.
      */
     public void add(Item item) {
-        item.setId(generateId());
+        item.setId(generateIdTwo());
         this.items.add(item);
     }
     /**
@@ -33,14 +36,15 @@ public class TrackerTwo {
      * @param id  входной параметр - id заявки по которой ищем нужную заявку.
      * @return res выходной параметр - true если заявка была изменена
      */
-    public boolean replace(String id, Item item) {
+    public boolean replace(Integer id, Item item) {
         boolean res = false;
         Item result = item;
         for (int i = 0; i < this.items.size(); i++) {
-        if (this.items.get(i).getId().equals(id) && this.items.get(i) != null) {
-            this.items.get(i).setName(item.getName());
-            this.items.get(i).setDescription(item.getDescription());
-            this.items.get(i).setCreate(item.getCreate());
+        if (this.items.get(i).getId() == id && this.items.get(i) != null) {
+           // this.items.get(i).setName(item.getName());
+           // this.items.get(i).setDescription(item.getDescription());
+           // this.items.get(i).setCreate(item.getCreate());
+            this.items.set(this.items.get(i).getId(), item);
             res = true;
             break;
         } else {
@@ -53,11 +57,11 @@ public class TrackerTwo {
      * @param id  входной параметр - id заявки по которой ищем нужную заявку.
      * @return result выходной параметр - true если заявка была удалена
      */
-    public boolean delete(String id) {
+    public boolean delete(Integer id) {
         boolean result = false;
         int position = this.items.size();
         for (int i = 0; i < position; i++) {
-            if (this.items.get(i) != null && this.items.get(i).getId().equals(id)) {
+            if (this.items.get(i) != null && this.items.get(i).getId() == id) {
                 this.items.remove(i);
                 result = true;
                 break;
@@ -91,10 +95,10 @@ public class TrackerTwo {
      * @param id  входной параметр - id заявки по которой ищем нужную заявку.
      * @return  result  выходной параметр - возвращает  заявку с нужным Id.
      */
-    public Item findById(String id) {
+    public Item findById(Integer id) {
         Item result = null;
         for (int i = 0; i < this.items.size(); i++) {
-            if (this.items.get(i).getId() != null && this.items.get(i).getId().equals(id)) {
+            if (this.items.get(i).getId() != 0 && this.items.get(i).getId() == id) {
                 result = this.items.get(i);
                 break;
             } else {

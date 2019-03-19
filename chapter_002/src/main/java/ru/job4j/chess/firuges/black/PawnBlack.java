@@ -46,8 +46,14 @@ public class PawnBlack implements Figure {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+
+        }
         PawnBlack pawnBlack = (PawnBlack) o;
         return position == pawnBlack.position;
     }
@@ -60,8 +66,11 @@ public class PawnBlack implements Figure {
 
     @Override
     public String toString() {
-        return "PawnBlack{" +
-                "position=" + position +
+        return "PawnBlack{"
+                +
+                "position="
+                + position
+                +
                 '}';
     }
 }

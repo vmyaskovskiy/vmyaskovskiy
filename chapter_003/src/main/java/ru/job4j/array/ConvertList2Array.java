@@ -13,7 +13,7 @@ public class ConvertList2Array {
 
     public int[][] toArray(List<Integer> list, int rows) {
         int size = list.size();
-        int cells = (int)Math.ceil((double) size / rows);
+        int cells = (int) Math.ceil((double) size / rows);
         int[][] array = new int[rows][cells];
         int k = 0;
         for (int i = 0; i < rows; i++) {
@@ -29,9 +29,8 @@ public class ConvertList2Array {
 
     public List<Integer> convertToList(List<int[]> list) {
         List<Integer> out = new ArrayList<>();
-        for(int[] arr : list) {
-            int[] res = arr;
-            for (int j : res) {
+        for (int[] arr : list) {
+            for (int j : arr) {
                 out.add(j);
             }
         }
