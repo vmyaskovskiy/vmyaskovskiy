@@ -1,6 +1,7 @@
 package ru.job4j;
 import org.junit.Test;
 import ru.job4j.array.AccountForBank;
+import ru.job4j.array.Bank;
 import ru.job4j.array.BankTransfer;
 import ru.job4j.array.UserForBank;
 
@@ -19,17 +20,28 @@ public class WorkBankTest {
     @Test
     public void addUserAndGetUserTest() {
         UserForBank userOne = new UserForBank("Vova", "2323 343456");
-        BankTransfer bank = new BankTransfer();
+        Bank bank = new Bank();
         bank.addUser(userOne);
         assertThat(bank.getUser("2323 343456").getName(), is("Vova"));
-        assertThat(bank.getListUser().iterator().next().getName(), is("Vova"));
+    }
+    @Test
+    public void dellUserTest() {
+        UserForBank userOne = new UserForBank("Vova", "2323 343456");
+        UserForBank userTwo = new UserForBank("Slava", "2324 343456");
+        Bank bank = new Bank();
+        bank.addUser(userOne);
+        bank.addUser(userTwo);
+        assertThat(bank.getListMap().keySet().size(), is(2));
+        bank.deleteUser(userOne);
+        assertThat(bank.getListMap().keySet().size(), is(1));
+        assertThat(bank.getUser("2324 343456").getName(), is("Slava"));
     }
     @Test
     public void addAccountToUserTest() {
         UserForBank userOne = new UserForBank("Vova", "2323 343456");
         AccountForBank accountOne = new AccountForBank(100.34, 12345);
         AccountForBank accountTree = new AccountForBank(300.34, 123457);
-        BankTransfer bank = new BankTransfer();
+        Bank bank = new Bank();
         bank.addUser(userOne);
         bank.addAccountToUser("2323 343456", accountOne);
         bank.addAccountToUser("2323 343456", accountTree);
@@ -40,7 +52,7 @@ public class WorkBankTest {
         UserForBank userOne = new UserForBank("Vova", "2323 343456");
         AccountForBank accountOne = new AccountForBank(100.34, 12345);
         AccountForBank accountTree = new AccountForBank(300.34, 123457);
-        BankTransfer bank = new BankTransfer();
+        Bank bank = new Bank();
         bank.addUser(userOne);
         bank.addAccountToUser("2323 343456", accountOne);
         bank.addAccountToUser("2324 343456", accountTree);
@@ -51,7 +63,7 @@ public class WorkBankTest {
         UserForBank userOne = new UserForBank("Vova", "2323 343456");
         AccountForBank accountOne = new AccountForBank(100.34, 12345);
         AccountForBank accountTree = new AccountForBank(300.34, 123457);
-        BankTransfer bank = new BankTransfer();
+        Bank bank = new Bank();
         bank.addUser(userOne);
         bank.addAccountToUser("2323 343456", accountOne);
         bank.addAccountToUser("2323 343456", accountTree);
@@ -64,7 +76,7 @@ public class WorkBankTest {
     public void getUserAccountsTest() {
         UserForBank userOne = new UserForBank("Vova", "2323 343456");
         AccountForBank accountOne = new AccountForBank(100.34, 12345);
-        BankTransfer bank = new BankTransfer();
+        Bank bank = new Bank();
         bank.addUser(userOne);
         bank.addAccountToUser("2323 343456", accountOne);
         assertThat(bank.getUserAccounts("2323 343456").get(0).getRequisites(), is(12345));
@@ -76,13 +88,13 @@ public class WorkBankTest {
         AccountForBank accountOne = new AccountForBank(100.34, 12345);
         AccountForBank accountTwo = new AccountForBank(200, 123456);
         AccountForBank accountTree = new AccountForBank(300.34, 123457);
-        BankTransfer bank = new BankTransfer();
+        Bank bank = new Bank();
         bank.addUser(userOne);
         bank.addUser(userTwo);
         bank.addAccountToUser("2323 343456", accountOne);
         bank.addAccountToUser("2324 343456", accountTwo);
         bank.addAccountToUser("2323 343456", accountTree);
-        bank.transferMoney("2323 343456", 12345, "2323 343456", 123457, 50);
+        bank.transferMoneyTwo("2323 343456", 12345, "2323 343456", 123457, 50);
         assertThat(bank.getUserAccounts("2323 343456").iterator().next().getValue(), is(50.34));
         }
     @Test
@@ -91,12 +103,12 @@ public class WorkBankTest {
         UserForBank userTwo = new UserForBank("Slava", "2324 343456");
         AccountForBank accountOne = new AccountForBank(100.34, 12345);
         AccountForBank accountTree = new AccountForBank(300.34, 123457);
-        BankTransfer bank = new BankTransfer();
+        Bank bank = new Bank();
         bank.addUser(userOne);
         bank.addUser(userTwo);
         bank.addAccountToUser("2323 343456", accountOne);
         bank.addAccountToUser("2324 343456", accountTree);
-        bank.transferMoney("2323 343456", 12345, "2324 343456", 123457, 50);
+        bank.transferMoneyTwo("2323 343456", 12345, "2324 343456", 123457, 50);
         assertThat(bank.getUserAccounts("2323 343456").iterator().next().getValue(), closeTo(50.34, 0.001));
         assertThat(bank.getUserAccounts("2324 343456").iterator().next().getValue(), closeTo(350.34, 0.001));
     }
@@ -106,12 +118,12 @@ public class WorkBankTest {
         UserForBank userTwo = new UserForBank("Slava", "2324 343456");
         AccountForBank accountOne = new AccountForBank(100.34, 12345);
         AccountForBank accountTree = new AccountForBank(300.34, 123457);
-        BankTransfer bank = new BankTransfer();
+        Bank bank = new Bank();
         bank.addUser(userOne);
         bank.addUser(userTwo);
         bank.addAccountToUser("2323 343456", accountOne);
         bank.addAccountToUser("2324 343456", accountTree);
-        bank.transferMoney("2323 343456", 12345, "2324 343456", 123457, 150);
+        bank.transferMoneyTwo("2323 343456", 12345, "2324 343456", 123457, 150);
         assertThat(bank.getUserAccounts("2323 343456").iterator().next().getValue(), closeTo(100.34, 0.001));
         assertThat(bank.getUserAccounts("2324 343456").iterator().next().getValue(), closeTo(300.34, 0.001));
     }
