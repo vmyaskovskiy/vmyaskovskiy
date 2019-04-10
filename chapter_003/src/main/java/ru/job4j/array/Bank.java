@@ -34,14 +34,18 @@ public class Bank {
         return null;
     }
     //добавить счёт пользователю.
-    public void addAccountToUser(String passport, AccountForBank account) {
+    public boolean addAccountToUser(String passport, AccountForBank account) {
         if (this.getUserAccounts(passport) == null) {
             List<AccountForBank> resA = new ArrayList<>();
             resA.add(account);
             this.listMap.put(this.getUser(passport), resA);
         } else {
-            this.getUserAccounts(passport).add(account);
+            AccountForBank resA = this.getAcc(passport, account.getRequisites());
+            if (resA == null) {
+                this.getUserAccounts(passport).add(account);
+            }
         }
+        return true;
     }
     // удалить один счёт пользователя
     public void deleteAccountFromUser(String passport, AccountForBank account) {
@@ -60,7 +64,6 @@ public class Bank {
     }
     //метод для перечисления денег с одного счёта на другой счёт:
     public boolean transferMoneyTwo(String srcPassport, int srcRequisite, String destPassport, int dstRequisite, double amount) {
-        boolean res = true;
         UserForBank userOne = this.getUser(srcPassport);
         UserForBank userTwo = this.getUser(destPassport);
         AccountForBank accOne = this.getAcc(srcPassport, srcRequisite);
@@ -68,13 +71,11 @@ public class Bank {
         if (userOne == null || userTwo == null || accOne == null || accTwo == null) {
             return false;
         }
-        double amountAccOne = accOne.getValue();
-        if (amountAccOne < amount) {
+        if (accOne.getValue() < amount) {
             return false;
         }
-        double amountAccTwo = accTwo.getValue();
-        this.getAcc(srcPassport, srcRequisite).setValue(amountAccOne - amount);
-        this.getAcc(destPassport, dstRequisite).setValue(amountAccTwo + amount);
-        return res;
+        accOne.downValue(amount);
+        accTwo.upValue(amount);
+        return true;
     }
 }

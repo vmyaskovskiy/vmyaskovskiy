@@ -11,6 +11,12 @@ public class AccountForBank {
    public double getValue() {
        return this.value;
    }
+   public void upValue(double value) {
+       this.value = this.value + value;
+   }
+    public void downValue(double value) {
+        this.value = this.value - value;
+    }
    public int getRequisites() {
        return this.requisites;
    }

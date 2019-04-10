@@ -1,9 +1,7 @@
 package ru.job4j.array;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 /**
  * Class WorkBank решение задачи части 003 - Банковские переводы. [#10038].
  * @author vmyaskovskiy

@@ -83,19 +83,22 @@ public class WorkBankTest {
     }
     @Test
     public void transferMoneyTestFromUserOneToUserOne() {
+        Bank bank = new Bank();
         UserForBank userOne = new UserForBank("Vova", "2323 343456");
         UserForBank userTwo = new UserForBank("Slava", "2324 343456");
+        bank.addUser(userOne);
+        bank.addUser(userTwo);
         AccountForBank accountOne = new AccountForBank(100.34, 12345);
         AccountForBank accountTwo = new AccountForBank(200, 123456);
         AccountForBank accountTree = new AccountForBank(300.34, 123457);
-        Bank bank = new Bank();
-        bank.addUser(userOne);
-        bank.addUser(userTwo);
+        AccountForBank accountFour = new AccountForBank(500, 123457);
         bank.addAccountToUser("2323 343456", accountOne);
         bank.addAccountToUser("2324 343456", accountTwo);
         bank.addAccountToUser("2323 343456", accountTree);
+        bank.addAccountToUser("2323 343456", accountFour);
         bank.transferMoneyTwo("2323 343456", 12345, "2323 343456", 123457, 50);
         assertThat(bank.getUserAccounts("2323 343456").iterator().next().getValue(), is(50.34));
+        assertThat(bank.getUserAccounts("2323 343456").size(), is(2));
         }
     @Test
     public void transferMoneyTestFromUserOneToUserTwo() {
