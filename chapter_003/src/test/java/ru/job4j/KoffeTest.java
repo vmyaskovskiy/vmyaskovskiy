@@ -36,7 +36,11 @@ public class KoffeTest {
         assertThat(out.size(), is(3));
         assertThat(res, is(out));
     }
-
-
-
+    @Test
+    public void treeTest() {
+        Koffe koffe = new Koffe();
+        int[] res = new int[] {10, 5};
+        int[] out = koffe.changesTwo(50, 35);
+        assertThat(res, is(out));
+    }
 }

@@ -1,6 +1,7 @@
 package ru.job4j.array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 /**
  * Class Koffe решение задачи Кофемашина. [#34741]
@@ -31,4 +32,19 @@ public class Koffe {
         }
         return outRes;
     }
+
+    public int[] changesTwo(int value, int price) {
+        int[] outRes = new int[] {};
+        int ost = value - price;
+        int x = ost;
+        while (ost > 0) {
+            int y = this.findOut(x);
+            outRes = Arrays.copyOf(outRes, outRes.length + 1);
+            outRes[outRes.length - 1] = y;
+            ost = ost - y;
+            x = ost;
+        }
+        return outRes;
+    }
+
 }
