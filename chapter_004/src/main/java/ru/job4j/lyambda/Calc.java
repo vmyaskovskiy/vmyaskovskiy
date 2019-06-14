@@ -30,5 +30,9 @@ public class Calc {
                 },
         result -> System.out.println(result)
         );
+        Calc calcTwo = new Calc();
+        calcTwo.multiple(0, 10, 2,
+                MathUtil::add,
+                result -> System.out.println(result));
     }
 }
