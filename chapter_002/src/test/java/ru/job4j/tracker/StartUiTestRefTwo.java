@@ -9,12 +9,15 @@ import static org.junit.Assert.assertNull;
 import static org.hamcrest.core.Is.is;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.function.Consumer;
+
 import org.junit.After;
 import org.junit.Before;
 
 public class StartUiTestRefTwo {
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
     @Before
     public void loadOutput() {
         System.out.println("выполнять перед вызовом метода");
@@ -41,7 +44,7 @@ public class StartUiTestRefTwo {
         Item item = new Item("d", "c");
         tracker.add(item);
         Input input = new StubInput(new String[]{"1", "6"});
-        new StartUiNewTwo(input, tracker).init();
+        new StartUiNewTwo(input, tracker, System.out::println).init();
         assertThat(new String(this.out.toByteArray()), is(new StringBuilder()
                         .append(this.menu)
                         //.append("----------Показать все заявки---------").append(ls)
@@ -59,7 +62,7 @@ public class StartUiTestRefTwo {
         Item item = new Item("d", "c");
         tracker.add(item);
         Input input = new StubInput(new String[]{"4", String.valueOf(item.getId()), "6"});
-        new StartUiNewTwo(input, tracker).init();
+        new StartUiNewTwo(input, tracker, System.out::println).init();
         assertThat(new String(this.out.toByteArray()), is(new StringBuilder()
                         .append(this.menu)
                         .append("------------ Поиск заявки --------------").append(ls)

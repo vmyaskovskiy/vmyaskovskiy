@@ -2,6 +2,7 @@ package ru.job4j.tracker.start;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 import ru.job4j.tracker.models.Item;
 /**
@@ -15,15 +16,17 @@ public class MenuTrackerTwo {
     private TrackerTwo trackerTwo;
     private List<UserActionTwo> actionsTwoList = new ArrayList<>();
     private StartUiNewTwo su;
+    private final Consumer<String> output;
     /**
      * Конструтор инициализирующий поля.
      * @param input ввод данных.
      * @param trackerTwo хранилище заявок.
      */
-    public MenuTrackerTwo(Input input, TrackerTwo trackerTwo, StartUiNewTwo su) {
+    public MenuTrackerTwo(Input input, TrackerTwo trackerTwo, StartUiNewTwo su, Consumer<String> output) {
         this.input = input;
         this.trackerTwo = trackerTwo;
         this.su = su;
+        this.output = output;
     }
 
     public void fillAction() {
@@ -76,7 +79,7 @@ public class MenuTrackerTwo {
             super(key, name);
         }
         public void execute(Input input, TrackerTwo trackerTwo) {
-            System.out.println("------------ Добавление новой заявки --------------");
+            output.accept("------------ Добавление новой заявки --------------");
             String name = input.askTwo("Введите имя заявки :");
             String desc = input.askTwo("Введите описание заявки :");
             trackerTwo.add(new Item(name, desc));
@@ -162,14 +165,14 @@ public class MenuTrackerTwo {
             super(key, name);
         }
         public void execute(Input input, TrackerTwo tracker) {
-            System.out.println("------------ Поиск заявки --------------");
+            output.accept("------------ Поиск заявки --------------");
             Integer id = input.ask("Введите ID :");
             Item item = tracker.findById(id);
             if (item != null && item.getId() == id) {
-                System.out.println("------------ Найденная заявка --------------");
+                output.accept("------------ Найденная заявка --------------");
                 System.out.println(item);
             } else {
-                System.out.println("------------ Заявка не найдена --------------");
+                output.accept("------------ Заявка не найдена --------------");
             }
         }
     }
