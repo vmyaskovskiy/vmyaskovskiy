@@ -4,13 +4,12 @@ import ru.job4j.tracker.models.Item;
 import ru.job4j.tracker.start.*;
 
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertNull;
 import static org.hamcrest.core.Is.is;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.function.Consumer;
 
-import org.junit.After;
+
 import org.junit.Before;
 
 public class StartUiTestRefThree {
@@ -20,7 +19,10 @@ public class StartUiTestRefThree {
         @Override
         public void accept(String s) {
             stdout.print(s);
-
+        }
+        @Override
+        public String toString() {
+            return new String(out.toByteArray());
         }
     };
     @Before
@@ -28,12 +30,6 @@ public class StartUiTestRefThree {
         System.out.println("выполнять перед вызовом метода");
         System.setOut(new PrintStream(this.out));
     }
-   // @After
-   //  public void backOutput() {
-   //     System.setOut(.....);
-   //     System.out.println("выполнять после вызова метода");
-   // }
-
     String ls = System.lineSeparator();
     private StringBuilder menu = new StringBuilder()
             .append("0. Add the new item").append(ls)
@@ -43,7 +39,6 @@ public class StartUiTestRefThree {
             .append("4. Find items by id").append(ls)
             .append("5. Find items by name").append(ls)
             .append("6. Exit").append(ls);
-
 
     @Test
     public void showAllItemOneTest() {
@@ -61,7 +56,6 @@ public class StartUiTestRefThree {
                 .toString();
 
         assertThat(this.output.toString(), is(expected));
-
     }
     }
 
