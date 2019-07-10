@@ -31,14 +31,18 @@ public class TestProfiles {
         List<Address> res1 = profAll.stream().map(profile -> profile.getAddress()).collect(Collectors.toList());
         assertThat(res.size(), Is.is(4));
         assertThat(res1.size(), Is.is(4));
+        System.out.println(res1);
         List<Address> res2 = profAll.stream().
                 map(profile -> profile.getAddress()).
                 sorted(Comparator.comparing(Address -> Address.getCity())).
                 distinct().
                 collect(Collectors.toList());
         System.out.println(res2);
-
-
+        List<Address> res3 = profAll.stream().
+                map(Profile::getAddress).
+                sorted().
+                distinct().collect(Collectors.toList());
+        System.out.println(res3);
         assertThat(res2.size(), Is.is(3));
     }
 }

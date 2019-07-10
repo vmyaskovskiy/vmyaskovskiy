@@ -2,11 +2,16 @@ package ru.job4j.lyambda;
 
 import java.util.Objects;
 
-public class Address {
+public class Address implements Comparable<Address> {
     private String city;
     private String street;
     private int home;
     private int apartment;
+
+    @Override
+    public int compareTo(Address address) {
+        return this.city.compareTo(address.city);
+    }
 
     public Address(String city, String street, int home, int apartment) {
         this.city = city;
