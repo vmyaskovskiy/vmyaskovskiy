@@ -23,6 +23,7 @@ public class WorkBankTest {
         Bank bank = new Bank();
         bank.addUser(userOne);
         assertThat(bank.getUser("2323 343456").getName(), is("Vova"));
+        assertThat(bank.getUserStr("2323 343456").getName(), is("Vova"));
     }
     @Test
     public void dellUserTest() {
@@ -34,7 +35,7 @@ public class WorkBankTest {
         assertThat(bank.getListMap().keySet().size(), is(2));
         bank.deleteUser(userOne);
         assertThat(bank.getListMap().keySet().size(), is(1));
-        assertThat(bank.getUser("2324 343456").getName(), is("Slava"));
+        assertThat(bank.getUserStr("2324 343456").getName(), is("Slava"));
     }
     @Test
     public void addAccountToUserTest() {

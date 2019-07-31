@@ -14,6 +14,8 @@ public class Bank {
     public Map<UserForBank, List<AccountForBank>> getListMap() {
         return this.listMap;
     }
+
+    // найти пользователя по паспорту
     public UserForBank getUser(String passport) {
         Set<UserForBank> res = this.listMap.keySet();
         Iterator<UserForBank> it = res.iterator();
@@ -25,8 +27,17 @@ public class Bank {
         }
         return null;
     }
+    // найти пользователя по паспорту
+    // переделанный на stream
+    public UserForBank getUserStr(String passport) {
+        Set<UserForBank> resA = this.listMap.keySet();
+        UserForBank res = resA.stream().
+                filter(userForBank -> userForBank.getPassport().equals(passport)).findFirst().orElse(null);
+        return res;
+    }
+    // подставил новый метод getUserStr
     public List<AccountForBank> getUserAccounts(String passport) {
-        UserForBank resU = this.getUser(passport);
+        UserForBank resU = this.getUserStr(passport);
         List<AccountForBank> resL = this.listMap.get(resU);
         if (resL != null) {
             return resL;
@@ -34,13 +45,15 @@ public class Bank {
         return null;
     }
     //добавить счёт пользователю.
+    // подставил новый метод getUserStr
+    // подставил новый метод getAccStr
     public boolean addAccountToUser(String passport, AccountForBank account) {
         if (this.getUserAccounts(passport) == null) {
             List<AccountForBank> resA = new ArrayList<>();
             resA.add(account);
-            this.listMap.put(this.getUser(passport), resA);
+            this.listMap.put(this.getUserStr(passport), resA);
         } else {
-            AccountForBank resA = this.getAcc(passport, account.getRequisites());
+            AccountForBank resA = this.getAccStr(passport, account.getRequisites());
             if (resA == null) {
                 this.getUserAccounts(passport).add(account);
             }
@@ -62,12 +75,23 @@ public class Bank {
             }
         } return resA;
     }
+
+    // найти расчетный счет конкретного пользователя по реквезитам
+    // переделанный на stream
+    public AccountForBank getAccStr(String passport, int requisites) {
+        List<AccountForBank> res = this.getUserAccounts(passport);
+        AccountForBank resA = res.stream().filter(AccountForBank -> AccountForBank.getRequisites()== requisites).findFirst().orElse(null);
+                return resA;
+    }
+
     //метод для перечисления денег с одного счёта на другой счёт:
+    // подставил новый метод getAccStr
+    // подставил новый метод getUserStr
     public boolean transferMoneyTwo(String srcPassport, int srcRequisite, String destPassport, int dstRequisite, double amount) {
-        UserForBank userOne = this.getUser(srcPassport);
-        UserForBank userTwo = this.getUser(destPassport);
-        AccountForBank accOne = this.getAcc(srcPassport, srcRequisite);
-        AccountForBank accTwo = this.getAcc(destPassport, dstRequisite);
+        UserForBank userOne = this.getUserStr(srcPassport);
+        UserForBank userTwo = this.getUserStr(destPassport);
+        AccountForBank accOne = this.getAccStr(srcPassport, srcRequisite);
+        AccountForBank accTwo = this.getAccStr(destPassport, dstRequisite);
         if (userOne == null || userTwo == null || accOne == null || accTwo == null) {
             return false;
         }
