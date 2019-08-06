@@ -80,7 +80,7 @@ public class Bank {
     // переделанный на stream
     public AccountForBank getAccStr(String passport, int requisites) {
         List<AccountForBank> res = this.getUserAccounts(passport);
-        AccountForBank resA = res.stream().filter(AccountForBank -> AccountForBank.getRequisites()== requisites).findFirst().orElse(null);
+        AccountForBank resA = res.stream().filter(AccountForBank -> AccountForBank.getRequisites() == requisites).findFirst().orElse(null);
                 return resA;
     }
 
