@@ -104,8 +104,6 @@
         </execution>
     </executions>
 </plugin>
-		</plugins>
-	
-	</build> 
-
+        </plugins>
+	</build>
 </project>
