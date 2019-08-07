@@ -3,6 +3,7 @@ package ru.job4j;
 import org.hamcrest.core.Is;
 import org.junit.Test;
 import ru.job4j.lyambda.School;
+import ru.job4j.lyambda.StudentStr;
 
 import java.util.Arrays;
 import java.util.List;
@@ -68,5 +69,18 @@ public class TestSchool {
         List<School.Student> res1 = students.stream().filter(student -> student.score >= 10 && student.score <= 50).collect(Collectors.toList());
         assertThat(res1.size(), Is.is(3));
         assertThat(res.size(), Is.is(3));
+    }
+    @Test
+    public void testStudentStr() {
+        School school = new School();
+        List<StudentStr> strs = Arrays.asList(
+                new StudentStr("Petr", 20),
+                new StudentStr("Petr", 10),
+                new StudentStr("Slava", 10),
+                null,
+                new StudentStr("Slava", 30)
+        );
+        List<StudentStr> res = school.levelOf(strs, 10);
+        assertThat(res.size(), Is.is(1));
     }
 }

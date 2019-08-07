@@ -1,8 +1,13 @@
 package ru.job4j.lyambda;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.Collections.sort;
 
 
 public class School {
@@ -25,5 +30,13 @@ public class School {
             }
         }
         return res;
+    }
+    public List<StudentStr> levelOf(List<StudentStr> studentStrs, int bound) {
+        //Collections.sort(studentStrs);
+        List<StudentStr> res1 = studentStrs.stream().
+                flatMap(Stream::ofNullable).
+                takeWhile(studentStr -> studentStr.getScope() > bound).
+                collect(Collectors.toList());
+         return res1;
     }
 }
