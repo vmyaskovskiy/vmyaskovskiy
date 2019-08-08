@@ -32,11 +32,6 @@ public class School {
         }
         return res;
     }
-    class StudentCompare implements Comparator<StudentStr> {
-        public int compare(StudentStr o1, StudentStr o2) {
-            return Integer.compare(o1.getScope(), o2.getScope());
-        }
-    }
     public List<StudentStr> levelOf(List<StudentStr> studentStrs, int bound) {
         List<StudentStr> res1 = studentStrs.stream().
                 flatMap(Stream::ofNullable).
