@@ -2,6 +2,7 @@ package ru.job4j.lyambda;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -31,12 +32,17 @@ public class School {
         }
         return res;
     }
+    class StudentCompare implements Comparator<StudentStr> {
+        public int compare(StudentStr o1, StudentStr o2) {
+            return Integer.compare(o1.getScope(), o2.getScope());
+        }
+    }
     public List<StudentStr> levelOf(List<StudentStr> studentStrs, int bound) {
         List<StudentStr> res1 = studentStrs.stream().
-                flatMap(Stream::ofNullable).collect(Collectors.toList());
-        Collections.sort(res1);
-        List<StudentStr> res2 = res1.stream().dropWhile(studentStr -> studentStr.getScope() == bound).
+                flatMap(Stream::ofNullable).
+                sorted().
+                dropWhile(studentStr -> studentStr.getScope() == bound).
                 collect(Collectors.toList());
-         return res2;
+         return res1;
     }
 }
