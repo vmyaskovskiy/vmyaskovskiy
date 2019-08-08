@@ -32,11 +32,11 @@ public class School {
         return res;
     }
     public List<StudentStr> levelOf(List<StudentStr> studentStrs, int bound) {
-        //Collections.sort(studentStrs);
         List<StudentStr> res1 = studentStrs.stream().
-                flatMap(Stream::ofNullable).
-                takeWhile(studentStr -> studentStr.getScope() > bound).
+                flatMap(Stream::ofNullable).collect(Collectors.toList());
+        Collections.sort(res1);
+        List<StudentStr> res2 = res1.stream().dropWhile(studentStr -> studentStr.getScope() == bound).
                 collect(Collectors.toList());
-         return res1;
+         return res2;
     }
 }

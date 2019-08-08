@@ -81,6 +81,6 @@ public class TestSchool {
                 new StudentStr("Slava", 30)
         );
         List<StudentStr> res = school.levelOf(strs, 10);
-        assertThat(res.size(), Is.is(1));
+        assertThat(res.size(), Is.is(2));
     }
 }
