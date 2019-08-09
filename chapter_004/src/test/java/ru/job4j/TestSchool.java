@@ -77,10 +77,18 @@ public class TestSchool {
                 new StudentStr("Petr", 20),
                 new StudentStr("Petr", 10),
                 new StudentStr("Slava", 10),
+                new StudentStr("Vadim", 20),
+                new StudentStr("Viktor", 20),
                 null,
-                new StudentStr("Slava", 30)
+                new StudentStr("Slava", 30),
+                new StudentStr("Sergey", 20),
+                new StudentStr("Dima", 40)
         );
-        List<StudentStr> res = school.levelOf(strs, 10);
+        List<StudentStr> res = school.levelOf(strs, 20);
         assertThat(res.size(), Is.is(2));
+        List<StudentStr> res1 = school.levelOfNew(strs, 20);
+        assertThat(res1.size(), Is.is(4));
+        List<StudentStr> res3 = school.levelOfNewOne(strs, 20);
+        assertThat(res3.size(), Is.is(4));
     }
 }
