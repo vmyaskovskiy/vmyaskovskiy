@@ -16,12 +16,12 @@ public class PhoneDictionary {
         this.people.add(person);
     }
     public String getName(Person person) {
-        String name = person.getName();
+        var name = person.getName();
         return name;
     }
     public List<Person> find(String key) {
        List<Person> result = new ArrayList<>();
-        for (int i = 0; i < this.people.size(); i++) {
+        for (var i = 0; i < this.people.size(); i++) {
             if (people.get(i).getName().contains(key)
                     || people.get(i).getSurname().contains(key)
                     || people.get(i).getAdress().contains(key)

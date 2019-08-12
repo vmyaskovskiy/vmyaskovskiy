@@ -17,58 +17,58 @@ public class PhoneDictionaryTest {
     @Test
     public void trueNameOne() {
         PhoneDictionary phone = new PhoneDictionary();
-        Person person = new Person("Slava", "Myas", "37", "vol1");
-        Person person1 = new Person("Ivan", "Petrov", "55", "vol2");
+        var person = new Person("Slava", "Myas", "37", "vol1");
+        var person1 = new Person("Ivan", "Petrov", "55", "vol2");
         phone.add(person);
         phone.add(person1);
-        List<Person> personList = phone.find("Slava");
+        var personList = phone.find("Slava");
         assertThat(personList.iterator().next().getName(), is("Slava"));
     }
     @Test
     public void trueNameTwo() {
         PhoneDictionary phone = new PhoneDictionary();
-        Person person = new Person("Slava", "Myas", "37", "vol1");
-        Person person1 = new Person("Ivan", "Petrov", "55", "vol2");
+        var person = new Person("Slava", "Myas", "37", "vol1");
+        var person1 = new Person("Ivan", "Petrov", "55", "vol2");
         phone.add(person);
         phone.add(person1);
-        List<Person> personList = phone.find("Ivan");
+        var personList = phone.find("Ivan");
         assertThat(personList.iterator().next().getName(), is("Ivan"));
     }
     @Test
     public void trueSurNameOne() {
         PhoneDictionary phone = new PhoneDictionary();
-        Person person = new Person("Slava", "Myas", "37", "vol1");
-        Person person1 = new Person("Ivan", "Petrov", "55", "vol2");
+        var person = new Person("Slava", "Myas", "37", "vol1");
+        var person1 = new Person("Ivan", "Petrov", "55", "vol2");
         phone.add(person);
         phone.add(person1);
-        List<Person> personList = phone.find("Myas");
+        var personList = phone.find("Myas");
         assertThat(personList.iterator().next().getSurname(), is("Myas"));
     }
     @Test
     public void truePhoneOnePart() {
         PhoneDictionary phone = new PhoneDictionary();
-        Person person = new Person("Slava", "Myas", "37", "vol1");
-        Person person1 = new Person("Ivan", "Petrov", "55", "vol2");
+        var person = new Person("Slava", "Myas", "37", "vol1");
+        var person1 = new Person("Ivan", "Petrov", "55", "vol2");
         phone.add(person);
         phone.add(person1);
-        List<Person> personList = phone.find("5");
+        var personList = phone.find("5");
         assertThat(personList.iterator().next().getPhone(), is("55"));
     }
     @Test
     public void trueAdressTwoPart() {
         PhoneDictionary phone = new PhoneDictionary();
-        Person person = new Person("Slava", "Myas", "37", "vol1");
-        Person person1 = new Person("Ivan", "Petrov", "55", "vol2");
+        var person = new Person("Slava", "Myas", "37", "vol1");
+        var person1 = new Person("Ivan", "Petrov", "55", "vol2");
         phone.add(person);
         phone.add(person1);
-        List<Person> personList = phone.find("1");
+        var personList = phone.find("1");
         assertThat(personList.iterator().next().getAdress(), is("vol1"));
     }
     @Test
     public void trueAdressTwoPartTheSame() {
         PhoneDictionary phone = new PhoneDictionary();
-        Person person = new Person("Slava", "Myas", "37", "vol1");
-        Person person1 = new Person("Ivan", "Petrov", "55", "vol2");
+        var person = new Person("Slava", "Myas", "37", "vol1");
+        var person1 = new Person("Ivan", "Petrov", "55", "vol2");
         phone.add(person);
         phone.add(person1);
         int size = phone.find("vol").size();

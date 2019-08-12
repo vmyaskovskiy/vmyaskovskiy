@@ -16,25 +16,25 @@ import static org.junit.Assert.assertThat;
 public class TestProfiles {
     @Test
     public void testAddress() {
-        List<Profile> profExp = List.of(
+        var profExp = List.of(
                 new Profile(new Address("Livov", "street", 2, 1)),
                 new Profile(new Address("Peter", "street2", 3, 4)),
                 new Profile(new Address("Peter", "street2", 3, 4)),
                 new Profile(new Address("Arbat", "street2", 3, 4))
         );
         Profiles profiles = new Profiles();
-        List<Address> res = profiles.collect(profExp);
-        List<Address> res1 = profExp.stream().map(profile -> profile.getAddress()).collect(Collectors.toList());
+        var res = profiles.collect(profExp);
+        var res1 = profExp.stream().map(profile -> profile.getAddress()).collect(Collectors.toList());
         assertThat(res.size(), Is.is(4));
         assertThat(res1.size(), Is.is(4));
         System.out.println(res1);
-        List<Address> res4 = profExp.stream().
+        var res4 = profExp.stream().
                 map(profile -> profile.getAddress()).
                 sorted(Comparator.comparing(Address -> Address.getCity())).
                 distinct().
                 collect(Collectors.toList());
         System.out.println(res4);
-        List<Address> res3 = profExp.stream().
+        var res3 = profExp.stream().
                 map(Profile::getAddress).
                 sorted().
                 distinct().collect(Collectors.toList());
