@@ -18,9 +18,7 @@ public class KoffeTest {
   @Test
   public void oneTest() {
       Koffe koffe = new Koffe();
-      List<Integer> res = new ArrayList<>();
-      res.add(10);
-      res.add(5);
+      List<Integer> res = List.of(10, 5);
       List<Integer> out = koffe.changes(50, 35);
       assertThat(out.size(), is(2));
       assertThat(res, is(out));
@@ -28,10 +26,7 @@ public class KoffeTest {
     @Test
     public void twoTest() {
         Koffe koffe = new Koffe();
-        List<Integer> res = new ArrayList<>();
-        res.add(10);
-        res.add(2);
-        res.add(1);
+        List<Integer> res = List.of(10, 2, 1);
         List<Integer> out = koffe.changes(50, 37);
         assertThat(out.size(), is(3));
         assertThat(res, is(out));

@@ -16,33 +16,29 @@ import static org.junit.Assert.assertThat;
 public class TestProfiles {
     @Test
     public void testAddress() {
-        Profile prof1 = new Profile(new Address("Livov", "street", 2, 1));
-        Profile prof2 = new Profile(new Address("Peter", "street2", 3, 4));
-        Profile prof3 = new Profile(new Address("Peter", "street2", 3, 4));
-        Profile prof4 = new Profile(new Address("Arbat", "street2", 3, 4));
-        List<Profile> profAll = Arrays.asList(
-                prof1,
-                prof2,
-                prof3,
-                prof4
+        List<Profile> profExp = List.of(
+                new Profile(new Address("Livov", "street", 2, 1)),
+                new Profile(new Address("Peter", "street2", 3, 4)),
+                new Profile(new Address("Peter", "street2", 3, 4)),
+                new Profile(new Address("Arbat", "street2", 3, 4))
         );
         Profiles profiles = new Profiles();
-        List<Address> res = profiles.collect(profAll);
-        List<Address> res1 = profAll.stream().map(profile -> profile.getAddress()).collect(Collectors.toList());
+        List<Address> res = profiles.collect(profExp);
+        List<Address> res1 = profExp.stream().map(profile -> profile.getAddress()).collect(Collectors.toList());
         assertThat(res.size(), Is.is(4));
         assertThat(res1.size(), Is.is(4));
         System.out.println(res1);
-        List<Address> res2 = profAll.stream().
+        List<Address> res4 = profExp.stream().
                 map(profile -> profile.getAddress()).
                 sorted(Comparator.comparing(Address -> Address.getCity())).
                 distinct().
                 collect(Collectors.toList());
-        System.out.println(res2);
-        List<Address> res3 = profAll.stream().
+        System.out.println(res4);
+        List<Address> res3 = profExp.stream().
                 map(Profile::getAddress).
                 sorted().
                 distinct().collect(Collectors.toList());
         System.out.println(res3);
-        assertThat(res2.size(), Is.is(3));
+        assertThat(res4.size(), Is.is(3));
     }
 }

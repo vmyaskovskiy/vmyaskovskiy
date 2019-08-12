@@ -56,7 +56,7 @@ public class TestSchool {
     @Test
     public void test10Anew() {
         School school = new School();
-        List<School.Student> students = Arrays.asList(
+        List<School.Student> students = List.of(
                 new School.Student(10),
                 new School.Student(15),
                 new School.Student(50),

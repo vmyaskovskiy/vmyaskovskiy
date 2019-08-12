@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class TestStudent {
     @Test
     public void convertToMap() {
-        List<Student> students = Arrays.asList(
+        List<Student> students = List.of(
                 new Student("Slava", 10),
                 new Student("Petr", 15),
                 new Student("Miha", 50),

@@ -22,7 +22,7 @@ public class ConvertMatrix2ListTest {
                 {3, 4}
         };
         List<Integer> result = res.toList(array);
-        List<Integer> expect = Arrays.asList(1, 2, 3, 4);
+        List<Integer> expect = List.of(1, 2, 3, 4);
         assertThat(result, is(expect));
     }
     @Test
@@ -35,7 +35,7 @@ public class ConvertMatrix2ListTest {
                 {7, 8}
         };
         List<Integer> result = res.toList(array);
-        List<Integer> expect = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
+        List<Integer> expect = List.of(1, 2, 3, 4, 5, 6, 7, 8);
         assertThat(result, is(expect));
     }
 

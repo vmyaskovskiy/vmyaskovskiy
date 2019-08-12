@@ -21,9 +21,9 @@ public class UserConvertTest {
     @Test
     public void list2Map() {
         UserConvert res = new UserConvert();
-        List<User> resU = new ArrayList<>();
-        resU.add(new User(1, "Petr", "Moscow"));
-        resU.add(new User(2, "Slava", "Kaluga"));
+        List<User> resU = List.of(
+                new User(1, "Petr", "Moscow"),
+                new User(2, "Slava", "Kaluga"));
         assertThat(res.process(resU).get(1).getName(), is("Petr"));
         assertThat(res.process(resU).containsKey(2), is(true));
         assertThat(res.process(resU).containsKey(3), is(false));
