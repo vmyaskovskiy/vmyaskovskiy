@@ -1,5 +1,5 @@
 package ru.job4j.tictactoe;
-
+// на 11 JDK
 import javafx.scene.shape.Rectangle;
 /**
  * Class Figure3T решение задачи части 001 - урок Крестики-нолики на JavaFX, отвечает за клетку на поле.

@@ -1,5 +1,5 @@
 package ru.job4j.tictactoe;
-
+// на 11 JDK
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -21,6 +21,7 @@ import javafx.stage.Stage;
  * @version $Id$
  * @since 0.1
  */
+
 public class TicTacToe extends Application {
     private static final String JOB4J = "Крестики-нолики www.job4j.ru";
     private final int size = 3;

@@ -1,4 +1,5 @@
 package ru.job4j.tictactoe;
+// на 11 JDK
 /**
  * Class Logic3T решение задачи части 001 - урок Крестики-нолики на JavaFX, отвечает за проверку логики.
  * @author vmyaskovskiy
