@@ -1,5 +1,8 @@
 package ru.job4j.tictactoe;
 // на 11 JDK
+
+import java.util.function.Predicate;
+
 /**
  * Class Logic3T решение задачи части 001 - урок Крестики-нолики на JavaFX, отвечает за проверку логики.
  * @author vmyaskovskiy
@@ -36,10 +39,41 @@ public class Logic3T {
     public Logic3T(Figure3T[][] table) {
         this.table = table;
     }
-    public boolean isWinnerX() {
-        Figure3T[][] table = this.table;
 
-        return this.checkMarkX(table, 0, 1, 0, 0, 0, 0)
+    public boolean fillBy(Predicate<Figure3T> predicate, int startX, int startY, int deltaX, int deltaY) {
+        boolean result = true;
+        for (int index = 0; index != this.table.length; index++) {
+            Figure3T cell = this.table[startX][startY];
+            startX += deltaX;
+            startY += deltaY;
+            if (!predicate.test(cell)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public boolean isWinnerXNew() {
+        return this.fillBy(Figure3T::hasMarkX, 0, 0, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkX, 0, 0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkX, 0,0, 1, 1) ||
+                this.fillBy(Figure3T::hasMarkX, this.table.length - 1 , 0, -1, 1) ||
+                this.fillBy(Figure3T::hasMarkX, 0, 2, 1, 0);
+
+    }
+    public boolean isWinnerONew() {
+        return this.fillBy(Figure3T::hasMarkO, 0, 0, 1, 0) ||
+                this.fillBy(Figure3T::hasMarkO, 0, 0, 0, 1) ||
+                this.fillBy(Figure3T::hasMarkO, 0,0, 1, 1) ||
+                this.fillBy(Figure3T::hasMarkO, this.table.length - 1 , 0, -1, 1) ||
+                this.fillBy(Figure3T::hasMarkO, 0, 2, 1, 0);
+
+    }
+
+    public boolean isWinnerX() {
+
+        return this.checkMarkX(this.table, 0, 1, 0, 0, 0, 0)
                 ||
                 this.checkMarkX(table, 0, 1, 0, 0, 1, 0)
                 ||
@@ -57,7 +91,7 @@ public class Logic3T {
     }
 
     public boolean isWinnerO() {
-        Figure3T[][] table = this.table;
+
         return this.checkMarkO(table, 0, 1, 0, 0, 0, 0)
                 ||
                 this.checkMarkO(table, 0, 1, 0, 0, 1, 0)
@@ -79,14 +113,13 @@ public class Logic3T {
      * @return возвращает true если все клетки заполнены.
      */
     public boolean hasGap() {
-        Figure3T[][] table = this.table;
         boolean result = true;
         int k = 1;
         for (int i = 0; i < table.length; i++) {
             for (int j = 0; j < table.length; j++) {
                 if (table[i][j].hasMarkX() || table[i][j].hasMarkO()) {
                   k++;
-                    if (k == 9) {
+                    if (k == table.length * table.length) {
                         result = false;
                     } else {
                         result = true;
