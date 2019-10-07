@@ -16,12 +16,13 @@ public class TestIterratorArray {
         assertThat(it.hasNext(), Is.is(true));
     }
     @Test
-    public void nextValueThenLastValue() {
+    public void nextValueThenLastValueNoSuchElementException() {
         IterratorArray it = new IterratorArray(new int[][]{{1}, {3}});
         assertThat(it.next(), Is.is(1));
         assertThat(it.hasNext(), Is.is(true));
         assertThat(it.next(), Is.is(3));
         assertThat(it.hasNext(), Is.is(false));
+        assertThat(it.next(), Is.is("NoSuchElementException"));
     }
     @Test
     public void nextValueLongArray() {

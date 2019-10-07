@@ -10,30 +10,16 @@ public class IterratorArray implements Iterator {
     public IterratorArray(final int[][] arrI) {
         this.arrI = arrI;
     }
-
-
-    public boolean hasNext() {
-        int t = indexJ;
-        for (int i = this.indexI; i < arrI.length; i++) {
-                if (arrI[i].length != 0) {
-                    if (t < arrI[i].length) {
-                        return true;
-                    }
-                        t = 0;
-                }
-        } return false;
+    class MyException extends Exception {
+        public MyException(String msg) {
+            super(msg);
+        }
     }
-
-
-
-    public Object next() {
+    public boolean hasNext() {
         for (int i = indexI; i < arrI.length; i++) {
             if (arrI[i].length != 0) {
                 if (indexJ < arrI[i].length) {
-                    int value = arrI[i][indexJ];
-                    indexI = i;
-                    indexJ++;
-                    return value;
+                    return true;
                 } else {
                     indexI++;
                     indexJ = 0;
@@ -42,6 +28,23 @@ public class IterratorArray implements Iterator {
                 indexI++;
                 indexJ = 0;
             }
-        } return 0;
+        }
+        return false;
+    }
+
+    public Object next() {
+        int value = 0;
+        if(hasNext()) {
+            int valueT = arrI[indexI][indexJ];
+             indexJ++;
+            return valueT;
+        } else {
+            try {
+                throw new MyException("NoSuchElementException");
+            } catch (MyException e) {
+                e.printStackTrace();
+            }
+        } return value;
     }
 }
+
