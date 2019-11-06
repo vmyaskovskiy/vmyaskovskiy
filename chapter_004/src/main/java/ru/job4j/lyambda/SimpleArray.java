@@ -6,8 +6,8 @@ import java.util.NoSuchElementException;
 
 public class SimpleArray<T> implements Iterable<T> {
     Object[] objects;
-    int index = 0;
-    int size = 0;
+    private int index = 0;
+    private int size = 0;
 
     public SimpleArray(int size) {
         this.objects = new Object[size];
@@ -15,31 +15,33 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-        if (index < size) {
-            this.objects[index++] = model;
-        } else {
-            throw new NoSuchElementException();
+        if (index >= this.objects.length) {
+             throw new NoSuchElementException();
         }
+        this.objects[index++] = model;
     }
     public T get(int index) {
-        if (index < size) {
-            return (T) this.objects[index];
-        } else {
-            return null;
-        }
-    }
-    public void set(int index, T model) {
-        if (index < size) {
-            this.objects[index] = model;
-        } else {
+        if (index >= this.objects.length && index < 0) {
             throw new NoSuchElementException();
         }
+            return (T) this.objects[index];
     }
-    public void remove(int index) {
+    public boolean set(int index, T model) {
+            if (index >= this.objects.length && index < 0) {
+                return false;
+            }
+                this.objects[index] = model;
+           return true;
+    }
+    public boolean remove(int index) {
+        if (index >= this.objects.length && index < 0) {
+            return false;
+        }
         for (int i = index; i < this.objects.length - 1; i++) {
             objects[i] = objects[i + 1];
         }
         this.objects = Arrays.copyOf(this.objects, this.objects.length - 1);
+        return true;
     }
     @Override
     public Iterator<T> iterator() {
