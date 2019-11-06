@@ -10,13 +10,10 @@ public class ConverterIterator {
             private Iterator<Integer> itIn = (new ArrayList<Integer>()).iterator();
             @Override
             public boolean hasNext() {
-                if (itOut.hasNext())  {
-                    if (itIn.hasNext()) {
-                        return true;
-                    }
+                while (itOut.hasNext() && !itIn.hasNext()) {
                     itIn = itOut.next();
                 }
-               return itIn.hasNext();
+                return itIn.hasNext();
             }
             @Override
             public Integer next() {
