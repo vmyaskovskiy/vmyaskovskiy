@@ -5,8 +5,6 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class DinamicArrayList<E> implements Iterable<E> {
-    private int size;
-    private int l = 2;
     private int modCount = 0;
     private DinamicArrayList.Node<E> first;
 
@@ -15,13 +13,8 @@ public class DinamicArrayList<E> implements Iterable<E> {
      */
     public void add(E data) {
         DinamicArrayList.Node<E> newLink = new DinamicArrayList.Node<>(data);
-        if (size < l) {
-        } else {
-            l = l * 2;
-        }
             newLink.next = this.first;
             this.first = newLink;
-            this.size++;
             this.modCount++;
     }
 
@@ -35,9 +28,8 @@ public class DinamicArrayList<E> implements Iterable<E> {
     public E delete() {
         DinamicArrayList.Node<E> oldLink = this.first.next;
         this.first = oldLink;
-        this.size--;
         this.modCount++;
-        return null;
+        return this.first.data;
     }
 
     /**
@@ -51,11 +43,11 @@ public class DinamicArrayList<E> implements Iterable<E> {
         return result.data;
     }
 
-    /**
-     * Метод получения размера коллекции.
-     */
-    public int getSize() {
-        return this.size;
+    public DinamicArrayList.Node<E> getNode() {
+        return this.first;
+    }
+    public void setNode(DinamicArrayList.Node<E> node) {
+        this.first = node;
     }
 
     /**
@@ -71,17 +63,14 @@ public class DinamicArrayList<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        DinamicArrayList.Node<E> oldLink = this.first;
+        DinamicArrayList.Node<E> link = this.first;
         int expectedModCount = this.modCount;
-        int size = this.size;
         Iterator<E> iterator = new Iterator<E>() {
-            private int ind = 0;
+            DinamicArrayList.Node<E> newLink = link;
+            DinamicArrayList.Node<E> tempLink;
             @Override
             public boolean hasNext() {
-                if (oldLink.next != null && ind < size) {
-                    return true;
-                }
-                return false;
+                return newLink != null;
             }
             @Override
             public E next() {
@@ -89,8 +78,11 @@ public class DinamicArrayList<E> implements Iterable<E> {
                     throw new ConcurrentModificationException();
                 } else if (!hasNext()) {
                     throw new NoSuchElementException();
+                } else {
+                    tempLink = newLink;
+                    newLink = newLink.next;
+                    return tempLink.data;
                 }
-                return get(ind++);
             }
         };
         return iterator;

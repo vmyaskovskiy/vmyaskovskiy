@@ -41,5 +41,9 @@ public class DinamicArrayListTest {
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(1));
         assertThat(it.hasNext(), is(false));
+
+
     }
+
+
 }
