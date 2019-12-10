@@ -43,6 +43,10 @@ public class DinamicArrayList<E> implements Iterable<E> {
         return result.data;
     }
 
+    public E getFirst() {
+        return this.first.data;
+    }
+
     public DinamicArrayList.Node<E> getNode() {
         return this.first;
     }

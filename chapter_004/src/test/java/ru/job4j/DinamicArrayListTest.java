@@ -28,6 +28,10 @@ public class DinamicArrayListTest {
         assertThat(list.getModCount(), is(5));
         list.add(6);
         assertThat(list.getModCount(), is(6));
+        assertThat(list.get(0), is(6));
+        list.delete();
+        assertThat(list.get(0), is(5));
+        assertThat(list.getModCount(), is(7));
     }
     @Test
     public void nestHasNext() {
