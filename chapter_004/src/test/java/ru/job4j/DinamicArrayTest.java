@@ -23,7 +23,7 @@ public class DinamicArrayTest {
     }
     @Test
     public void whenAddThreeElementsThenUseGetSizeResultThree() {
-        assertThat(array.getSize(), is(3));
+        assertThat(array.getSize(), is(4));
     }
     @Test
     public void whenDellOneElementsThenUseGetOneResultTwo() {
@@ -37,11 +37,14 @@ public class DinamicArrayTest {
         assertThat(array.getModCount(), is(3));
         //array.add(4); // java.util.ConcurrentModificationException
         assertThat(it.next(), is(3));
+        assertThat(it.hasNext(), is(true));
+        it.next(); // размер массива 4, добавили 3 элемента, 4элемент Null, нужен еще один сдвиг,
         assertThat(it.hasNext(), is(false));
     }
     @Test
-    public void whenAdd4orElementsThenUseGetSizeResult6() {
+    public void whenAdd5ElementsThenUseGetSizeResult8() {
         array.add(4);
-        assertThat(array.getSize(), is(6));
+        array.add(5);
+        assertThat(array.getSize(), is(8));
     }
 }
