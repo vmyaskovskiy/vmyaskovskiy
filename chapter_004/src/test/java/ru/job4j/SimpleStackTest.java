@@ -20,7 +20,7 @@ public class SimpleStackTest {
     public void poll4and3Push5Poll5() {
         assertThat(stack.poll(), is(4));
         assertThat(stack.poll(), is(3));
-        stack.push(5);
-        assertThat(stack.poll(), is(5));
+        assertThat(stack.poll(), is(2));
+        assertThat(stack.poll(), is(1));
     }
 }

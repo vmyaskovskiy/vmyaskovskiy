@@ -6,8 +6,6 @@ public class SimpleStack<T> {
         array.add(value);
     }
     public T poll() {
-        T res = array.getFirst();
-        array.delete();
-        return res;
+        return array.delete();
     }
 }
