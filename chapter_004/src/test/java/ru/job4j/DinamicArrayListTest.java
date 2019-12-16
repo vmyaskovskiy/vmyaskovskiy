@@ -22,6 +22,16 @@ public class DinamicArrayListTest {
     }
 
     @Test
+    public void deleteAll() {
+        list.delete();
+        assertThat(list.get(0), is(3));
+        list.delete();
+        list.delete();
+        assertThat(list.get(0), is(1));
+        list.delete();
+    }
+
+    @Test
     public void add5() {
         list.add(5);
         assertThat(list.get(0), is(5));
@@ -45,9 +55,5 @@ public class DinamicArrayListTest {
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(1));
         assertThat(it.hasNext(), is(false));
-
-
     }
-
-
 }
