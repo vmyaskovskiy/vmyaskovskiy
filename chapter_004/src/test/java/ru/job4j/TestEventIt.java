@@ -40,4 +40,13 @@ public class TestEventIt {
        // assertThat(it.next(), Is.is(2));// MyException: NoSuchElementException
         assertThat(it.hasNext(), Is.is(false));
     }
+    @Test
+    public void nextValueThenLongValueTwo() {
+        EventIt it = new EventIt(new int[]{1, 2, 3, 4});
+        assertThat(it.hasNext(), Is.is(true));
+        assertThat(it.next(), Is.is(2));
+        assertThat(it.hasNext(), Is.is(true));
+        assertThat(it.next(), Is.is(4));
+        assertThat(it.hasNext(), Is.is(false));
+    }
 }

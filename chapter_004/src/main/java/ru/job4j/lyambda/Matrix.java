@@ -9,4 +9,9 @@ public class Matrix {
         List<Integer> res = Arrays.stream(integers).flatMap(integers1 -> Arrays.stream(integers1)).collect(Collectors.toList());
         return res;
     }
+
+    public static void main(String[] args) {
+
+
+    }
 }

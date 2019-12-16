@@ -39,8 +39,12 @@ public class SimpleArrayListTest {
         assertThat(list.getSize(), is(2));
         assertThat(list.get(0), is(2));
         list.add(4);
-        assertThat(list.get(0), is(4));
-        assertThat(list.getSize(), is(3));
+        list.add(5);
+        list.add(6);
+        assertThat(list.get(0), is(6));
+        assertThat(list.get(1), is(5));
+        assertThat(list.get(2), is(4));
+        assertThat(list.getSize(), is(5));
     }
 
 }

@@ -34,17 +34,27 @@ public class IterratorArray implements Iterator {
 
     public Object next() {
         int value = 0;
-        if(hasNext()) {
-            int valueT = arrI[indexI][indexJ];
-             indexJ++;
-            return valueT;
+        if (hasNext()) {
+            return arrI[indexI][indexJ++];
         } else {
             try {
                 throw new MyException("NoSuchElementException");
             } catch (MyException e) {
                 e.printStackTrace();
             }
-        } return value;
+        }
+        return value;
     }
+
+    public static void main(String[] args) {
+        IterratorArray it = new IterratorArray(new int[][]{{1}, {3}});
+        it.hasNext();
+        it.next();
+        it.hasNext();
+        it.next();
+        System.out.println(it.hasNext());
+        it.next();
+    }
+
 }
 

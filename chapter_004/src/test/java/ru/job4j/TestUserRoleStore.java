@@ -2,10 +2,7 @@ package ru.job4j;
 
 import org.hamcrest.core.Is;
 import org.junit.Test;
-import ru.job4j.lyambda.Role;
-import ru.job4j.lyambda.RoleStore;
-import ru.job4j.lyambda.User;
-import ru.job4j.lyambda.UserStory;
+import ru.job4j.lyambda.*;
 
 import static org.junit.Assert.assertThat;
 
@@ -16,6 +13,9 @@ public class TestUserRoleStore {
         User user1 = new User("1", "Petr");
         User user2 = new User("2", "Pavel");
         UserStory userStory = new UserStory(6);
+        AllStore allStore = new AllStore<User>(6);
+        allStore.add(user);
+        assertThat(allStore.findById("1").getId(), Is.is("1"));
         userStory.add(user);
         assertThat(userStory.findById("1").getId(), Is.is("1"));
         userStory.replace("1", user1);

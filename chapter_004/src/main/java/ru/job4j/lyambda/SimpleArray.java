@@ -3,9 +3,14 @@ package ru.job4j.lyambda;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-
+/**
+ * Class SimpleArray решение задачи  Создать статичный список на базе массива.
+ * @author vmyaskovskiy
+ * @version $Id$
+ * @since 0.1
+ */
 public class SimpleArray<T> implements Iterable<T> {
-    Object[] objects;
+    private Object[] objects;
     private int index = 0;
     private int size = 0;
 
@@ -13,7 +18,6 @@ public class SimpleArray<T> implements Iterable<T> {
         this.objects = new Object[size];
         this.size = size;
     }
-
     public void add(T model) {
         if (index >= this.objects.length) {
              throw new NoSuchElementException();
@@ -43,6 +47,12 @@ public class SimpleArray<T> implements Iterable<T> {
         this.objects = Arrays.copyOf(this.objects, this.objects.length - 1);
         return true;
     }
+    public int getLength() {
+        return this.objects.length;
+    }
+    public int getSize() {
+        return this.size;
+    }
     @Override
     public Iterator<T> iterator() {
         Object[] objects = this.objects;
@@ -50,10 +60,7 @@ public class SimpleArray<T> implements Iterable<T> {
             private int ind = 0;
             @Override
             public boolean hasNext() {
-                if (ind < objects.length && objects[ind] != null) {
-                    return true;
-                }
-                return false;
+                return ind < objects.length;
             }
             @Override
             public T next() {
