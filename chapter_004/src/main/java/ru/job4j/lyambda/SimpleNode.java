@@ -16,27 +16,14 @@ public class SimpleNode<E> {
     public boolean hasCycle(SimpleNode first) {
         SimpleNode<E> x = first;
         SimpleNode<E> y = first.next;
-        SimpleNode<E> z = x;
-        SimpleNode<E> t = first;
+         while (x != y) {
+             if(y == null) {
+             return true;
+             }
+             x = x.next;
+             y = y.next.next;
 
-        if (x.next != null) {
-            while (y != null) {
-                while (x != z) {
-                    if (x != y) {
-                        x = x.next;
-                    } else {
-                        return false;
-                    }
-                }
-                if (x == y) {
-                    return false;
-                } else {
-                    z = y;
-                    y = y.next;
-                    x = t;
-                }
-            }
-        }
-        return true;
+         }
+         return false;
     };
 }
