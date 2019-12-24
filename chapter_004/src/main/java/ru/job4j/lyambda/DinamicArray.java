@@ -33,10 +33,19 @@ public class DinamicArray<T> implements Iterable<T> {
     }
 
     public T get(int index) {
-        if (index >= this.objects.length) {
+        if (index >= this.index) {
             throw new NoSuchElementException();
         }
         return (T) this.objects[index];
+    }
+
+    public boolean getOnValue(T value) {
+        for (int i = 0; i < this.index; i++) {
+           if (this.objects[i] != null && this.objects[i].equals(value)) {
+               return true;
+           }
+        }
+        return false;
     }
 
     public int getSize() {
@@ -50,11 +59,12 @@ public class DinamicArray<T> implements Iterable<T> {
     public Iterator<T> iterator() {
         int expectedModCount = this.modCount;
         Object[] objects = this.objects;
+        int index = this.index;
         Iterator<T> iterator = new Iterator<T>() {
             private int ind = 0;
             @Override
             public boolean hasNext() {
-                    return ind < objects.length;
+                    return ind < index;
             }
             @Override
             public T next() {
