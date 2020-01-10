@@ -15,6 +15,25 @@ public class UserMap {
     public Calendar calendar() {
         return this.birthday;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserMap userMap = (UserMap) o;
+        return children == userMap.children &&
+                name.equals(userMap.name) &&
+                birthday.equals(userMap.birthday);
+    }
+
+    @Override
+    public int hashCode() {
+       return 31 * 1 +
+               name.hashCode() +
+               children +
+               birthday.getTime().hashCode();
+    }
+
     @Override
     public String toString() {
         return "name " + this.name +
