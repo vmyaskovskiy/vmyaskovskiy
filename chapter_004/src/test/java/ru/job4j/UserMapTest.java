@@ -21,6 +21,6 @@ public class UserMapTest {
     }
     @Test
     public void putTest() {
-        assertThat(map.size(), is(3));
+        assertThat(map.size(), is(2));
     }
 }
