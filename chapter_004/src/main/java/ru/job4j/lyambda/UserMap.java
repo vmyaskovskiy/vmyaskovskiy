@@ -16,7 +16,13 @@ public class UserMap {
         return this.birthday;
     }
 
-
+    @Override
+    public int hashCode() {
+        return 31 * 1 +
+                name.hashCode() +
+                children +
+                birthday.getTime().hashCode();
+    }
 
     @Override
     public String toString() {
