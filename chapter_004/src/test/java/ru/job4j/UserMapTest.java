@@ -18,6 +18,6 @@ public class UserMapTest {
     }
     @Test
     public void putTest() {
-        assertThat(map.size(), is(2));
+        assertThat(map.size(), is(1));
     }
 }

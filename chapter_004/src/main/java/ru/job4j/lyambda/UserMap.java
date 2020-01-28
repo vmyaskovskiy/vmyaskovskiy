@@ -27,6 +27,14 @@ public class UserMap {
     }
 
     @Override
+    public int hashCode() {
+        return 31 * 1 +
+                name.hashCode() +
+                children +
+                birthday.getTime().hashCode();
+    }
+
+    @Override
     public String toString() {
         return "name " + this.name +
                 ", children " + this.children +
