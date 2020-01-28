@@ -17,11 +17,13 @@ public class UserMap {
     }
 
     @Override
-    public int hashCode() {
-        return 31 * 1 +
-                name.hashCode() +
-                children +
-                birthday.getTime().hashCode();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserMap userMap = (UserMap) o;
+        return children == userMap.children &&
+                name.equals(userMap.name) &&
+                birthday.equals(userMap.birthday);
     }
 
     @Override
