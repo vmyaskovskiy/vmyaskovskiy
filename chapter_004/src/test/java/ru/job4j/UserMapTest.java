@@ -10,7 +10,7 @@ public class UserMapTest {
     Map<UserMap, Integer> map = new HashMap<>();
     @Before
     public void beforeTest() {
-        Calendar calendar1 = new GregorianCalendar(2017,0, 25);
+        Calendar calendar1 = new GregorianCalendar(2017, 0, 25);
         UserMap user1 = new UserMap("Slava", 2, calendar1);
         UserMap user2 = new UserMap("Slava", 2, calendar1);
         map.put(user1, 1);
