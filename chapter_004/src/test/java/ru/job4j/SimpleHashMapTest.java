@@ -41,23 +41,16 @@ public class SimpleHashMapTest {
 
     @Test
     public void nextAndHasNextCapacity12Index1and3and10and9() {
+
         Iterator<SimpleHashMap.Entry> it = map.iterator();
         assertThat(it.hasNext(), is(true));
-        it.next();
         assertThat(it.next().getValue(), is("первое значение"));
         assertThat(it.hasNext(), is(true));
-        it.next();
         assertThat(it.next().getValue(), is("второе значение"));
         assertThat(it.hasNext(), is(true));
-        it.next();
-        it.next();
-        it.next();
-        it.next();
-        it.next();
         assertThat(it.next().getValue(), is("четвертое значение"));
         assertThat(it.hasNext(), is(true));
         assertThat(it.next().getValue(), is("третье значение"));
-        it.next();
         assertThat(it.hasNext(), is(false));
     }
 
@@ -85,8 +78,25 @@ public class SimpleHashMapTest {
         assertThat(map.get(user6), is("разные ссылки на объект , объект одинаковый Борис, значение перетрется"));
         assertThat(map.get(user1), is("разные ссылки на объект , объект одинаковый Борис, значение перетрется"));
     }
+    @Test
+    public void when() {
+        SimpleHashMap<String, String> mapNew = new SimpleHashMap<>();
+        mapNew.insert("Vova", "Slava");
+        assertThat(mapNew.get("Vova"), is("Slava"));
+        mapNew.insert("Vova", "Vova");
+        assertThat(mapNew.get("Vova"), is("Vova"));
 
-
-
+    }
+    @Test
+    public void whenItter() {
+        UserMap user8 = new UserMap("Viva", 2, calendar1);
+        UserMap user9 = new UserMap("Pivo", 2, calendar2);
+        map.insert(user8, "8 элемент");
+        map.insert(user9, "9 элемент");
+        Iterator<SimpleHashMap.Entry> it = map.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next().getValue());
+        }
+    }
 
 }

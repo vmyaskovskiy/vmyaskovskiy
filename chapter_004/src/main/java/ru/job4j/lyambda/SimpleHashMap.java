@@ -47,8 +47,9 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
         setCapacity();
         Entry<K, V>[] newTable = new Entry[this.capacity];
         for (int i = 0; i < this.capacity; i++) {
-            if (i < oldCapacity) {
-               newTable[i] = this.table[i];
+            if (i < oldCapacity && this.table[i] != null) {
+                int newIndex = indexFor(hash(this.table[i].key.hashCode()), this.capacity);
+               newTable[newIndex] = this.table[i];
             }
         }
         this.table = newTable;
@@ -114,14 +115,26 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
             private int ind = 0;
             @Override
             public boolean hasNext() {
-                return ind < l;
+               if (ind < l) {
+                   while (e[ind] == null) {
+                       ind++;
+                       if (ind >= l) {
+                           return false;
+                       }
+                   }
+                   return true;
+               } else {
+                   throw new NoSuchElementException();
+               }
             }
+
             @Override
             public Entry next() {
-                if (!hasNext()) {
-                    throw new NoSuchElementException();
-                }
-                return  e[ind++];
+              if (hasNext()) {
+                  return e[ind++];
+              } else {
+                  throw new NoSuchElementException();
+              }
             }
         };
         return  iterator;
