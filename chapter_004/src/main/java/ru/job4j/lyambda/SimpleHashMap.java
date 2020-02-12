@@ -3,6 +3,13 @@ package ru.job4j.lyambda;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Class SimpleHashMap решение задачи 8. Реализовать собственную структуру данных - HashMap[#143718]
+ * @author vmyaskovskiy
+ * @version $Id$
+ * @since 0.1
+ */
+
 public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
 
     private int capacity = 12;
@@ -23,7 +30,7 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
            return (V) value;
         }
     }
-    Entry<K, V> e = null;
+
 
    public Entry<K, V>[] table = new Entry[this.capacity];
 
@@ -115,26 +122,24 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
             private int ind = 0;
             @Override
             public boolean hasNext() {
-               if (ind < l) {
-                   while (e[ind] == null) {
-                       ind++;
-                       if (ind >= l) {
-                           return false;
-                       }
-                   }
-                   return true;
-               } else {
+               if (ind >= l) {
                    throw new NoSuchElementException();
                }
+                while (e[ind] == null) {
+                    ind++;
+                    if (ind >= l) {
+                        return false;
+                    }
+                }
+                return true;
             }
 
             @Override
             public Entry next() {
-              if (hasNext()) {
-                  return e[ind++];
-              } else {
+              if (!hasNext()) {
                   throw new NoSuchElementException();
               }
+              return e[ind++];
             }
         };
         return  iterator;

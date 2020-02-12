@@ -12,6 +12,13 @@ import java.util.Iterator;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Class SimpleHashMapTest тесты к задачи 8. Реализовать собственную структуру данных - HashMap[#143718]
+ * @author vmyaskovskiy
+ * @version $Id$
+ * @since 0.1
+ */
+
 public class SimpleHashMapTest {
     SimpleHashMap<UserMap, String> map = new SimpleHashMap<>();
     Calendar calendar1 = new GregorianCalendar(2017, 0, 25);
