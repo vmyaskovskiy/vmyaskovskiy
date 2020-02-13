@@ -1,13 +1,14 @@
 package ru.job4j;
 import org.junit.Test;
 import org.junit.Before;
+import ru.job4j.lyambda.SimpleHashMap;
 import ru.job4j.lyambda.UserMap;
 import java.util.*;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 public class UserMapTest {
-    Map<UserMap, Integer> map = new HashMap<>();
+    Map<UserMap, Integer> map = (Map<UserMap, Integer>) new SimpleHashMap<UserMap, Integer>();
     @Before
     public void beforeTest() {
         Calendar calendar1 = new GregorianCalendar(2017, 0, 25);

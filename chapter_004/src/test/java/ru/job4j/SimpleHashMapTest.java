@@ -2,6 +2,7 @@ package ru.job4j;
 
 import org.junit.Test;
 import org.junit.Before;
+import ru.job4j.lyambda.SimpleEntry;
 import ru.job4j.lyambda.SimpleHashMap;
 import ru.job4j.lyambda.UserMap;
 
@@ -49,7 +50,7 @@ public class SimpleHashMapTest {
     @Test
     public void nextAndHasNextCapacity12Index1and3and10and9() {
 
-        Iterator<SimpleHashMap.Entry> it = map.iterator();
+        Iterator<SimpleEntry> it = map.iterator();
         assertThat(it.hasNext(), is(true));
         assertThat(it.next().getValue(), is("первое значение"));
         assertThat(it.hasNext(), is(true));
@@ -64,7 +65,7 @@ public class SimpleHashMapTest {
     @Test
     public void delOneIndex1() {
         assertThat(map.delete(user1), is(true));
-        assertThat(map.get(user1), is((SimpleHashMap.Entry) null));
+        assertThat(map.get(user1), is((SimpleEntry) null));
     }
 
 
@@ -100,7 +101,7 @@ public class SimpleHashMapTest {
         UserMap user9 = new UserMap("Pivo", 2, calendar2);
         map.insert(user8, "8 элемент");
         map.insert(user9, "9 элемент");
-        Iterator<SimpleHashMap.Entry> it = map.iterator();
+        Iterator<SimpleEntry> it = map.iterator();
         while (it.hasNext()) {
             System.out.println(it.next().getValue());
         }

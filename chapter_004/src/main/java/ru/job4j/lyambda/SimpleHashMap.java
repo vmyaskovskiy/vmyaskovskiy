@@ -10,30 +10,13 @@ import java.util.NoSuchElementException;
  * @since 0.1
  */
 
-public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
+public class SimpleHashMap<K, V> implements Iterable<SimpleEntry> {
 
-    private int capacity = 12;
-    public class Entry<K, V> {
-        private K key;
-        private V value;
-        int hash;
-
-        public Entry(K key, V value, int hash) {
-            this.key = key;
-            this.value = value;
-            this.hash = hash;
-        }
-        public K getKey() {
-            return (K) key;
-        }
-        public V getValue() {
-           return (V) value;
-        }
+    public SimpleHashMap() {
     }
 
-
-   public Entry<K, V>[] table = new Entry[this.capacity];
-
+    private int capacity = 12;
+   public SimpleEntry<K, V>[] table = new SimpleEntry[this.capacity];
 
     public int hash(int h) {
         h ^= (h >>> 20) ^ (h >>> 12);
@@ -48,30 +31,37 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
         this.capacity = this.capacity * 2 + 2;
     }
 
-
     public void increaseTable() {
         int oldCapacity = this.capacity;
         setCapacity();
-        Entry<K, V>[] newTable = new Entry[this.capacity];
+        SimpleEntry<K, V>[] newTable = new SimpleEntry[this.capacity];
         for (int i = 0; i < this.capacity; i++) {
             if (i < oldCapacity && this.table[i] != null) {
-                int newIndex = indexFor(hash(this.table[i].key.hashCode()), this.capacity);
+                int newIndex = indexFor(hash(this.table[i].getKey().hashCode()), this.capacity);
                newTable[newIndex] = this.table[i];
             }
         }
         this.table = newTable;
     }
 
+    public void setEntry(K key, V value, int hash, int index) {
+        SimpleEntry<K, V> one = new SimpleEntry<K, V>();
+        one.setHash(hash);
+        one.setKey(key);
+        one.setValue(value);
+        this.table[index] = one;
+    }
+
     public  boolean insert(K key, V value) {
 
         int hash = hash(key.hashCode());
         int index = indexFor(hash, this.capacity);
-        Entry<K, V> e = this.table[index];
+        SimpleEntry<K, V> e = this.table[index];
         if (e == null) {
-            this.table[index] = new Entry<K, V>(key, value, hash);
+            setEntry(key, value, hash, index);
             return true;
         } else if (e.hash == hash && (e.getKey() == key || e.getKey().equals(key))) {
-            this.table[index] = new Entry<K, V>(key, value, hash);
+            setEntry(key, value, hash, index);
             return true;
         } else if (e.hash == hash && e.getKey() != key) {
             return false;
@@ -79,7 +69,7 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
         System.out.println("увеличиваем таблицу");
             increaseTable();
             int newIndex = indexFor(hash(key.hashCode()), this.capacity);
-            this.table[newIndex] = new Entry<K, V>(key, value, hash);
+        setEntry(key, value, hash, newIndex);
         return true;
     };
 
@@ -115,10 +105,10 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
 
 
     @Override
-    public Iterator<SimpleHashMap.Entry> iterator() {
-        Entry[] e = this.table;
+    public Iterator<SimpleEntry> iterator() {
+        SimpleEntry[] e = this.table;
         int l = getCapacity();
-        Iterator<SimpleHashMap.Entry> iterator = new Iterator<>() {
+        Iterator<SimpleEntry> iterator = new Iterator<>() {
             private int ind = 0;
             @Override
             public boolean hasNext() {
@@ -135,7 +125,7 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleHashMap.Entry> {
             }
 
             @Override
-            public Entry next() {
+            public SimpleEntry next() {
               if (!hasNext()) {
                   throw new NoSuchElementException();
               }
