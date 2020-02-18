@@ -18,7 +18,9 @@ public class Tree<E> implements SimpleTree<E>{
         Optional<Node<E>> nodeParent = findBy(parent);
         Node<E> childOne = new Node<>(child);
         List<Node<E>> children;
-
+       if (findBy(child).isPresent()) {
+           return false;
+       }
          if (nodeParent.isEmpty()) {
             Node<E> parentOne = new Node<>(parent);
             children =  this.root.getChildren();
@@ -27,20 +29,8 @@ public class Tree<E> implements SimpleTree<E>{
             return true;
         } else  {
             children =  nodeParent.get().getChildren();
-            if (children.isEmpty()) {
-                children.add(childOne);
-                return true;
-            } else {
-                int i = 0;
-                while (i < children.size()) {
-                   if (children.get(i).getValue() == child) {
-                       return false;
-                   }
-                   i++;
-                }
                 children.add(childOne);
                  return true;
-            }
         }
     }
 

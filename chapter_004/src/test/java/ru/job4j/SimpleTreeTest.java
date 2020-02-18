@@ -26,7 +26,7 @@ public class SimpleTreeTest {
         assertThat(tree.findBy(1).get().getChildren().size(), is(3));
         assertThat(tree.findBy(4).get().getChildren().size(), is(1));
         assertThat(tree.findBy(6).get().getChildren().size(), is(1));
-        assertThat(tree.add(2, 7), is(true));
+        assertThat(tree.add(2, 7), is(false));
     }
 
     @Test
