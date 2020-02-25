@@ -91,16 +91,17 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleEntry> {
     }
 
     public boolean delete(K key) {
-        int hash = key.hashCode();
-        for (int i = 0; i < this.capacity; i++) {
-            if (this.table[i] == null) {
-            } else if (this.table[i].hash == hash
-                    && this.table[i].getKey() == key
-                    || this.table[i].getKey().equals(key)) {
-                this.table[i] = null;
-                return true;
-            }
-        } return false;
+        int hash = hash(key.hashCode());
+        int index = indexFor(hash, this.capacity);
+        boolean res = false;
+
+        if (this.table[index] != null ? true : false) {
+            this.table[index] = null;
+            res = true;
+        }
+        return res;
+
+
     };
 
 

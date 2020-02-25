@@ -68,6 +68,15 @@ public class SimpleHashMapTest {
         assertThat(map.get(user1), is((SimpleEntry) null));
     }
 
+    @Test
+    public void delOneIndexNo() {
+        assertThat(map.delete(user1), is(true));
+        assertThat(map.get(user1), is((SimpleEntry) null));
+        assertThat(map.delete(user1), is(false));
+    }
+
+
+
 
     @Test
     public void whenAdd5ElementsTheSame1() {
