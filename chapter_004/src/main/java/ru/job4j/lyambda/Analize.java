@@ -1,6 +1,9 @@
 package ru.job4j.lyambda;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 /**
  * Class Analize решение задачи  Статистика по коллекции.[#143698]
  * @author vmyaskovskiy
@@ -13,27 +16,24 @@ public class Analize {
         List<User> pr = previous;
         List<User> cur = current;
         Info info = new Info();
+        Map<Integer, User> mapPr = new HashMap<>();
+        Map<Integer, User> mapCur = new HashMap<>();
         int c = cur.size();
         int p = pr.size();
         for(int i = 0; i < p; i++) {
-            User userPr = pr.get(i);
-            if(cur.contains(userPr)) {
-                for (int j = 0; j < c; j++) {
-                    if(cur.get(j).equals(userPr)) {
-                        User userCur = cur.get(j);
-                        if(!userPr.name.equals(userCur.name)) {
-                            info.changed++;
-                        }
-                    }
-                }
-            } else {
-                info.deleted++;
-            }
+             mapPr.put(pr.get(i).id, pr.get(i));
         }
         for(int i = 0; i < c; i++) {
-            if(!pr.contains(cur.get(i))) {
+            User user = cur.get(i);
+            mapCur.put(user.id, user);
+            if(!mapPr.containsValue(user)){
                 info.added++;
+            } else if (!mapPr.get(user.id).name.equals(mapCur.get(user.id).name)){
+                    info.changed++;
             }
+        }
+         if (p >= c) {
+            info.deleted = p - c + info.added;
         }
         return info;
     }
