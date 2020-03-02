@@ -20,21 +20,21 @@ public class Analize {
         Map<Integer, User> mapCur = new HashMap<>();
         int c = cur.size();
         int p = pr.size();
-        for(int i = 0; i < p; i++) {
-             mapPr.put(pr.get(i).id, pr.get(i));
+
+        for (User user: pr) {
+            mapPr.put(user.id, user);
         }
-        for(int i = 0; i < c; i++) {
-            User user = cur.get(i);
+        for (User user: cur) {
             mapCur.put(user.id, user);
             if(!mapPr.containsValue(user)){
                 info.added++;
             } else if (!mapPr.get(user.id).name.equals(mapCur.get(user.id).name)){
-                    info.changed++;
+                info.changed++;
             }
         }
          if (p >= c) {
             info.deleted = p - c + info.added;
-        }
+         }
         return info;
     }
     public static class User {
