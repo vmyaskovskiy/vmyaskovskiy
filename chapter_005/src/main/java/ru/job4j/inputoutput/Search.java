@@ -26,7 +26,7 @@ public class Search {
             for (File el: fileOne.listFiles()) {
                 if (el.isDirectory()) {
                         data.add(el);
-                } else if (condition.test(el.getName())) {
+                } else if (!condition.test(el.getName())) {
                     result.add(el);
                 }
             }
