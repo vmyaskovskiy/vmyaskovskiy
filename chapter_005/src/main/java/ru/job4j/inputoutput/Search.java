@@ -19,14 +19,13 @@ public class Search {
         List<File> result = new ArrayList<>();
         Queue<File> data = new LinkedList<>();
         data.add(file);
-
         while (!data.isEmpty()) {
             String str = data.poll().getPath();
             File fileOne = new File(str);
             for (File el: fileOne.listFiles()) {
                 if (el.isDirectory()) {
                         data.add(el);
-                } else if (!condition.test(el.getName())) {
+                } else if (condition.test(el.getName())) {
                     result.add(el);
                 }
             }
