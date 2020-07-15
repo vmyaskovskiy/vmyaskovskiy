@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class ChatLog {
     private int flagStop = 0;
     private ArrayList<String> log = new ArrayList<>();
+
     public void setLog(String log) {
         this.log.add(log);
     }
@@ -55,6 +56,34 @@ public class ChatLog {
         }
     }
 
+    public void chat(String fileChat, String fileChatLog){
+
+        String end = "завершить";
+        String stop = "стоп";
+        String begin = "продолжить";
+        String qes = "null";
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("введи свой вопрос: ");
+        setLog("введи свой вопрос: ");
+        while(!qes.equals(end)) {
+            qes = in.nextLine();
+            setLog(qes);
+            if (qes.equals(end)) {
+                System.out.println("программа остановлена");
+                setLog("программа остановлена");
+                fileWr(fileChatLog);
+            } else if(qes.equals(stop)) {
+                setStop(1);
+                System.out.println("программа перестает отвечать на вопросы");
+                setLog("программа перестает отвечать на вопросы");
+            } else if(qes.equals(begin)||(getFlagStop() == 0)) {
+                setStop(0);
+                print(fileChat);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         // занес в параметры конфигурации args следующие данные:
         // -d=C:/projects/vmyaskovskiy/chapter_005/
@@ -63,33 +92,6 @@ public class ChatLog {
         }
         Args args1 = Args.of(args);
         ChatLog chatLog = new ChatLog();
-        String end = "завершить";
-        String stop = "стоп";
-        String begin = "продолжить";
-        String qes = "null";
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("введи свой вопрос: ");
-        chatLog.setLog("введи свой вопрос: ");
-        while(!qes.equals(end)) {
-            qes = in.nextLine();
-            chatLog.setLog(qes);
-            if (qes.equals(end)) {
-                System.out.println("программа остановлена");
-                chatLog.setLog("программа остановлена");
-                chatLog.fileWr(args1.get("-d") + "logChat.txt");
-            } else if(qes.equals(stop)) {
-                chatLog.setStop(1);
-                System.out.println("программа перестает отвечать на вопросы");
-                chatLog.setLog("программа перестает отвечать на вопросы");
-            } else if(qes.equals(begin)) {
-                chatLog.setStop(0);
-                chatLog.print(args1.get("-d") + "1.txt");
-            } else {
-                if(chatLog.getFlagStop() == 0) {
-                    chatLog.print(args1.get("-d") + "1.txt");
-                }
-            }
-        }
+        chatLog.chat(args1.get("-d") + "1.txt", args1.get("-d") + "logChat.txt");
     }
 }
