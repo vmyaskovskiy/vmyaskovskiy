@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class ChatLog {
     private int flagStop = 0;
     private ArrayList<String> log = new ArrayList<>();
-
+    private ArrayList<String> chat = new ArrayList<>();
     public void setLog(String log) {
         this.log.add(log);
     }
@@ -22,7 +22,6 @@ public class ChatLog {
     }
     public void fileWr(String path) {
         ArrayList<String> log = getLog();
-
         try(FileWriter writer = new FileWriter(path)) {
             for(String logCh: log) {
                 writer.append(logCh);
@@ -47,22 +46,21 @@ public class ChatLog {
             while ((read = inputStream.read()) != -1) {
                 text.append((char) read);
             }
-            String[] lines = text.toString().split(System.lineSeparator());
-            String logChat = lines[(int) (Math.random() * lines.length)];
-            setLog(logChat);
-            System.out.println(logChat);
+          String[] lines = text.toString().split(System.lineSeparator());
+            for(String str: lines){
+                this.chat.add(str);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void chat(String fileChat, String fileChatLog){
-
+        print(fileChat);
         String end = "завершить";
         String stop = "стоп";
         String begin = "продолжить";
         String qes = "null";
-
         Scanner in = new Scanner(System.in);
         System.out.println("введи свой вопрос: ");
         setLog("введи свой вопрос: ");
@@ -79,7 +77,9 @@ public class ChatLog {
                 setLog("программа перестает отвечать на вопросы");
             } else if(qes.equals(begin)||(getFlagStop() == 0)) {
                 setStop(0);
-                print(fileChat);
+                String logChat = this.chat.get((int)(Math.random() * chat.size()));
+                setLog(logChat);
+                System.out.println(logChat);
             }
         }
     }
