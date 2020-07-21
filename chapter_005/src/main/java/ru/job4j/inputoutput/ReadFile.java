@@ -16,7 +16,7 @@ public class ReadFile {
     public static void main(String[] args) {
 
          ReadFile readFile = new ReadFile();
-         readFile.div(1,2);
+         readFile.div(1, 2);
 
         try (FileInputStream in = new FileInputStream("C:/projects/vmyaskovskiy/chapter_005/1.txt")) {
             StringBuilder text = new StringBuilder();
@@ -28,7 +28,8 @@ public class ReadFile {
             for (String line : lines) {
                 int i = Integer.parseInt(line);
                 if (i % 2 == 0) {
-                System.out.println(i);}
+                System.out.println(i);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

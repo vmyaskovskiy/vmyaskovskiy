@@ -22,8 +22,8 @@ public class ChatLog {
     }
     public void fileWr(String path) {
         ArrayList<String> log = getLog();
-        try(FileWriter writer = new FileWriter(path)) {
-            for(String logCh: log) {
+        try (FileWriter writer = new FileWriter(path)) {
+            for (String logCh: log) {
                 writer.append(logCh);
                 writer.append(System.lineSeparator());
             }
@@ -39,7 +39,7 @@ public class ChatLog {
     public int getFlagStop() {
         return this.flagStop;
     }
-    public void print (String path) {
+    public void print(String path) {
         try (FileInputStream inputStream = new FileInputStream(path)) {
             StringBuilder text = new StringBuilder();
             int read;
@@ -47,7 +47,7 @@ public class ChatLog {
                 text.append((char) read);
             }
           String[] lines = text.toString().split(System.lineSeparator());
-            for(String str: lines){
+            for (String str: lines) {
                 this.chat.add(str);
             }
         } catch (Exception e) {
@@ -55,7 +55,7 @@ public class ChatLog {
         }
     }
 
-    public void chat(String fileChat, String fileChatLog){
+    public void chat(String fileChat, String fileChatLog) {
         print(fileChat);
         String end = "завершить";
         String stop = "стоп";
@@ -64,20 +64,20 @@ public class ChatLog {
         Scanner in = new Scanner(System.in);
         System.out.println("введи свой вопрос: ");
         setLog("введи свой вопрос: ");
-        while(!qes.equals(end)) {
+        while (!qes.equals(end)) {
             qes = in.nextLine();
             setLog(qes);
             if (qes.equals(end)) {
                 System.out.println("программа остановлена");
                 setLog("программа остановлена");
                 fileWr(fileChatLog);
-            } else if(qes.equals(stop)) {
+            } else if (qes.equals(stop)) {
                 setStop(1);
                 System.out.println("программа перестает отвечать на вопросы");
                 setLog("программа перестает отвечать на вопросы");
-            } else if(qes.equals(begin)||(getFlagStop() == 0)) {
+            } else if (qes.equals(begin) || (getFlagStop() == 0)) {
                 setStop(0);
-                String logChat = this.chat.get((int)(Math.random() * chat.size()));
+                String logChat = this.chat.get((int) (Math.random() * chat.size()));
                 setLog(logChat);
                 System.out.println(logChat);
             }

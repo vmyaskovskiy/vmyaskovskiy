@@ -24,6 +24,7 @@ public class Config {
     // Реализуйте метод load по аналогии с методом toString. Метод load должен загружать пару ключ-значение в Map values.
     public void load() {
         String line;
+
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             while ((line = read.readLine()) != null) {
                 if (!(line.equals("") || line.startsWith("//"))) {

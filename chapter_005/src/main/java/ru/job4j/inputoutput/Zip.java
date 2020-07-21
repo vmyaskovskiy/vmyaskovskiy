@@ -17,14 +17,13 @@ public class Zip {
         String str = root;
         Search search = new Search();
         Predicate<String> condition = (s) -> !s.contains(ext);
-        List<File> res = search.files(str,condition);
+        List<File> res = search.files(str, condition);
         return res;
     }
 
     public void pack(List<File> files, File target) {
-        try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target))))
-        {
-            for(File file: files) {
+        try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
+            for (File file: files) {
                 zip.putNextEntry(new ZipEntry(file.getPath()));
                   try   (BufferedInputStream out = new BufferedInputStream(new FileInputStream(file.getPath()))) {
                       zip.write(out.readAllBytes());
@@ -37,7 +36,7 @@ public class Zip {
     }
 
     public static void main(String[] args) {
-        // занес в параметры arga следующие данные:
+        // занес в параметры конфигурации args следующие данные:
         // -d=C:/projects/vmyaskovskiy/chapter_005/data
         // -e=log
         // -o=project.zip

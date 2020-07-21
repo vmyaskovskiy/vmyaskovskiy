@@ -69,8 +69,7 @@ public class Analizy {
                 if (this.startVal.equals("null")) {
                     this.startVal = startV;
                 }
-            }
-            else if (!this.startVal.equals("null")) {
+            } else if (!this.startVal.equals("null")) {
                 this.finishVal = startV;
                 el = new Element(this.startVal, this.finishVal);
                 res.add(el);

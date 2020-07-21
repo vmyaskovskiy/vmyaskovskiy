@@ -10,12 +10,12 @@ public class Args {
         return values.get(key);
     }
     private void parse(String[] args) {
-        for(String arg: args) {
+        for (String arg: args) {
             String str = arg;
             int index0 = str.indexOf("-");
             int index1 = str.indexOf("=");
-            String str1 = str.substring(index0,index1);
-            String str2 = str.substring(index1+1);
+            String str1 = str.substring(index0, index1);
+            String str2 = str.substring(index1 + 1);
             values.put(str1, str2);
         }
     }
