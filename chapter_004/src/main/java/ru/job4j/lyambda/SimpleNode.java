@@ -17,7 +17,7 @@ public class SimpleNode<E> {
         SimpleNode<E> x = first;
         SimpleNode<E> y = first.next;
          while (x != y) {
-             if(y == null) {
+             if (y == null) {
              return true;
              }
              x = x.next;

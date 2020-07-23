@@ -6,7 +6,7 @@ import java.util.*;
  * @version $Id$
  * @since 0.1
  */
-public class Tree<E> implements SimpleTree<E>{
+public class Tree<E> implements SimpleTree<E> {
     private final Node<E> root;
 
     public Tree(final E parent) {

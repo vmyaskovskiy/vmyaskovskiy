@@ -76,11 +76,12 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleEntry> {
     public V get(K key) {
         int hash = hash(key.hashCode());
         for (int i = 0; i < this.capacity; i++) {
-            if (this.table[i] == null) {
-            } else if (this.table[i].hash == hash
-                    && this.table[i].getKey() == key
-                    || this.table[i].getKey().equals(key)) {
-                return this.table[i].getValue();
+            if (!(this.table[i] == null)) {
+                if (this.table[i].hash == hash
+                        && this.table[i].getKey() == key
+                        || this.table[i].getKey().equals(key)) {
+                    return this.table[i].getValue();
+                }
             }
         }
         return null;
@@ -100,8 +101,6 @@ public class SimpleHashMap<K, V> implements Iterable<SimpleEntry> {
             res = true;
         }
         return res;
-
-
     };
 
 

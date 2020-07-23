@@ -26,9 +26,9 @@ public class Analize {
         }
         for (User user: cur) {
             mapCur.put(user.id, user);
-            if(!mapPr.containsValue(user)){
+            if (!mapPr.containsValue(user)) {
                 info.added++;
-            } else if (!mapPr.get(user.id).name.equals(mapCur.get(user.id).name)){
+            } else if (!mapPr.get(user.id).name.equals(mapCur.get(user.id).name)) {
                 info.changed++;
             }
         }
@@ -40,13 +40,13 @@ public class Analize {
     public static class User {
         int id;
         String name;
-        public User (int id, String name) {
+        public User(int id, String name) {
             this.id = id;
             this.name = name;
         }
         @Override
         public String toString() {
-            return " id = " + this.id + ", name " + this.name  ;
+            return " id = " + this.id + ", name " + this.name;
         }
 
         @Override

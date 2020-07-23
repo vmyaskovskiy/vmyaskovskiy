@@ -31,9 +31,9 @@ public class DinamicArrayList<E> implements Iterable<E> {
      * Реализовать метод удаления первого элемент в списке.
      */
     public E delete() {
-        DinamicArrayList.Node<E> oldLink = getNode().next;
-        E res =  getNode().data;
-        setNode(oldLink);
+        DinamicArrayList.Node<E> oldLink = this.first.next;
+        E res =  this.first.data;
+        this.first = oldLink;
         this.modCount++;
         return res;
     }
@@ -41,22 +41,11 @@ public class DinamicArrayList<E> implements Iterable<E> {
      * Метод получения элемента по индексу.
      */
     public E get(int index) {
-        DinamicArrayList.Node<E> result = getNode();
+        DinamicArrayList.Node<E> result = this.first;
         for (int i = 0; i < index; i++) {
             result = result.next;
         }
         return result.data;
-    }
-
-    public E getFirst() {
-        return this.first.data;
-    }
-
-    public DinamicArrayList.Node<E> getNode() {
-        return this.first;
-    }
-    public void setNode(DinamicArrayList.Node<E> node) {
-        this.first = node;
     }
 
     /**
@@ -65,14 +54,14 @@ public class DinamicArrayList<E> implements Iterable<E> {
     private static class Node<E> {
         private E data;
         private DinamicArrayList.Node<E> next;
-        Node(E data) {
+        private Node(E data) {
             this.data = data;
         }
     }
 
     @Override
     public Iterator<E> iterator() {
-        DinamicArrayList.Node<E> link = getNode();
+        DinamicArrayList.Node<E> link = this.first;
         int expectedModCount = this.modCount;
         Iterator<E> iterator = new Iterator<E>() {
             DinamicArrayList.Node<E> newLink = link;
@@ -83,15 +72,15 @@ public class DinamicArrayList<E> implements Iterable<E> {
             }
             @Override
             public E next() {
-                if (expectedModCount == getModCount()) {
-                     if (hasNext()) {
-                         tempLink = newLink;
-                         newLink = newLink.next;
-                         return tempLink.data;
-                     }
+                if (expectedModCount != getModCount()) {
+                    throw new ConcurrentModificationException();
+                }
+                if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                throw new ConcurrentModificationException();
+                tempLink = newLink;
+                newLink = newLink.next;
+                return tempLink.data;
             }
         };
         return iterator;

@@ -30,7 +30,7 @@ public class AnalizeTest {
     @Test
     public void when1ElDelRes1() {
         listPr.add(user1);
-        Analize.Info info = analize.diff(listPr,listCur);
+        Analize.Info info = analize.diff(listPr, listCur);
         assertThat(info.getDeleted(), is(1));
         assertThat(info.getChanged(), is(0));
         assertThat(info.getAdded(), is(0));
@@ -40,7 +40,7 @@ public class AnalizeTest {
     public void when1ElAddAnd1ElLast() {
         listPr.add(user1);
         listCur.add(user1);
-        Analize.Info info = analize.diff(listPr,listCur);
+        Analize.Info info = analize.diff(listPr, listCur);
         assertThat(info.getDeleted(), is(0));
         assertThat(info.getChanged(), is(0));
         assertThat(info.getAdded(), is(0));
@@ -53,7 +53,7 @@ public class AnalizeTest {
     public void when1ElAddAnd1ElChang() {
         listPr.add(user2);
         listCur.add(user3);
-        Analize.Info info = analize.diff(listPr,listCur);
+        Analize.Info info = analize.diff(listPr, listCur);
         assertThat(info.getDeleted(), is(0));
         assertThat(info.getChanged(), is(1));
         assertThat(info.getAdded(), is(0));
@@ -68,7 +68,7 @@ public class AnalizeTest {
         listCur.add(user4);
         listPr.add(user2);
         listCur.add(user3);
-        Analize.Info info = analize.diff(listPr,listCur);
+        Analize.Info info = analize.diff(listPr, listCur);
         assertThat(info.getDeleted(), is(0));
         assertThat(info.getChanged(), is(1));
         assertThat(info.getAdded(), is(1));
@@ -85,7 +85,7 @@ public class AnalizeTest {
         listCur.add(user4);
         listPr.add(user2);
         listCur.add(user3);
-        Analize.Info info = analize.diff(listPr,listCur);
+        Analize.Info info = analize.diff(listPr, listCur);
         assertThat(info.getDeleted(), is(1));
         assertThat(info.getChanged(), is(1));
         assertThat(info.getAdded(), is(1));
@@ -97,12 +97,12 @@ public class AnalizeTest {
     // Удалено 4 объекта
     @Test
     public void when2ElAddAnd1ElChangAnd3ElDell() {
-        listPr.add(user1);listCur.add(user4);
+        listPr.add(user1); listCur.add(user4);
         listPr.add(user2); listCur.add(user3);
         listPr.add(user5);
         listPr.add(user6);
         listPr.add(user7);
-        Analize.Info info = analize.diff(listPr,listCur);
+        Analize.Info info = analize.diff(listPr, listCur);
         assertThat(info.getDeleted(), is(4));
         assertThat(info.getChanged(), is(1));
         assertThat(info.getAdded(), is(1));

@@ -17,7 +17,7 @@ public class Config {
     }
 
     public void make(String line) {
-        String res[] = line.split("=");
+        String[] res = line.split("=");
         this.values.put(res[0], res[1]);
     }
 

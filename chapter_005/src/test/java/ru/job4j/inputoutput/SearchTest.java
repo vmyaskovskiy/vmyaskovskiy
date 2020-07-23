@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 /**
+ *
  * Class SearchTest тестирование задачи  3. Сканирование файловой системы.[#143741]
  * @author vmyaskovskiy
  * @version $Id$

@@ -50,7 +50,7 @@ public class Analizy {
 
     // преобразование записанного лога и запись в коллекцию
     public void makeList(String line) {
-        String res[] = line.split(" ");
+        String[] res = line.split(" ");
         Element element = new Element(res[0], res[1]);
         this.list.add(element);
     }
