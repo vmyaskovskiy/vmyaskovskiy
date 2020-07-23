@@ -14,7 +14,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 /**
- * Class SimpleHashMapTest тесты к задачи 8. Реализовать собственную структуру данных - HashMap[#143718]
+ * Class SimpleHashMapTest тесты к задачи 8. Реализовать собственную структуру данных - HashMap[#143718];
  * @author vmyaskovskiy
  * @version $Id$
  * @since 0.1
