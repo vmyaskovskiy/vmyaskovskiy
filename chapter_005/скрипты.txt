@@ -1,0 +1,134 @@
+CREATE TABLE public.users
+(
+  id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
+  login character varying(2000),
+  password character varying(2000),
+  create_date timestamp without time zone,
+  CONSTRAINT users_pkey PRIMARY KEY (id)
+)
+
+user - role = many-to-one 
+role - rules = many-to-many
+item - user = many-to-one
+item - comments = one-to-many
+item - attachs = one-to-many
+item - category = many-to-one
+item - state = many-to-one
+
+
+CREATE DATABASE items;
+
+CREATE TABLE users
+(
+id serial primary key,
+login character varying(2000),
+  password character varying(2000),
+  create_date timestamp
+);
+
+
+
+create table role (
+     id serial primary key,   
+     name varchar(2000),
+     user_id int references users(id)
+);
+
+
+CREATE TABLE rules
+(
+id serial primary key,
+name_rules varchar(2000)
+);
+
+create table role_rules (
+     id serial primary key,   
+     role_id int references role(id),
+	 rules_id int references rules(id)
+);
+
+
+CREATE TABLE category
+(
+id serial primary key,
+name_category varchar(2000)
+);
+
+CREATE TABLE state
+(
+id serial primary key,
+name_state varchar(2000)
+);
+
+create table item (
+     id serial primary key,
+	 name_item varchar(2000),
+	 users_id int references users(id),
+     category_id int references category(id),
+	 state_id int references state(id)
+);
+
+
+create table attachs (
+     id serial primary key,   
+     name_attachs varchar(2000),
+     item_id int references item(id)
+);
+
+create table comments (
+     id serial primary key,   
+     name_comments varchar(2000),
+     item_id int references item(id)
+);
+
+--users
+insert into users(login, password, create_date) values ('slava', 'password', '1999-01-08 04:05:11');
+insert into users(login, password, create_date) values ('vova', 'password', '2000-01-08 04:05:11');
+
+--role
+insert into role(name, user_id) values ('admin', 1);
+insert into role(name, user_id) values ('user', 2);
+
+--rules
+insert into rules(name_rules) values ('create');
+insert into rules(name_rules) values ('delete');
+insert into rules(name_rules) values ('insert');
+insert into rules(name_rules) values ('select');
+
+--role_rules
+insert into role_rules(role_id, rules_id) values (1, 1);
+insert into role_rules(role_id, rules_id) values (1, 2);
+insert into role_rules(role_id, rules_id) values (1, 3);
+insert into role_rules(role_id, rules_id) values (1, 4);
+insert into role_rules(role_id, rules_id) values (2, 4);
+
+-- category
+
+insert into category(name_category) values ('обслуживание клиентов');
+insert into category(name_category) values ('установка оборудования');
+insert into category(name_category) values ('администрирование');
+
+-- state
+
+insert into state(name_state) values ('принята');
+insert into state(name_state) values ('в работе');
+insert into state(name_state) values ('завершена');
+
+
+-- item
+
+insert into item(name_item, users_id, category_id, state_id) values ('заявка на установку ПО', 1, 3, 1);
+insert into item(name_item, users_id, category_id, state_id) values ('заявка на установку компьютеров', 2, 2, 2);
+insert into item(name_item, users_id, category_id, state_id) values ('заявка на подготовку договора', 2, 1, 3);
+
+
+-- attachs 
+
+insert into attachs(name_attachs, item_id) values ('Антивирус', 1);
+insert into attachs(name_attachs, item_id) values ('Системный блок', 2);
+
+
+-- comments 
+
+insert into comments(name_comments, item_id) values ('Системный блок установить в ком 26', 2);
+insert into comments(name_comments, item_id) values ('Договор нужен к Среде 21.07', 3);
