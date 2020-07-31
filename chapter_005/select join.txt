@@ -1,0 +1,73 @@
+Таблицы.
+   Кузов. Двигатель, Коробка передач.
+car body engine  transmission
+
+CREATE TABLE car_body
+(
+id serial primary key,
+name_car_body varchar(2000)
+);
+
+insert into car_body(id, name_car_body) values (1, 'хетчбек');
+insert into car_body(id, name_car_body) values (2, 'седан');
+insert into car_body(id, name_car_body) values (3, 'купе');
+insert into car_body(id, name_car_body) values (4, 'универсал');
+insert into car_body(id, name_car_body) values (5, 'кроссовер');
+
+CREATE TABLE engine
+(
+id serial primary key,
+name_engine varchar(2000)
+);
+
+
+insert into engine(id, name_engine) values (1, 'хонда');
+insert into engine(id, name_engine) values (2, 'мерседес');
+insert into engine(id, name_engine) values (3, 'ваз2103');
+insert into engine(id, name_engine) values (4, 'бмв');
+insert into engine(id, name_engine) values (5, 'nissan');
+
+CREATE TABLE transmission
+(
+id serial primary key,
+name_transmission varchar(2000)
+);
+
+insert into transmission(id, name_transmission) values (1, '4х ступенчатая механика');
+insert into transmission(id, name_transmission) values (2, '4х ступенчатая гидроавтомат');
+insert into transmission(id, name_transmission) values (3, '5ти ступенчатая гидроавтомат');
+insert into transmission(id, name_transmission) values (4, 'вариатор');
+
+create table car (
+     id serial primary key,
+	 name_car varchar(2000),
+	 car_body_id int references car_body(id),
+     engine_id int references engine(id),
+	 transmission_id int references transmission(id)
+);
+
+insert into car(id, name_car, car_body_id, engine_id, transmission_id) 
+          values (1, 'bmv 7', 2, 4, 3);
+insert into car(id, name_car, car_body_id, engine_id, transmission_id) 
+          values (2, 'nissan x-trail', 5, 5, 4);
+insert into car(id, name_car, car_body_id, engine_id, transmission_id) 
+          values (3, 'honda civic', 1, 1, 2);
+		  
+		  
+		  
+-- 1. Вывести список всех машин и все привязанные к ним детали.
+
+select c.name_car as автомобиль, b.name_car_body as кузов, e.name_engine as двигатель, t.name_transmission as коробка_передач
+from car c 
+inner join car_body b on c.car_body_id = b.id  
+inner join engine e on c.engine_id = e.id 
+inner join transmission t on c.transmission_id = t.id
+
+--2. Вывести отдельно детали, которые не используются в машине, кузова, двигатели, коробки передач.
+
+select b.name_car_body as кузов, e.name_engine as двигатель, t.name_transmission as коробка_передач
+from car c 
+full outer join car_body b on c.car_body_id = b.id  
+full outer join engine e on c.engine_id = e.id 
+full outer join transmission t on c.transmission_id = t.id
+where c.name_car is null
