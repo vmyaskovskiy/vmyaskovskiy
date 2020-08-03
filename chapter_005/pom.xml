@@ -8,14 +8,21 @@
        <artifactId>junior</artifactId>
        <version>2.0</version>
     </parent>
-	
+
 	<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-<dependency>
+    <dependencies>
+    <dependency>
     <groupId>org.postgresql</groupId>
     <artifactId>postgresql</artifactId>
     <version>42.2.12</version>
-</dependency>
+    </dependency>
 
-	
-	
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+</dependencies>
+
+
 </project>
