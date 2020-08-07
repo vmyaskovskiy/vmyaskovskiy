@@ -7,7 +7,7 @@ package ru.job4j.tracker.start;
  */
 public interface UserActionTwo {
     int key();
-    void execute(Input input, TrackerTwo trackerTwo);
+    void execute(Input input, SqlTracker trackerTwo);
     String info();
 }
 

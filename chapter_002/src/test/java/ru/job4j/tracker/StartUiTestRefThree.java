@@ -42,7 +42,7 @@ public class StartUiTestRefThree {
 
     @Test
     public void showAllItemOneTest() {
-        TrackerTwo tracker = new TrackerTwo();
+        SqlTracker tracker = new SqlTracker();
         Item item = new Item("d", "c");
         tracker.add(item);
         Input input = new StubInput(new String[]{"1", "6"});

@@ -40,7 +40,7 @@ public class StartUiTestRefTwo {
             //.append("Select").append(ls);
     @Test
     public void showAllItemOne() {
-        TrackerTwo tracker = new TrackerTwo();
+        SqlTracker tracker = new SqlTracker();
         Item item = new Item("d", "c");
         tracker.add(item);
         Input input = new StubInput(new String[]{"1", "6"});
@@ -58,7 +58,7 @@ public class StartUiTestRefTwo {
     }
     @Test
     public void findItemByIdOne() {
-        TrackerTwo tracker = new TrackerTwo();
+        SqlTracker tracker = new SqlTracker();
         Item item = new Item("d", "c");
         tracker.add(item);
         Input input = new StubInput(new String[]{"4", String.valueOf(item.getId()), "6"});
