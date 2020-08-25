@@ -81,7 +81,7 @@ public class MenuTrackerTwo {
         public void execute(Input input, SqlTracker trackerTwo) {
             output.accept("------------ Добавление новой заявки --------------");
             String name = input.askTwo("Введите имя заявки :");
-            System.out.println("вот тут должен быть перерыв");
+           // System.out.println("вот тут должен быть перерыв");
             String desc = input.askTwo("Введите описание заявки :");
             trackerTwo.add(new Item(name, desc));
         }
@@ -121,7 +121,7 @@ public class MenuTrackerTwo {
         }
         public void execute(Input input, SqlTracker sqlTracker) {
             if (sqlTracker.getAll().size() != 0) {
-                Integer id = input.ask("Введите Id заявки :");
+                Integer id = (input.ask("Введите Id заявки :"));
                 if (sqlTracker.findById(id) != null) {
                     String name = input.askTwo("Введите имя заявки :");
                     String desc = input.askTwo("Введите описание заявки :");
@@ -147,7 +147,7 @@ public class MenuTrackerTwo {
         }
         public void execute(Input input, SqlTracker tracker) {
             System.out.println("------------ Удаление заявки --------------");
-            Integer id = input.ask("Введите ID :");
+            Integer id = Integer.valueOf(input.askTwo("Введите ID :"));
             if (tracker.delete(id)) {
                 System.out.println("------------ Заявка удалена успешно --------------");
             } else {
@@ -167,7 +167,7 @@ public class MenuTrackerTwo {
         }
         public void execute(Input input, SqlTracker tracker) {
             output.accept("------------ Поиск заявки --------------");
-            Integer id = input.ask("Введите ID :");
+            Integer id = Integer.valueOf(input.askTwo("Введите ID :"));
             Item item = tracker.findById(id);
             if (item != null && item.getId() == id) {
                 output.accept("------------ Найденная заявка --------------");

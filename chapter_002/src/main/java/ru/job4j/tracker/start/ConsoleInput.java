@@ -11,7 +11,7 @@ public class ConsoleInput implements Input {
 
     public  Integer ask(String question) {
         System.out.print(question);
-         return scanner.nextInt();
+         return Integer.valueOf(scanner.nextLine());
     }
     public  String askTwo(String question) {
         System.out.print(question);

@@ -25,7 +25,6 @@ public StartUiNewTwo(Input input, SqlTracker trackerTwo, Consumer<String> output
 public void init() {
 
         MenuTrackerTwo menu = new MenuTrackerTwo(this.input, this.trackerTwo, this, this.output);
-        //trackerTwo.init();
         menu.fillAction();
         int[] range = menu.range();
         while (!exit) {
@@ -35,8 +34,7 @@ public void init() {
         }
         }
 public static void main(String[] args) {
-        Store tracker = new SqlTracker();
-        tracker.init();
+
         new StartUiNewTwo(new ValidateInput(new ConsoleInput()), new SqlTracker(), System.out::println).init();
         }
 

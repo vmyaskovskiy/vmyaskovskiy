@@ -4,7 +4,7 @@ package ru.job4j.inputoutput;
 
 import java.sql.*;
 
-public class SqlTest {
+public class SqlTestOld {
     public static void main(String[] args) {
         String url = "jdbc:postgresql://localhost:5432/items";
         String username = "postgres";
@@ -14,9 +14,9 @@ public class SqlTest {
             //Class.forName("org.postgresql.Driver");
             conn =  DriverManager.getConnection(url, username, password);
             Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery("select * from car_body" );
+            ResultSet rs = st.executeQuery("select * from test_car" );
 while (rs.next()) {
-    System.out.println(String.format(rs.getString("name_car_body")) );
+    System.out.println(String.format(rs.getString("name_car")) );
 }
 rs.close();
 st.close();
