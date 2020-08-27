@@ -81,7 +81,6 @@ public class MenuTrackerTwo {
         public void execute(Input input, SqlTracker trackerTwo) {
             output.accept("------------ Добавление новой заявки --------------");
             String name = input.askTwo("Введите имя заявки :");
-           // System.out.println("вот тут должен быть перерыв");
             String desc = input.askTwo("Введите описание заявки :");
             trackerTwo.add(new Item(name, desc));
         }

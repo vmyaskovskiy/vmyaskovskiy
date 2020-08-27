@@ -71,7 +71,25 @@ public class SqlTracker implements Store {
 
     @Override
     public List<Item> getAll() {
-        return null;
+        Item item = new Item();
+        List<Item> items = new ArrayList<>();
+        try {
+            PreparedStatement st = this.cn.prepareStatement
+                    ("select * from tracker");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                item.setId(rs.getInt("id"));
+                item.setName(rs.getString("item_name"));
+                item.setDescription(rs.getString("item_description"));
+                items.add(item);
+                // items.add(findById(item.getId()));
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return items;
     }
 
     @Override
