@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Properties;
 
 public class SqlTracker implements Store {
-    private List<Item> items = new ArrayList<>();
     private Connection cn;
     public  SqlTracker() {
         this.init();
@@ -40,11 +39,9 @@ public class SqlTracker implements Store {
     public Item add(Item item) {
         int idItem = 0;
         try {
-
             PreparedStatement st = this.cn.prepareStatement
                     ("insert into tracker(item_name, item_description) values(?,?)"
                             , Statement.RETURN_GENERATED_KEYS);
-
             st.setString(1,item.getName());
             st.setString(2,item.getDescription());
             st.executeUpdate();
@@ -61,12 +58,44 @@ public class SqlTracker implements Store {
 
     @Override
     public boolean replace(Integer id, Item item) {
-        return false;
+        boolean res = false;
+        try {
+            PreparedStatement st = this.cn.prepareStatement
+                    ("update  tracker set item_name = (?) , item_description = (?) where  id = (?)");
+            st.setString(1, item.getName());
+            st.setString(2, item.getDescription());
+            st.setInt(3, id);
+            st.executeUpdate();
+            res = true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return res;
     }
 
     @Override
     public boolean delete(Integer id) {
-        return false;
+        boolean res = false;
+        try {
+            try {
+                PreparedStatement st = this.cn.prepareStatement
+                        ("delete from tracker where id = (?)");
+                st.setInt(1, id);
+                try {
+                    st.executeUpdate();
+                    res = true;
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                } finally {
+                    st.close();
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return res;
     }
 
     @Override
@@ -74,18 +103,25 @@ public class SqlTracker implements Store {
         Item item = new Item();
         List<Item> items = new ArrayList<>();
         try {
-            PreparedStatement st = this.cn.prepareStatement
-                    ("select * from tracker");
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                item.setId(rs.getInt("id"));
-                item.setName(rs.getString("item_name"));
-                item.setDescription(rs.getString("item_description"));
-                items.add(item);
-                // items.add(findById(item.getId()));
+            try {
+                PreparedStatement st = this.cn.prepareStatement
+                        ("select * from tracker");
+                try {
+                    ResultSet rs = st.executeQuery();
+                    while (rs.next()) {
+                        item.setId(rs.getInt("id"));
+                        item.setName(rs.getString("item_name"));
+                        item.setDescription(rs.getString("item_description"));
+                        items.add(findById(item.getId()));
+                    }
+                    rs.close();
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                st.close();
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-            rs.close();
-            st.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -93,8 +129,26 @@ public class SqlTracker implements Store {
     }
 
     @Override
-    public List<Item> findByName(String key) {
-        return null;
+    public List<Item> findByName(String name) {
+        Item result = new Item();
+        List<Item> items = new ArrayList<>();
+        try {
+            PreparedStatement st = this.cn.prepareStatement
+                    ("select * from tracker where item_name = (?)");
+            st.setString(1, name );
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                result.setId(rs.getInt("id"));
+                result.setName(rs.getString("item_name"));
+                result.setDescription(rs.getString("item_description"));
+                items.add(findById(result.getId()));
+            }
+            rs.close();
+            st.close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return items;
     }
 
     @Override
