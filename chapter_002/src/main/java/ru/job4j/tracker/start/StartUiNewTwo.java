@@ -1,6 +1,7 @@
 package ru.job4j.tracker.start;
 
 
+import java.sql.SQLException;
 import java.util.function.Consumer;
 
 public class StartUiNewTwo {
@@ -22,7 +23,7 @@ public StartUiNewTwo(Input input, SqlTracker trackerTwo, Consumer<String> output
         /**
  * Основой цикл программы.
  */
-public void init() {
+public void init() throws SQLException {
 
         MenuTrackerTwo menu = new MenuTrackerTwo(this.input, this.trackerTwo, this, this.output);
         menu.fillAction();
@@ -33,7 +34,7 @@ public void init() {
         menu.select(key);
         }
         }
-public static void main(String[] args) {
+public static void main(String[] args) throws SQLException {
 
         new StartUiNewTwo(new ValidateInput(new ConsoleInput()), new SqlTracker(), System.out::println).init();
         }

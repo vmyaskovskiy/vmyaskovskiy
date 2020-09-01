@@ -9,6 +9,7 @@ import static org.junit.Assert.assertNull;
 import static org.hamcrest.core.Is.is;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.sql.SQLException;
 import java.util.function.Consumer;
 
 import org.junit.After;
@@ -39,7 +40,7 @@ public class StartUiTestRefTwo {
             .append("6. Exit").append(ls);
             //.append("Select").append(ls);
     @Test
-    public void showAllItemOne() {
+    public void showAllItemOne() throws SQLException {
         SqlTracker tracker = new SqlTracker();
         Item item = new Item("d", "c");
         tracker.add(item);
@@ -57,7 +58,7 @@ public class StartUiTestRefTwo {
         );
     }
     @Test
-    public void findItemByIdOne() {
+    public void findItemByIdOne() throws SQLException {
         SqlTracker tracker = new SqlTracker();
         Item item = new Item("d", "c");
         tracker.add(item);

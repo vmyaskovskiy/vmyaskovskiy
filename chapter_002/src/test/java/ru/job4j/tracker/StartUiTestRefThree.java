@@ -7,6 +7,7 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.sql.SQLException;
 import java.util.function.Consumer;
 
 
@@ -41,7 +42,7 @@ public class StartUiTestRefThree {
             .append("6. Exit").append(ls);
 
     @Test
-    public void showAllItemOneTest() {
+    public void showAllItemOneTest() throws SQLException {
         SqlTracker tracker = new SqlTracker();
         Item item = new Item("d", "c");
         tracker.add(item);

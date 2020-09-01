@@ -1,4 +1,5 @@
 package ru.job4j.tracker.start;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,7 +59,7 @@ public class MenuTrackerTwo {
      *
      * @param key ключ операции
      */
-    public void select(int key) {
+    public void select(int key) throws SQLException {
         this.actionsTwoList.get(key).execute(this.input, this.sqlTracker);
     }
     public void show() {
@@ -78,7 +79,7 @@ public class MenuTrackerTwo {
         public AddItem(int key, String name) {
             super(key, name);
         }
-        public void execute(Input input, SqlTracker trackerTwo) {
+        public void execute(Input input, SqlTracker trackerTwo) throws SQLException {
             output.accept("------------ Добавление новой заявки --------------");
             String name = input.askTwo("Введите имя заявки :");
             String desc = input.askTwo("Введите описание заявки :");
@@ -95,7 +96,7 @@ public class MenuTrackerTwo {
         public ShowItems(int key, String name) {
             super(key, name);
         }
-        public void execute(Input input, SqlTracker sqlTracker) {
+        public void execute(Input input, SqlTracker sqlTracker) throws SQLException {
             if (sqlTracker.getAll().size() != 0) {
                 System.out.println("------------ Найденные заявки --------------");
                 for (Item item : sqlTracker.getAll()) {
@@ -118,7 +119,7 @@ public class MenuTrackerTwo {
         public EditItems(int key, String name) {
             super(key, name);
         }
-        public void execute(Input input, SqlTracker sqlTracker) {
+        public void execute(Input input, SqlTracker sqlTracker) throws SQLException {
             if (sqlTracker.getAll().size() != 0) {
                 Integer id = (input.ask("Введите Id заявки :"));
                 if (sqlTracker.findById(id) != null) {
@@ -144,7 +145,7 @@ public class MenuTrackerTwo {
         public DeleteItem(int key, String name) {
             super(key, name);
         }
-        public void execute(Input input, SqlTracker tracker) {
+        public void execute(Input input, SqlTracker tracker) throws SQLException {
             System.out.println("------------ Удаление заявки --------------");
             Integer id = Integer.valueOf(input.askTwo("Введите ID :"));
             if (tracker.delete(id)) {
@@ -164,7 +165,7 @@ public class MenuTrackerTwo {
         public FindItemsById(int key, String name) {
             super(key, name);
         }
-        public void execute(Input input, SqlTracker tracker) {
+        public void execute(Input input, SqlTracker tracker) throws SQLException {
             output.accept("------------ Поиск заявки --------------");
             Integer id = Integer.valueOf(input.askTwo("Введите ID :"));
             Item item = tracker.findById(id);
@@ -186,7 +187,7 @@ public class MenuTrackerTwo {
         public FindItemsByName(int key, String name) {
             super(key, name);
         }
-        public void execute(Input input, SqlTracker tracker) {
+        public void execute(Input input, SqlTracker tracker) throws SQLException {
             System.out.println("------------ Поиск заявки --------------");
             if (sqlTracker.getAll().size() != 0) {
                 String name = input.askTwo("Введите имя заявки :");

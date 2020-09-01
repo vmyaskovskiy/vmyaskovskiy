@@ -36,140 +36,105 @@ public class SqlTracker implements Store {
     }
 
     @Override
-    public Item add(Item item) {
+    public Item add(Item item) throws SQLException {
         int idItem = 0;
-        try {
-            PreparedStatement st = this.cn.prepareStatement
-                    ("insert into tracker(item_name, item_description) values(?,?)"
-                            , Statement.RETURN_GENERATED_KEYS);
-            st.setString(1,item.getName());
-            st.setString(2,item.getDescription());
+        try (PreparedStatement st = this.cn.prepareStatement
+                ("insert into tracker(item_name, item_description) values(?,?)"
+                        , Statement.RETURN_GENERATED_KEYS)) {
+            st.setString(1, item.getName());
+            st.setString(2, item.getDescription());
             st.executeUpdate();
-            ResultSet generatedKey = st.getGeneratedKeys();
-
-            if(generatedKey.next()) {
-                idItem = generatedKey.getInt(1);
+            try (ResultSet generatedKey = st.getGeneratedKeys()) {
+                if (generatedKey.next()) {
+                    idItem = generatedKey.getInt(1);
+                }
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            return findById(idItem);
         }
-        return findById(idItem);
     }
 
     @Override
-    public boolean replace(Integer id, Item item) {
+    public boolean replace(Integer id, Item item) throws SQLException {
         boolean res = false;
-        try {
-            PreparedStatement st = this.cn.prepareStatement
-                    ("update  tracker set item_name = (?) , item_description = (?) where  id = (?)");
+        try (PreparedStatement st = this.cn.prepareStatement
+                ("update  tracker set item_name = (?) , item_description = (?) where  id = (?)")) {
             st.setString(1, item.getName());
             st.setString(2, item.getDescription());
             st.setInt(3, id);
             st.executeUpdate();
             res = true;
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
         return res;
     }
 
     @Override
-    public boolean delete(Integer id) {
+    public boolean delete(Integer id) throws SQLException {
         boolean res = false;
-        try {
-            try {
-                PreparedStatement st = this.cn.prepareStatement
-                        ("delete from tracker where id = (?)");
-                st.setInt(1, id);
-                try {
-                    st.executeUpdate();
-                    res = true;
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                } finally {
-                    st.close();
+        try ( PreparedStatement st = this.cn.prepareStatement
+                ("delete from tracker where id = (?)")) {
+                  st.setInt(1, id);
+                  st.executeUpdate();
+                  res = true;
                 }
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
         return res;
     }
 
     @Override
-    public List<Item> getAll() {
+    public List<Item> getAll() throws SQLException {
         Item item = new Item();
         List<Item> items = new ArrayList<>();
-        try {
-            try {
-                PreparedStatement st = this.cn.prepareStatement
-                        ("select * from tracker");
-                try {
-                    ResultSet rs = st.executeQuery();
-                    while (rs.next()) {
-                        item.setId(rs.getInt("id"));
-                        item.setName(rs.getString("item_name"));
-                        item.setDescription(rs.getString("item_description"));
-                        items.add(findById(item.getId()));
-                    }
-                    rs.close();
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
+        try (PreparedStatement st = this.cn.prepareStatement
+                ("select * from tracker")) {
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    item.setId(rs.getInt("id"));
+                    item.setName(rs.getString("item_name"));
+                    item.setDescription(rs.getString("item_description"));
+                    items.add(findById(item.getId()));
                 }
-                st.close();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+                return items;
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
-        return items;
     }
 
     @Override
-    public List<Item> findByName(String name) {
+    public List<Item> findByName(String name) throws SQLException {
         Item result = new Item();
         List<Item> items = new ArrayList<>();
-        try {
-            PreparedStatement st = this.cn.prepareStatement
-                    ("select * from tracker where item_name = (?)");
-            st.setString(1, name );
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                result.setId(rs.getInt("id"));
-                result.setName(rs.getString("item_name"));
-                result.setDescription(rs.getString("item_description"));
-                items.add(findById(result.getId()));
+        try (PreparedStatement st = this.cn.prepareStatement
+                ("select * from tracker where item_name = (?)")) {
+            st.setString(1, name);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    result.setId(rs.getInt("id"));
+                    result.setName(rs.getString("item_name"));
+                    result.setDescription(rs.getString("item_description"));
+                    items.add(findById(result.getId()));
+                }
             }
-            rs.close();
-            st.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
         return items;
     }
 
+
+
+
     @Override
-    public Item findById(Integer id) {
+    public Item findById(Integer id) throws SQLException {
         Item result = new Item();
-        try {
-            PreparedStatement st = this.cn.prepareStatement
-                    ("select * from tracker where id = (?)");
+        try (PreparedStatement st = this.cn.prepareStatement
+                ("select * from tracker where id = (?)")) {
             st.setInt(1, id);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                result.setId(rs.getInt("id"));
-                result.setName(rs.getString("item_name"));
-                result.setDescription(rs.getString("item_description"));
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    result.setId(rs.getInt("id"));
+                    result.setName(rs.getString("item_name"));
+                    result.setDescription(rs.getString("item_description"));
+                }
             }
-            rs.close();
-            st.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
         }
         return result;
     }
+
 }
 
