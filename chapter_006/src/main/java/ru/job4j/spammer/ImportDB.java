@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 /**
- * Class ImportDB решение задачи части 4.3. XML XSLT JDBC Оптимизация[20459#143674]
+ * Class ImportDB решение задачи части 4.3. XML XSLT JDBC Оптимизация[20459#143674].
  * @author vmyaskovskiy
  * @version $Id$
  * @since 0.1
