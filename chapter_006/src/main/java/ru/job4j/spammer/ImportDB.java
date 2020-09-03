@@ -24,8 +24,19 @@ public class ImportDB {
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             String line;
             while ((line = rd.readLine()) != null) {
-                String[] word = line.split(";");
-                users.add(new User(word[0], word[1]));
+                int indStart = 0;
+                int indEmail = line.indexOf("@") - 1;
+                char[] chars = line.toCharArray();
+                int indEnd = chars.length;
+                for (int i = indEmail; i < indEnd; i--) {
+                    if (!Character.isLetter(chars[i])) {
+                        indStart = i;
+                        break;
+                    }
+                }
+                String login = line.substring(0, indStart);
+                String email = line.substring(indStart + 2, indEnd - 1);
+                users.add(new User(login, email));
             }
         }
         return users;
