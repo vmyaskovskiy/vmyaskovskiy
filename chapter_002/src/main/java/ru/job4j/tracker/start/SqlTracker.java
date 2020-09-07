@@ -7,12 +7,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
-public class SqlTracker implements Store {
+public class SqlTracker implements Store,  AutoCloseable {
     private Connection cn;
-    public  SqlTracker() {
+
+
+    public  SqlTracker(Connection connection) {
+        this.cn = connection;
         this.init();
     }
+
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
@@ -38,9 +41,7 @@ public class SqlTracker implements Store {
     @Override
     public Item add(Item item) throws SQLException {
         int idItem = 0;
-        try (PreparedStatement st = this.cn.prepareStatement
-                ("insert into tracker(item_name, item_description) values(?,?)"
-                        , Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement st = this.cn.prepareStatement("insert into tracker(item_name, item_description) values(?,?)", Statement.RETURN_GENERATED_KEYS)) {
             st.setString(1, item.getName());
             st.setString(2, item.getDescription());
             st.executeUpdate();
@@ -56,8 +57,7 @@ public class SqlTracker implements Store {
     @Override
     public boolean replace(Integer id, Item item) throws SQLException {
         boolean res = false;
-        try (PreparedStatement st = this.cn.prepareStatement
-                ("update  tracker set item_name = (?) , item_description = (?) where  id = (?)")) {
+        try (PreparedStatement st = this.cn.prepareStatement("update  tracker set item_name = (?) , item_description = (?) where  id = (?)")) {
             st.setString(1, item.getName());
             st.setString(2, item.getDescription());
             st.setInt(3, id);
@@ -70,8 +70,7 @@ public class SqlTracker implements Store {
     @Override
     public boolean delete(Integer id) throws SQLException {
         boolean res = false;
-        try ( PreparedStatement st = this.cn.prepareStatement
-                ("delete from tracker where id = (?)")) {
+        try (PreparedStatement st = this.cn.prepareStatement("delete from tracker where id = (?)")) {
                   st.setInt(1, id);
                   st.executeUpdate();
                   res = true;
@@ -83,8 +82,7 @@ public class SqlTracker implements Store {
     public List<Item> getAll() throws SQLException {
         Item item = new Item();
         List<Item> items = new ArrayList<>();
-        try (PreparedStatement st = this.cn.prepareStatement
-                ("select * from tracker")) {
+        try (PreparedStatement st = this.cn.prepareStatement("select * from tracker")) {
             try (ResultSet rs = st.executeQuery()) {
                 while (rs.next()) {
                     item.setId(rs.getInt("id"));
@@ -101,8 +99,7 @@ public class SqlTracker implements Store {
     public List<Item> findByName(String name) throws SQLException {
         Item result = new Item();
         List<Item> items = new ArrayList<>();
-        try (PreparedStatement st = this.cn.prepareStatement
-                ("select * from tracker where item_name = (?)")) {
+        try (PreparedStatement st = this.cn.prepareStatement("select * from tracker where item_name = (?)")) {
             st.setString(1, name);
             try (ResultSet rs = st.executeQuery()) {
                 while (rs.next()) {
@@ -122,8 +119,7 @@ public class SqlTracker implements Store {
     @Override
     public Item findById(Integer id) throws SQLException {
         Item result = new Item();
-        try (PreparedStatement st = this.cn.prepareStatement
-                ("select * from tracker where id = (?)")) {
+        try (PreparedStatement st = this.cn.prepareStatement("select * from tracker where id = (?)")) {
             st.setInt(1, id);
             try (ResultSet rs = st.executeQuery()) {
                 while (rs.next()) {
