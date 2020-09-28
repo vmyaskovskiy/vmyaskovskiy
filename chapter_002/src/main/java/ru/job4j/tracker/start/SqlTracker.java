@@ -1,34 +1,16 @@
 package ru.job4j.tracker.start;
 
 import ru.job4j.tracker.models.Item;
-
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+
 public class SqlTracker implements Store,  AutoCloseable {
     private Connection cn;
 
 
     public  SqlTracker(Connection connection) {
         this.cn = connection;
-        this.init();
-    }
-
-    public void init() {
-        try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
-            Properties config = new Properties();
-            config.load(in);
-            Class.forName(config.getProperty("driver-class-name"));
-            cn = DriverManager.getConnection(
-                    config.getProperty("url"),
-                    config.getProperty("username"),
-                    config.getProperty("password")
-            );
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        }
     }
 
     @Override
@@ -112,9 +94,6 @@ public class SqlTracker implements Store,  AutoCloseable {
         }
         return items;
     }
-
-
-
 
     @Override
     public Item findById(Integer id) throws SQLException {

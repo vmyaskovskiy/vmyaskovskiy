@@ -1,8 +1,12 @@
 package ru.job4j.tracker.start;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import java.util.function.Consumer;
 
 import ru.job4j.tracker.models.Item;
@@ -28,6 +32,22 @@ public class MenuTrackerTwo {
         this.sqlTracker = sqlTracker;
         this.su = su;
         this.output = output;
+    }
+
+    public Connection init() {
+        try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
+            Properties config = new Properties();
+            config.load(in);
+            Class.forName(config.getProperty("driver-class-name"));
+            return DriverManager.getConnection(
+                    config.getProperty("url"),
+                    config.getProperty("username"),
+                    config.getProperty("password")
+
+            );
+        } catch (Exception e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     public void fillAction() {

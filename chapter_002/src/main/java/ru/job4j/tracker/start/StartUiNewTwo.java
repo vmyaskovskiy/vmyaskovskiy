@@ -1,16 +1,24 @@
 package ru.job4j.tracker.start;
 
 
+
+import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 import java.util.function.Consumer;
 
 public class StartUiNewTwo {
-    private static Connection connection;
+
+    private static Connection con;
     private Input input;
     private SqlTracker trackerTwo;
     private boolean exit = false;
     private final  Consumer<String> output;
+
+
+
 
     /**
      * Конструтор инициализирующий поля.
@@ -42,7 +50,8 @@ public void init() throws SQLException {
 
 public static void main(String[] args) throws SQLException {
 
-        new StartUiNewTwo(new ValidateInput(new ConsoleInput()), new SqlTracker(connection), System.out::println).init();
+
+    new StartUiNewTwo(new ValidateInput(new ConsoleInput()), new SqlTracker(con), System.out::println).init();
         }
 
 public void setExit(boolean exit) {
