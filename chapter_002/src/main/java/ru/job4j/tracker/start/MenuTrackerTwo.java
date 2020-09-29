@@ -34,22 +34,6 @@ public class MenuTrackerTwo {
         this.output = output;
     }
 
-    public Connection init() {
-        try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
-            Properties config = new Properties();
-            config.load(in);
-            Class.forName(config.getProperty("driver-class-name"));
-            return DriverManager.getConnection(
-                    config.getProperty("url"),
-                    config.getProperty("username"),
-                    config.getProperty("password")
-
-            );
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        }
-    }
-
     public void fillAction() {
         this.actionsTwoList.add(new MenuTrackerTwo.AddItem(0, "Add the new item"));
         this.actionsTwoList.add(new MenuTrackerTwo.ShowItems(1, "Show all items"));
