@@ -29,8 +29,6 @@ public class ReportEngineTest {
                 .append(worker1.getFired()).append(";")
                 .append(worker1.getSalary()).append(";")
                 .append(System.lineSeparator());
-
-
         assertThat(engine.generate(em -> em.getName() == "Slava"), is(expect.toString()));
     }
 
@@ -44,17 +42,15 @@ public class ReportEngineTest {
         store.add(worker);
         store.add(worker1);
         store.add(worker2);
-        ReportEngine engine = new ReportEngine(store);
-        System.out.println(engine.generateHR(em -> true));
+        ReportEngineHR engine = new ReportEngineHR(store);
+        System.out.println(engine.generate(em -> true));
         StringBuilder expect = new StringBuilder()
                 .append("Name; Salary;")
                 .append(System.lineSeparator())
                 .append(worker1.getName()).append(";")
                 .append(worker1.getSalary()).append(";")
                 .append(System.lineSeparator());
-
-
-        assertThat(engine.generateHR(em -> em.getName() == "Slava"), is(expect.toString()));
+        assertThat(engine.generate(em -> em.getName() == "Slava"), is(expect.toString()));
     }
 
     @Test
@@ -67,17 +63,15 @@ public class ReportEngineTest {
         store.add(worker);
         store.add(worker1);
         store.add(worker2);
-        ReportEngine engine = new ReportEngine(store);
-        System.out.println(engine.generateBUH(em -> true));
+        ReportEngineBUH engine = new ReportEngineBUH(store);
+        System.out.println(engine.generate(em -> true));
         StringBuilder expect = new StringBuilder()
                 .append("Name; Salary;")
                 .append(System.lineSeparator())
                 .append(worker1.getName()).append(";")
                 .append((int) (worker1.getSalary())).append(";")
                 .append(System.lineSeparator());
-
-
-        assertThat(engine.generateBUH(em -> em.getName() == "Slava"), is(expect.toString()));
+        assertThat(engine.generate(em -> em.getName() == "Slava"), is(expect.toString()));
     }
 
 }
