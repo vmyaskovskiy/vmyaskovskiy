@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 import org.junit.Test;
 import java.util.Calendar;
+import java.util.StringJoiner;
 
 public class ReportEngineTest {
 
@@ -74,5 +75,40 @@ public class ReportEngineTest {
         assertThat(engine.generate(em -> em.getName() == "Slava"), is(expect.toString()));
     }
 
+    @Test
+    public void whenHTMLGenerated() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 300);
+        Employee worker1 = new Employee("Slava", now, now, 100);
+        Employee worker2 = new Employee("Alex", now, now, 150);
+        store.add(worker);
+        store.add(worker1);
+        store.add(worker2);
+        ReportEngineHTML engine = new ReportEngineHTML(store);
+        System.out.println(engine.generate(em -> true));
+        StringJoiner texthtml = new StringJoiner(System.lineSeparator());
+
+        texthtml.add("<!DOCTYPE html>");
+        texthtml.add("<html>");
+        texthtml.add("<head>");
+        texthtml.add("<meta charset=\"UTF-8\">");
+        texthtml.add("<title>Employers</title>");
+        texthtml.add("</head>");
+        texthtml.add("<body>");
+
+        texthtml.add("<table>");
+        texthtml.add("<tr>");
+        texthtml.add("<th>Name</th>");
+        texthtml.add("<th>Salary</th>");
+        texthtml.add("</tr>");
+
+            texthtml.add("<tr>");
+            texthtml.add(String.format("<td>%s</td>", worker1.getName()));
+            texthtml.add(String.format("<td>%s</td>", worker1.getSalary()));
+            texthtml.add("</tr>");
+
+        assertThat(engine.generate(em -> em.getName() == "Slava"), is(texthtml.toString()));
+    }
 }
 
