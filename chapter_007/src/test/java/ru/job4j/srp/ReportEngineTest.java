@@ -110,5 +110,48 @@ public class ReportEngineTest {
 
         assertThat(engine.generate(em -> em.getName() == "Slava"), is(texthtml.toString()));
     }
+
+    @Test
+    public void whenXMLGenerated() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 300);
+        Employee worker1 = new Employee("Slava", now, now, 100);
+        Employee worker2 = new Employee("Alex", now, now, 150);
+        store.add(worker);
+        store.add(worker1);
+        store.add(worker2);
+        ReportEngineXML engine = new ReportEngineXML(store);
+        System.out.println(engine.generate(em -> true));
+        StringJoiner textXml = new StringJoiner(System.lineSeparator());
+        textXml.add("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>");
+        textXml.add("<table>Employers</table>");
+        textXml.add("<Employer>");
+            textXml.add(String.format("<Name>%s</Name>", worker1.getName()));
+            textXml.add(String.format("<Salary>%s</Salary>", worker1.getSalary()));
+        textXml.add("</Employer>");
+        assertThat(engine.generate(em -> em.getName() == "Slava"), is(textXml.toString()));
+    }
+
+    @Test
+    public void whenJSONGenerated() {
+        MemStore store = new MemStore();
+        Calendar now = Calendar.getInstance();
+        Employee worker = new Employee("Ivan", now, now, 300);
+        Employee worker1 = new Employee("Slava", now, now, 100);
+        Employee worker2 = new Employee("Alex", now, now, 150);
+        store.add(worker);
+        store.add(worker1);
+        store.add(worker2);
+        ReportEngineJSON engine = new ReportEngineJSON(store);
+        System.out.println(engine.generate(em -> true));
+        StringJoiner textJson = new StringJoiner(System.lineSeparator());
+        textJson.add("{");
+        textJson.add("\"table\":\"Employers\",");
+            textJson.add(String.format("\"Name\":\"%s\",", worker1.getName()));
+            textJson.add(String.format("\"Salary\":\"%s\",", worker1.getSalary()));
+        textJson.add("}");
+        assertThat(engine.generate(em -> em.getName() == "Slava"), is(textJson.toString()));
+    }
 }
 
