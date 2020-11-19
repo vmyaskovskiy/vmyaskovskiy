@@ -1,0 +1,55 @@
+﻿CREATE TABLE company
+(
+id integer NOT NULL,
+name character varying,
+CONSTRAINT company_pkey PRIMARY KEY (id)
+);
+
+
+insert into company(id, name) values (1, 'aple');
+insert into company(id, name) values (2, 'bmv');
+insert into company(id, name) values (3, 'htc');
+insert into company(id, name) values (4, 'oracle');
+insert into company(id, name) values (5, 'honda');
+insert into company(id, name) values (6, 'samsung');
+          
+
+        
+
+
+CREATE TABLE person
+(
+id integer NOT NULL,
+name character varying,
+company_id integer,
+CONSTRAINT person_pkey PRIMARY KEY (id)
+);
+
+
+insert into person(id, name, company_id) values (1, 'vova', 1);
+insert into person(id, name, company_id) values (2, 'dima', 2);
+insert into person(id, name, company_id) values (3, 'kolya', 3);
+insert into person(id, name, company_id) values (4, 'sveta', 4);
+insert into person(id, name, company_id) values (5, 'nina', 5);
+insert into person(id, name, company_id) values (7, 'luda', 5);
+insert into person(id, name, company_id) values (6, 'pasha', 6);   
+
+      
+
+select p.name as служащий, c.name as компания
+from person p 
+inner join company c on p.company_id = c.id  
+where c.id <> 5
+
+
+
+
+
+select cnt , w.name from ( 
+select count(p.id) as cnt , c.name
+from      person p 
+inner join company c on p.company_id = c.id  
+where c.id = p.company_id
+group by c.name) w
+order by cnt desc
+limit 1
