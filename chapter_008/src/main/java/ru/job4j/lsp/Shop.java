@@ -1,4 +1,20 @@
 package ru.job4j.lsp;
 
-public class Shop extends Store {
+import java.util.ArrayList;
+
+public class Shop implements Store{
+    ArrayList<Food> arrayList = new ArrayList<>();
+
+    @Override
+    public boolean acccept(Food food) {
+        return (food.getPrice() > 100 && food.getPrice() < 200);
+    }
+    public void add(Food food) {
+        if(acccept(food)){
+            arrayList.add(food);
+        }
+    }
+    public ArrayList<Food> getArrayList() {
+        return this.arrayList;
+    }
 }
