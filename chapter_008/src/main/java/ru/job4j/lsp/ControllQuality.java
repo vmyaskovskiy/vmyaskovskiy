@@ -2,21 +2,13 @@ package ru.job4j.lsp;
 
 public class ControllQuality {
 
-    Warehouse warehouse = new Warehouse();
-    Shop shop = new Shop();
+   private Store store;
+   public ControllQuality(Store store) {
+       this.store = store;
+   }
 
-    public void controllQuality(Food food) {
-      warehouse.add(food);
-      shop.add(food);
-    }
-
-    public Warehouse getWarehouse() {
-        return this.warehouse;
-    }
-
-    public Shop getShop() {
-        return this.shop;
-    }
-
-
+   public void execute(Food food) {
+       store.acccept(food);
+       store.add(food);
+   }
 }

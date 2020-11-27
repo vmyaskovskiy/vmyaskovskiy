@@ -1,26 +1,55 @@
 package ru.job4j.lsp;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class TestStore {
-    public static void main(String[] args) {
-        ControllQuality controllQuality = new ControllQuality();
-        Milk milk = new Milk("домик", "01.01.2020", "01.01.2020", 80, 10);
-        Apple apple = new Apple("сезонное", "01.01.2020", "01.01.2020", 180, 20);
+
+
+    public static void main(String[] args)  {
+        // 90% свежее в Warehouse
+        Milk milk = new Milk("домик", "30.12.2020", "20.11.2020", 80, 10);
+        // Если срок годности от 25% до 75% направить в Shop
+        Apple apple = new Apple("сеонное", "20.12.2020", "15.11.2020", 180, 10);
+        // Если срок годности больше 75% то выставить скидку на продукт и отправить в Shop
+        Milk milk1 = new Milk("Простоквашино", "30.11.2020", "20.11.2020", 80, 10);
+        // Если срок годности вышел. Отправить продукт в мусорку.
+        Apple apple1 = new Apple("red", "17.11.2020", "15.11.2020", 190, 10);
+
+        Shop shop = new Shop();
+        Warehouse warehouse = new Warehouse();
+        Trash trash = new Trash();
+
+        List<Store> stores = new ArrayList<>();
+
+        stores.add(shop);
+        stores.add(warehouse);
+        stores.add(trash);
+
         ArrayList<Food> store = new ArrayList<>();
         store.add(milk);
+        store.add(milk1);
         store.add(apple);
+        store.add(apple1);
 
         for(Food food: store) {
-            controllQuality.controllQuality(food);
+            for(Store store1: stores) {
+                ControllQuality controllQuality = new ControllQuality(store1);
+                controllQuality.execute(food);
+            }
         }
 
-        for(Food food: controllQuality.getWarehouse().getArrayList()){
-        System.out.println(food.getName() + "  " + food.getDisscount());
+
+        for(Food food: shop.getArrayList()){
+        System.out.println("shop " + food.getName() + "  " + food.getDisscount());
         }
 
-        for(Food food: controllQuality.getShop().getArrayList()){
-            System.out.println(food.getName() + "  " + food.getDisscount());
+        for(Food food: warehouse.getArrayList()){
+            System.out.println("warehouse " + food.getName() + "  " + food.getDisscount() );
         }
+
+        for(Food food: trash.getArrayList()){
+            System.out.println("trash " + food.getName() + "  " + food.getDisscount() );
+        }
+
     }
 }

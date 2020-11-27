@@ -2,23 +2,16 @@ package ru.job4j.lsp;
 
 import java.util.ArrayList;
 
-public class Shop implements Store{
+public class Trash implements Store {
+
     ArrayList<Food> arrayList = new ArrayList<>();
 
     @Override
     public boolean acccept(Food food) {
-        boolean res = false;
         DateFormat dateFormat = new DateFormat(food.getCreateDate(), food.getExpaireDate());
-
-        double resDate = dateFormat.procExpaireDate();
-        if (resDate <= 75 && resDate >= 25) {
-            res = true;
-        } else if(resDate < 25 && !dateFormat.endDate()) {
-            food.setDisscount(50);
-            res = true;
-        }
-        return res;
+        return (dateFormat.endDate());
     }
+
     public void add(Food food) {
         if(acccept(food)){
             arrayList.add(food);

@@ -1,6 +1,7 @@
 package ru.job4j.lsp;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Warehouse implements Store{
 
@@ -9,7 +10,11 @@ public class Warehouse implements Store{
 
     @Override
     public boolean acccept(Food food) {
-        return food.getPrice() < 100;
+        DateFormat dateFormat = new DateFormat(food.getCreateDate(), food.getExpaireDate());
+
+        double res = dateFormat.procExpaireDate();
+
+        return (res < 100 && res > 75);
     }
 
     public void add(Food food) {

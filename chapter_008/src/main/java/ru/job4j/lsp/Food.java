@@ -17,8 +17,6 @@ public class Food {
         this.disscount = disscount;
     }
 
-
-
     public void setName(String name) {
         this.name = name;
     }
@@ -38,6 +36,14 @@ public class Food {
     }
     public int getDisscount() {
         return this.disscount;
+    }
+
+    public String getExpaireDate() {
+        return this.expaireDate;
+    }
+
+    public String getCreateDate() {
+        return this.createDate;
     }
 
 }
