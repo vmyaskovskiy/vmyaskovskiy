@@ -1,14 +1,24 @@
 package ru.job4j.lsp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ControllQuality {
 
-   private Store store;
-   public ControllQuality(Store store) {
-       this.store = store;
+   private List<Store> stores;
+   private ArrayList<Food> storeFood;
+
+   public ControllQuality(List<Store> stores, ArrayList<Food> storeFood) {
+       this.stores = stores;
+       this.storeFood = storeFood;
    }
 
-   public void execute(Food food) {
-       store.acccept(food);
-       store.add(food);
-   }
+   public void execute() {
+       for(Food food: storeFood) {
+           for(Store store1: stores) {
+               store1.acccept(food);
+               store1.add(food);
+           }
+       }
+    }
 }
