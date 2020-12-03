@@ -18,9 +18,9 @@ public class Warehouse implements Store{
     }
 
     public void add(Food food) {
-        if(acccept(food)){
+
         arrayList.add(food);
-        }
+
     }
     public ArrayList<Food> getArrayList() {
         return this.arrayList;

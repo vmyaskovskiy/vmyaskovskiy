@@ -16,8 +16,9 @@ public class ControllQuality {
    public void execute() {
        for(Food food: storeFood) {
            for(Store store1: stores) {
-               store1.acccept(food);
+               if(store1.acccept(food)) {
                store1.add(food);
+               }
            }
        }
     }
