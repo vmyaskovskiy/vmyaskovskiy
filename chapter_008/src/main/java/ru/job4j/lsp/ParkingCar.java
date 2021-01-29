@@ -18,6 +18,13 @@ public class ParkingCar implements Parking {
         this.sumPass--;
     }
 
+    public int getSumTrack() {
+        return this.sumTrack;
+    }
+    public int getSumPass() {
+        return this.sumPass;
+    }
+
     @Override
     public boolean accept(Car car) {
         int sumTrack =  this.sumTrack;

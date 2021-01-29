@@ -11,4 +11,9 @@ public class ControllCar {
     public boolean executrCar(Car car) {
         return parking.add(car);
     }
+
+    public boolean acceptCar(Car car) {
+        return parking.accept(car);
+    }
+
 }
