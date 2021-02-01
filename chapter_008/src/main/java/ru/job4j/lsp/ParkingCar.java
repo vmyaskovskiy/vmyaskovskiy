@@ -1,5 +1,5 @@
 package ru.job4j.lsp;
-
+// класс для проверки количества мест на парковке
 public class ParkingCar implements Parking {
     private int sumTrack; // количество мест грузовых машин
     private int sumPass; // количество мест легковых машин
