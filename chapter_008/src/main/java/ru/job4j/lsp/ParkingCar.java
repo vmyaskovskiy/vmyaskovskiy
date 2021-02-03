@@ -3,16 +3,14 @@ package ru.job4j.lsp;
 public class ParkingCar implements Parking {
     private int sumTrack; // количество мест грузовых машин
     private int sumPass; // количество мест легковых машин
-    private int track; // размер грузовой машины
 
     private boolean TrackToTrack = false; // метка что есть грузовые места для грузовых машин
     private boolean TrackToPass = false;  // метка что есть легковые места для грузовых машин
     private boolean PassToPass = false; // метка что есть легковые места для легковых машин
 
-    public ParkingCar(int sumTrack, int sumPass, int track) {
+    public ParkingCar(int sumTrack, int sumPass) {
         this.sumTrack = sumTrack;
         this.sumPass = sumPass;
-        this.track = track;
     }
 
     public void setSumTrack() {
@@ -21,32 +19,20 @@ public class ParkingCar implements Parking {
     public void setSumPass() {
         this.sumPass--;
     }
-  // метод если грузовая машина встает на место для легковой
-    public void setSumTrackToPass() {
-        this.sumPass = this.sumPass - this.track;
-    }
-
-    public int getSumTrack() {
-        return this.sumTrack;
-    }
-    public int getSumPass() {
-        return this.sumPass;
-    }
 
     @Override
     public boolean accept(Car car) {
         int sumTrack =  this.sumTrack;
         int sumPass = this.sumPass;
-        int nTrack = this.track;
+        int size = car.getsize();
         boolean res = true;
         // проверка , что машина Грузовая.
         // Если размер машины равен размеру грузовой - это грузовая машина
-        if(car.getsize() == nTrack) {
+        if(size > 1) {
             // проверяем что остались грузовые места для грузовых машин
             if (sumTrack == 0) {
                 // проверяем что остались пассажирские места для грузовых машин
-                if (sumPass < nTrack) {
-                    System.out.println("Мест нет");
+                if (sumPass < size) {
                     res = false;
                 } else {
                     // есть легковые места для грузовых машин
@@ -76,7 +62,7 @@ public class ParkingCar implements Parking {
                 this.setSumPass();
                 res = true;
             } else if (this.TrackToPass == true) {
-                this.setSumTrackToPass();
+                this.sumPass = this.sumPass - car.getsize();
                 res = true;
             } else if (this.TrackToTrack == true) {
                 this.setSumTrack();

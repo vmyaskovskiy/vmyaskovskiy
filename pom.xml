@@ -44,6 +44,7 @@
 		<module>chapter_006</module>
 		<module>chapter_007</module>
 		<module>chapter_008</module>
+		<module>chapter_009</module>
     </modules>
 
 	<dependencies>
@@ -161,9 +162,13 @@
                 <version>3.6.2</version>
                 <configuration>
                     <changeLogFile>${basedir}/db/master.xml</changeLogFile>
+                    <!--suppress UnresolvedMavenProperty -->
                     <url>${db.url}</url>
+                    <!--suppress UnresolvedMavenProperty -->
                     <driver>${db.driver}</driver>
+                    <!--suppress UnresolvedMavenProperty -->
                     <username>${db.username}</username>
+                    <!--suppress UnresolvedMavenProperty -->
                     <password>${db.password}</password>
                 </configuration>
                 <executions>

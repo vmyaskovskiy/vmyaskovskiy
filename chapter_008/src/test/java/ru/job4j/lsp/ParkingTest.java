@@ -6,15 +6,24 @@ public class ParkingTest {
     @Test
     public void whenParkTrackCar() {
         Track track = new Track(2);
-        ControllCar controllCar = new ControllCar(new ParkingCar(1,2,2));
+        ControllCar controllCar = new ControllCar(new ParkingCar(1,2));
         assertThat(controllCar.executrCar(track), is(true));
         assertThat(controllCar.executrCar(track), is(true));
         assertThat(controllCar.executrCar(track), is(false));
     }
     @Test
+    public void whenParkDifTrackCar() {
+        Track track = new Track(2);
+        Track trackTwo = new Track(3);
+        ControllCar controllCar = new ControllCar(new ParkingCar(1,3));
+        assertThat(controllCar.executrCar(track), is(true));
+        assertThat(controllCar.executrCar(trackTwo), is(true));
+        assertThat(controllCar.executrCar(track), is(false));
+    }
+    @Test
     public void whenParkPassCar() {
         PassCar passCar = new PassCar(1);
-        ControllCar controllCar = new ControllCar(new ParkingCar(1,2,2));
+        ControllCar controllCar = new ControllCar(new ParkingCar(1,2));
         assertThat(controllCar.executrCar(passCar), is(true));
         assertThat(controllCar.executrCar(passCar), is(true));
         assertThat(controllCar.executrCar(passCar), is(false));
@@ -23,7 +32,7 @@ public class ParkingTest {
     public void whenParkPassCarTrackCar() {
         Track track = new Track(2);
         PassCar passCar = new PassCar(1);
-        ControllCar controllCar = new ControllCar(new ParkingCar(1,3,2));
+        ControllCar controllCar = new ControllCar(new ParkingCar(1,3));
         assertThat(controllCar.executrCar(track), is(true));
         assertThat(controllCar.executrCar(track), is(true));
         assertThat(controllCar.executrCar(track), is(false));
@@ -34,7 +43,7 @@ public class ParkingTest {
     public void whenParkPassCarTrackCarNull() {
         Track track = new Track(2);
         PassCar passCar = new PassCar(1);
-        ControllCar controllCar = new ControllCar(new ParkingCar(0,3,2));
+        ControllCar controllCar = new ControllCar(new ParkingCar(0,3));
         assertThat(controllCar.executrCar(track), is(true));
         assertThat(controllCar.executrCar(track), is(false));
         assertThat(controllCar.executrCar(passCar), is(true));
@@ -44,7 +53,7 @@ public class ParkingTest {
     public void whenParkPassCarNullTrackCar() {
         Track track = new Track(2);
         PassCar passCar = new PassCar(1);
-        ControllCar controllCar = new ControllCar(new ParkingCar(1,0,2));
+        ControllCar controllCar = new ControllCar(new ParkingCar(1,0));
         assertThat(controllCar.executrCar(passCar), is(false));
         assertThat(controllCar.executrCar(track), is(true));
         assertThat(controllCar.executrCar(track), is(false));
@@ -54,7 +63,7 @@ public class ParkingTest {
     public void whenParkPassCarNullTrackCarNull() {
         Track track = new Track(2);
         PassCar passCar = new PassCar(1);
-        ControllCar controllCar = new ControllCar(new ParkingCar(0,0,2));
+        ControllCar controllCar = new ControllCar(new ParkingCar(0,0));
         assertThat(controllCar.executrCar(passCar), is(false));
         assertThat(controllCar.executrCar(track), is(false));
     }
