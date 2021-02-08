@@ -15,7 +15,7 @@ public class Array {
             System.out.print(i);
         }
         System.out.println();
-        System.out.println(array[l] + (array[l - 2]));
+        //System.out.println(array[l] + (array[l - 2]));
         System.out.println(array[0] + (array[l - 2]));
     }
 
