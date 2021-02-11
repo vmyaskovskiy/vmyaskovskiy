@@ -6,13 +6,13 @@ public class Operator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("введите число x = ");
-        int x = scanner.nextInt();
+        double x = scanner.nextDouble();
         System.out.println("введите число y = ");
-        int y = scanner.nextInt();
+        double y = scanner.nextDouble();
         System.out.println("введите число z = ");
-        int z = scanner.nextInt();
+        double z = scanner.nextDouble();
         System.out.println(x + " " + y + " " + z);
-        double a = (x + y + z)/3.0;
+        double a = (x + y + z)/3;
         System.out.println(" среднее " + a);
         double d = a/2; // без округления
         int b = (int) a/2; // округление путем отбрасывания дробной части
