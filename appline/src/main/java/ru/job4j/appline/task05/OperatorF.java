@@ -9,35 +9,33 @@ public class OperatorF {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("введите число x = ");
-        int x = scanner.nextInt();
+        double x = scanner.nextDouble();
         System.out.println("введите число y = ");
-        int y = scanner.nextInt();
+        double y = scanner.nextDouble();
         System.out.println("введите один из символов ‘+’, ‘-’, ‘*’ или ‘/’ ");
         String operator = scanner.next();
-        String addition = "+";
-        String subtraction = "-";
-        String multiplication = "*";
-        String division = "/";
-        if(addition.equals(operator)) {
-            int sum = x + y;
-            System.out.println(sum);
-        } else if(subtraction.equals(operator)) {
-            int sub = x - y;
-            System.out.println(sub);
-        } else if(multiplication.equals(operator)) {
-            int mul = x * y;
-            System.out.println(mul);
-        } else if(division.equals(operator)) {
-            if(y != 0) {
-                System.out.println("попали в деление");
-                int div = x / y;
-                System.out.println(div);
+        switch (operator) {
+            case "+":
+                double sum = x + y;
+                System.out.println(sum);
+                break;
+            case "-":
+                double sub = x - y;
+                System.out.println(sub);
+                break;
+            case "*":
+                double mul = x * y;
+                System.out.println(String.format("%.4f", mul));
+                break;
+            case "/":
+                if(y != 0) {
+                    double div = x / y;
+                    System.out.println(String.format("%.4f", div));
+                }
+                else{
+                    System.out.println("на ноль делить нельзя");
+                }
+                break;
             }
-            else{
-                System.out.println("на ноль делить нельзя");
-            }
-        } else {
-            System.out.println("вы ввели некоректный символ");
-        }
     }
 }
