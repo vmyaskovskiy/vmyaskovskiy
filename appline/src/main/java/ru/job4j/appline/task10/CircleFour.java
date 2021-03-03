@@ -13,11 +13,11 @@ public class CircleFour {
         int k = scanner.nextInt();
         System.out.println("введите размер двумерного массива по горизонтале");
         int m = scanner.nextInt();
-        int[][] myArray = new int[k][m];
-        System.out.println("введите элементы массива - целые числа");
+        Double[][] myArray = new Double[k][m];
+        System.out.println("введите элементы массива");
         for(int i = 0; i < k; i++){
             for(int j = 0; j < m; j++) {
-                int l = scanner.nextInt();
+                Double l = scanner.nextDouble();
                 myArray[i][j] = l;
             }
         }
