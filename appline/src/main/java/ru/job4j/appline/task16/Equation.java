@@ -22,29 +22,25 @@ public class Equation {
         int c = 0;
         int d = 0;
         int result = 0;
-        String[] myArray = new String[5];
-        System.out.println("Введите первое значение или Х");
-        myArray[0] = scanner.next();
-        if (myArray[0].equals("x")) {
-            a = 1;
+
+
+        System.out.println("Введите уравнение вида х +/- в = с , цифры положительные (от 0 до 9)");
+        String eq = scanner.nextLine();
+        char[] chars = eq.toCharArray();
+        String[] myArray = new String[chars.length];
+        for(int i = 0; i < chars.length; i++) {
+            myArray[i] = String.valueOf(chars[i]);
+            if(i == 0 && myArray[i].equals("x")){
+                a = 1;
+            } else if(i == 1 && myArray[i].equals("+")){
+                b = 1;
+            } else if(i == 2 && myArray[i].equals("x")){
+                c = 1;
+            } else if(i == 4 && myArray[i].equals("x")){
+                d = 1;
+            }
         }
-        System.out.println("Введите знак + или - ");
-        myArray[1] = scanner.next();
-        if (myArray[1].equals("+")) {
-            b = 1;
-        }
-        System.out.println("Введите второе значение или Х");
-        myArray[2] = scanner.next();
-        if (myArray[2].equals("x")) {
-            c = 1;
-        }
-        System.out.println("Введите знак =");
-        myArray[3] = scanner.next();
-        System.out.println("Введите значение уравнения или Х");
-        myArray[4] = scanner.next();
-        if (myArray[4].equals("x")) {
-            d = 1;
-        }
+
         String res = new String(String.valueOf(a) + String.valueOf(b) + String.valueOf(c) + String.valueOf(d));
         if (res.equals("1100")) {
             result = Integer.valueOf(myArray[4]) - Integer.valueOf(myArray[2]);
