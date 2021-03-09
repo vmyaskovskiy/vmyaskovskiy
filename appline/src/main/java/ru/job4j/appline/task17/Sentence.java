@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Sentence {
     // метод для вычисления количества различных букв в слове.
     public long strMany(String str) {
-        long res2 = str.toLowerCase().chars().distinct().count();
+        long res2 = str.chars().distinct().count();
     return res2;
     }
 
@@ -26,34 +26,28 @@ public class Sentence {
         int l = scanner.nextInt();
         scanner.nextLine();
         String[] myArray = new String[l];
-        // заплним массив строк
+        // заполним массив строк
         for(int i = 0; i < l; i++) {
-            System.out.println("Введите сетроку " + (i + 1));
+            System.out.println("Введите строку " + (i + 1));
             myArray[i] = scanner.nextLine();
         }
         long[] countA = new long[myArray.length];
-        //есди строк много, выведем первую
-        if(myArray.length > 2) {
-            System.out.println("Количество строк: " + myArray.length);
-            for(int i = 0; i < myArray.length; i++) {
-                System.out.println("Строка " + (i + 1) + ":" + " " + myArray[i]);
-            }
-            System.out.println("Ответ: " + myArray[0]);
-        // иначе заполним массив значениями сколько в каждом слове различных букв
-        } else {
+            // заполним массив максимальными значениями,
+            // порядковый номер максимального значения соответствует порядковому номеру строки
             for (int i = 0; i < myArray.length; i++) {
                 countA[i] = sentence.strMany(myArray[i]);
             }
             long max = countA[0];
-            int resI = 0;
+            int resImax = 0;
             // вычислим максимальное значение
             for(int i = 1; i < countA.length; i++) {
                 max = Math.max(max, countA[i]);
             }
-            // узнаем слово для которого максимальное значение
-            for(int i = 1; i < countA.length; i++) {
+            // находим порядковый номер первой строчки с максимальным значением
+            for(int i = 0; i < countA.length; i++) {
                 if(max == countA[i]) {
-                    resI = i;
+                    resImax = i;
+                    break;
                 }
             }
             // сформируем ответ
@@ -61,7 +55,12 @@ public class Sentence {
             for(int i = 0; i < myArray.length; i++) {
                 System.out.println("Строка " + (i + 1) + ":" + " " + myArray[i]);
             }
-            System.out.println("Ответ: " + " Кол-во разл букв = " + max + "  фраза: " + myArray[resI]);
-        }
+            System.out.println("Ответ: " + " Кол-во разл букв = " + max + "  фраза: " + myArray[resImax]);
+        // тест кейс
+        //qwerty
+        //qwertyui
+        //qwer
+        //qqq
+        //asdfghjk
     }
 }
