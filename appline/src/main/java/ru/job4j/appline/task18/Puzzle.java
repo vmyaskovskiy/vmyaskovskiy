@@ -27,21 +27,7 @@ public class Puzzle {
             if(eqOne.equals("Заархивированный вирус")){
                 System.out.println("ответ верный");
             } else {
-                System.out.println("Подумай еще!");
-                System.out.println("У вас вторая попытка, подсказок больше нет");
-                String eqTwo = scanner.nextLine();
-                if (eqTwo.equals("Заархивированный вирус")) {
-                    System.out.println("ответ верный");
-                } else {
-                    System.out.println("Подумай еще!");
-                    System.out.println("У вас третья попытка, подсказок больше нет");
-                    String eqThree = scanner.nextLine();
-                    if (eqThree.equals("Заархивированный вирус")) {
-                        System.out.println("ответ верный");
-                    } else {
-                        System.out.println("Обидно, приходи в другой раз");
-                    }
-                }
+                System.out.println("Обидно, приходи в другой раз");
             }
         // если не воспользовался подсказкой
         } else {
