@@ -1,7 +1,7 @@
 package ru.job4j.appline.task04;
 
 import java.util.Scanner;
-//Задача №4_Операторы
+//Задача №4_Операторы new
 public class Operator {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
