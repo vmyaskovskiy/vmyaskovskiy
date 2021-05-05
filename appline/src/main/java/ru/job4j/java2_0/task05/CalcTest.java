@@ -35,16 +35,13 @@ public class CalcTest {
                     System.out.println(String.format("%.4f", mul));
                     break;
                 case "/":
-                    try {
-                        // ArithmeticException возникает если делить Int ксли делить double
-                        // возникает сообщение Infinity
-                        // для моделирования перевел числа в int
-                        double div = ((int) x / (int) y);
-                        System.out.println(String.format("%.4f", div));
-                    } catch (ArithmeticException e) {
-                        System.out.println("исключение - делить на ноль нельзя" + e);
-                    }
-                    break;
+                        double div = calcDiv.calc(x, y);
+                        if(Double.isInfinite(div)) {
+                            System.out.println("исключение - делить на ноль нельзя");
+                        } else {
+                            System.out.println(String.format("%.4f", div));
+                        }
+                        break;
             }
             } catch (InputMismatchException ie) {
                 System.out.println("исключение - введена не цифра " + ie);
