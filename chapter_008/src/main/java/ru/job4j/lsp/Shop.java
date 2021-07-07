@@ -25,4 +25,7 @@ public class Shop implements Store{
     public ArrayList<Food> getArrayList() {
         return this.arrayList;
     }
+    public void clearStore() {
+        this.arrayList.clear();
+    }
 }

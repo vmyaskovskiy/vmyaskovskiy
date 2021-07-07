@@ -26,6 +26,10 @@ public class Warehouse implements Store{
         return this.arrayList;
     }
 
+    public void clearStore() {
+        this.arrayList.clear();
+    }
+
 
 
 

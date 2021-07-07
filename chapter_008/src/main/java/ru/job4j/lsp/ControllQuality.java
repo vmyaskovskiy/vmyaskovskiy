@@ -22,4 +22,14 @@ public class ControllQuality {
            }
        }
     }
+    public void resort() {
+        storeFood.clear();
+       for(Store store1: stores) {
+           for(Food food: store1.getArrayList()) {
+               storeFood.add(food);
+           }
+           store1.clearStore();
+       }
+       execute();
+    }
 }

@@ -15,6 +15,7 @@ public class TestStore {
         Milk milk1 = new Milk("Простоквашино", "07.12.2020", "20.11.2020", 80, 10);
         // Если срок годности вышел. Отправить продукт в мусорку.
         Apple apple1 = new Apple("red", "17.11.2020", "15.11.2020", 190, 10);
+        Apple apple2 = new Apple("redNew", "17.11.2021", "15.11.2020", 200, 10);
 
         Shop shop = new Shop();
         Warehouse warehouse = new Warehouse();
@@ -30,7 +31,7 @@ public class TestStore {
         storeFood.add(milk1);
         storeFood.add(apple);
         storeFood.add(apple1);
-
+        storeFood.add(apple2);
 
         ControllQuality controllQuality = new ControllQuality(stores, storeFood);
         controllQuality.execute();
@@ -47,5 +48,19 @@ public class TestStore {
             System.out.println("trash " + food.getName() + "  " + food.getDisscount() );
         }
 
+        controllQuality.resort();
+
+
+        for(Food food: shop.getArrayList()){
+            System.out.println("shop " + food.getName() + "  " + food.getDisscount());
+        }
+
+        for(Food food: warehouse.getArrayList()){
+            System.out.println("warehouse " + food.getName() + "  " + food.getDisscount() );
+        }
+
+        for(Food food: trash.getArrayList()){
+            System.out.println("trash " + food.getName() + "  " + food.getDisscount() );
+        }
     }
 }
