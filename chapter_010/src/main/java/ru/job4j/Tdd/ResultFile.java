@@ -14,7 +14,7 @@ public class ResultFile {
         }
         return res;
     }
-
+//
     public static void main(String[] args) {
         ResultFile resultFile = new ResultFile();
         int[][] res = resultFile.mul();
