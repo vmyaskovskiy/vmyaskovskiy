@@ -3,7 +3,7 @@ package ru.job4j.Tdd;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-
+//
 public class ResultFile {
     public int[][] mul() {
         int[][] res = new int[10][11];
