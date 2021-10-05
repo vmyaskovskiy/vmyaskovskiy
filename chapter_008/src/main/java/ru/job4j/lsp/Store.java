@@ -6,5 +6,5 @@ public interface Store {
     boolean acccept(Food f);
     void add(Food f);
     ArrayList<Food> getArrayList();
-    public void clearStore();
+    //void clear();
 }

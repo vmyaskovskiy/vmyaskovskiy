@@ -34,33 +34,25 @@ public class TestStore {
         storeFood.add(apple2);
 
         ControllQuality controllQuality = new ControllQuality(stores, storeFood);
+        System.out.println("вызовем метод исполнение");
         controllQuality.execute();
 
-        for(Food food: shop.getArrayList()){
-        System.out.println("shop " + food.getName() + "  " + food.getDisscount());
-        }
-
-        for(Food food: warehouse.getArrayList()){
-            System.out.println("warehouse " + food.getName() + "  " + food.getDisscount() );
-        }
-
-        for(Food food: trash.getArrayList()){
-            System.out.println("trash " + food.getName() + "  " + food.getDisscount() );
-        }
-
+        System.out.println("вызовем метод сортировки");
+        controllQuality.resort();
+        System.out.println("вызовем метод сортировки");
         controllQuality.resort();
 
+       // for(Food food: shop.getArrayList()){
+      //      System.out.println("shop " + food.getName() + "  " + food.getDisscount());
+      //  }
 
-        for(Food food: shop.getArrayList()){
-            System.out.println("shop " + food.getName() + "  " + food.getDisscount());
-        }
+       // for(Food food: warehouse.getArrayList()){
+       //     System.out.println("warehouse " + food.getName() + "  " + food.getDisscount() );
+       // }
 
-        for(Food food: warehouse.getArrayList()){
-            System.out.println("warehouse " + food.getName() + "  " + food.getDisscount() );
-        }
+       // for(Food food: trash.getArrayList()){
+       //     System.out.println("trash " + food.getName() + "  " + food.getDisscount() );
+       // }
 
-        for(Food food: trash.getArrayList()){
-            System.out.println("trash " + food.getName() + "  " + food.getDisscount() );
-        }
     }
 }

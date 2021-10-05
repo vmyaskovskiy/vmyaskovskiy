@@ -34,7 +34,13 @@ public class TestCalc {
     @Test
     public void testDiv() {
         CalcMain calcMain = new CalcMain();
-        double res = 5.0;
-        assertThat(calcMain.div(10,2), is(res));
+        double res = 3.5;
+        assertThat(calcMain.div(7,2), is(res));
+    }
+    @Test
+    public void testDivThenY0() {
+        CalcMain calcMain = new CalcMain();
+        double res = 0.0;
+        assertThat(calcMain.div(10,0), is(res));
     }
 }

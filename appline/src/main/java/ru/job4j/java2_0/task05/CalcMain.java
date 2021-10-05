@@ -60,4 +60,9 @@ public class CalcMain {
             System.out.println("исключение - введена не цифра " + ie);
         }
     }
+
+    public static void main(String[] args) {
+        CalcMain calcMain = new CalcMain();
+        calcMain.calcmain();
+    }
 }

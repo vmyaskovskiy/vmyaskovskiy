@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
+
 /**
  * Class UserConvertTest тестирование задачи части 003 - урок 2. Написать программу преобразования List в Map.
  * @author vmyaskovskiy
@@ -27,5 +27,6 @@ public class UserConvertTest {
         assertThat(res.process(resU).get(1).getName(), is("Petr"));
         assertThat(res.process(resU).containsKey(2), is(true));
         assertThat(res.process(resU).containsKey(3), is(false));
+
     }
 }

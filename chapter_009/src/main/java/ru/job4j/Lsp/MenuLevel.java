@@ -35,33 +35,36 @@ public class MenuLevel implements Menu {
 
     public void addChild(String parent, Item item) {
        Item parentNew = findChild(parent);
+        System.out.println(parentNew.getName());
        parentNew.getItems().add(item);
     }
 
         public Item findChild (String child){
             Item res = null;
-            Item parent = this.items.get(0);
-            if(child.equals(parent.getName())) {
-                res = parent;
-            } else {
-                Queue<Item> data1 = new LinkedList<>();
-                data1.add(parent);
-                while (!data1.isEmpty()) {
-                    List<Item> str = data1.poll().getItems();
-                    for (Item el : str) {
-                        if (el.getItems().isEmpty()) {
-                            if (el.getName().equals(child)) {
+                Item parent = this.items.get(0);
+                if (child.equals(parent.getName())) {
+                    res = parent;
+                } else {
+                    Queue<Item> data1 = new LinkedList<>();
+                    data1.add(parent);
+                    while (!data1.isEmpty()) {
+                        List<Item> str = data1.poll().getItems();
+                        for (Item el : str) {
+                            if (el.getItems().isEmpty()) {
+                                if (el.getName().equals(child)) {
+                                    res = el;
+                                }
+                            } else if (el.getName().equals(child)) {
                                 res = el;
+                            } else {
+                                data1.add(el);
                             }
-                        } else if (el.getName().equals(child)) {
-                            res = el;
-                        } else {
-                            data1.add(el);
                         }
                     }
                 }
-            }
-            return res;
+
+                return res;
+
         }
 
 
