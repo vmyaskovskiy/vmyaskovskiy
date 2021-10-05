@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Shop implements Store{
     ArrayList<Food> arrayList = new ArrayList<>();
-
+    ArrayList<Food> res = new ArrayList<>();
     @Override
     public boolean acccept(Food food) {
         boolean res = false;
@@ -21,11 +21,17 @@ public class Shop implements Store{
     }
     public void add(Food food) {
             arrayList.add(food);
+        System.out.println("shop " + food.getName() + "  " + food.getDisscount());
     }
+
     public ArrayList<Food> getArrayList() {
-        return this.arrayList;
-    }
-    public void clearStore() {
+        ArrayList<Food> res = new ArrayList<>(this.arrayList);
         this.arrayList.clear();
+        return res;
     }
+
+    //public void clear() {
+    //    this.arrayList.clear();
+    //}
+
 }
