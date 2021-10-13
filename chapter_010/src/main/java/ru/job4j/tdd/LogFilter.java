@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LogFilter {
-
-    public static List<String> filter(String file) {
+//
+    private static List<String> filter(String file) {
         List<String> list = new ArrayList<>();
         String substring = "404";
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
@@ -22,7 +22,7 @@ public class LogFilter {
         return list;
     }
 
-    public static void save(List<String> log, String file) {
+    private static void save(List<String> log, String file) {
         try (PrintWriter out = new PrintWriter(
                 new BufferedOutputStream(
                         new FileOutputStream(file)
