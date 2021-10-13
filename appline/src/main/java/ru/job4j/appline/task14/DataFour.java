@@ -12,13 +12,13 @@ public class DataFour {
         Double a = -20.0;
         Double b = 20.0;
         Random random = new Random();
-        for(int i = 0; i < myArray.length; i++) {
+        for (int i = 0; i < myArray.length; i++) {
             myArray[i] = a + (Math.random() * ((b - a) + 1));
             System.out.println(myArray[i]);
         }
         double min = myArray[0];
         double max = myArray[0];
-        for(int i = 0; i < myArray.length; i++) {
+        for (int i = 0; i < myArray.length; i++) {
             min = Math.min(min, myArray[i]);
             max = Math.max(max, myArray[i]);
 

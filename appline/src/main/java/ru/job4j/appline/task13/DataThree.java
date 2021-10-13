@@ -15,14 +15,14 @@ public class DataThree {
         String[] wordnew = str.split(" ");
         boolean test = true;
         int counter = 0;
-        for(int i = 0; i < wordnew.length; i++) {
+        for (int i = 0; i < wordnew.length; i++) {
             char arrStr[] = wordnew[i].toCharArray();
-            for(int j = 0; j < arrStr.length; j++) {
+            for (int j = 0; j < arrStr.length; j++) {
                 if (!(((arrStr[j] >= 'a') && (arrStr[j] <= 'z')) || ((arrStr[j] >= 'A') && (arrStr[j] <= 'Z')))) {
                     test = false;
                 }
             }
-            if(test == true) {
+            if (test == true) {
                 counter++;
                 System.out.println("word = " + wordnew[i]);
 

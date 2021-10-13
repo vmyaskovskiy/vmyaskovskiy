@@ -1,4 +1,4 @@
-package ru.job4j.java2_0.task03;
+package ru.job4j.java20.task03;
 
 import java.util.Scanner;
 /**
@@ -10,7 +10,7 @@ public class CalcAndFind {
     /**
      * метод реализующий простой калькулятор
      */
-    public void Calc(){
+    public void calc() {
         Scanner scanner = new Scanner(System.in);
         // предлагаем пользователю выбрать операцию
         System.out.println("выберете операцию ‘+’, ‘-’, ‘*’ или ‘/’ ");
@@ -36,11 +36,11 @@ public class CalcAndFind {
                 System.out.println(String.format("%.4f", mul));
                 break;
             case "/":
-                if(y != 0) {
+                if (y != 0) {
                     double div = x / y;
                     System.out.println(String.format("%.4f", div));
                 }
-                else{
+                else {
                     System.out.println("на ноль делить нельзя");
                 }
                 break;
@@ -49,20 +49,20 @@ public class CalcAndFind {
     /**
      * метод поиска слова в массиве с максимальной длинной
      */
-    public void Find() {
+    public void find() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("введите размер массива");
         int l = scanner.nextInt();
         scanner.nextLine();
         String[] myArray = new String[l];
         System.out.println("введите данные массива");
-        for(int i = 0; i < l; i++) {
+        for (int i = 0; i < l; i++) {
             String s = scanner.nextLine();
             myArray[i] = s;
         }
         int max = 0;
         int k = 0;
-        for(int i = 0; i < myArray.length; i++) {
+        for (int i = 0; i < myArray.length; i++) {
             if (max < myArray[i].length()) {
                 max = myArray[i].length();
                 k = i;
@@ -80,10 +80,10 @@ public class CalcAndFind {
         // считываем
         String operator = scanner.next();
         // анализируем, что ввел оператор.
-        if (operator.equals("1")){
-            calcAndFind.Calc();
+        if (operator.equals("1")) {
+            calcAndFind.calc();
         } else if (operator.equals("2")) {
-            calcAndFind.Find();
+            calcAndFind.find();
         } else {
             System.out.println("  вы ввели некорректное число ");
         }

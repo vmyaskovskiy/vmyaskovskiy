@@ -28,15 +28,15 @@ public class Equation {
         String eq = scanner.nextLine();
         char[] chars = eq.toCharArray();
         String[] myArray = new String[chars.length];
-        for(int i = 0; i < chars.length; i++) {
+        for (int i = 0; i < chars.length; i++) {
             myArray[i] = String.valueOf(chars[i]);
-            if(i == 0 && myArray[i].equals("x")){
+            if (i == 0 && myArray[i].equals("x")) {
                 a = 1;
-            } else if(i == 1 && myArray[i].equals("+")){
+            } else if (i == 1 && myArray[i].equals("+")) {
                 b = 1;
-            } else if(i == 2 && myArray[i].equals("x")){
+            } else if (i == 2 && myArray[i].equals("x")) {
                 c = 1;
-            } else if(i == 4 && myArray[i].equals("x")){
+            } else if (i == 4 && myArray[i].equals("x")) {
                 d = 1;
             }
         }

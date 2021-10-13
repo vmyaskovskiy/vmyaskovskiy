@@ -7,25 +7,25 @@ public class Converter {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Выберите что переводить: 1 - масса, 2 - расстояние");
         int x = scanner.nextInt();
-        if(x == 1) {
+        if (x == 1) {
             System.out.println("Выберите единицу измерения: 1 - кг, 2 - гр, 3 - тонн");
             int y = scanner.nextInt();
             System.out.println("введите количество выбранных единиц:");
             double z = scanner.nextDouble();
-            switch (y){
+            switch (y) {
                 case 1:
                     double resKg = z * 1;
                     double resGr = z * 1000;
-                    double resT = z/1000;
+                    double resT = z / 1000;
                     System.out.println("Результат:");
                     System.out.println("Килограмм: " + resKg);
                     System.out.println("Грамм: " + resGr);
                     System.out.println("Тонн: " + String.format("%.3f", resT));
                     break;
                 case 2:
-                    double resKg2 = z/1000;
+                    double resKg2 = z / 1000;
                     double resGr2 = z * 1;
-                    double resT2 = z/1000000;
+                    double resT2 = z / 1000000;
                     System.out.println("Результат:");
                     System.out.println("Килограмм: " + String.format("%.3f", resKg2));
                     System.out.println("Грамм: " + resGr2);
@@ -41,12 +41,12 @@ public class Converter {
                     System.out.println("Тонн: " + resT3);
                     break;
             }
-        } else if(x == 2){
+        } else if (x == 2) {
             System.out.println("Выберите единицу измерения: 1 - метр, 2 - миля, 3 - ярд, 4 - фут");
             int y = scanner.nextInt();
             System.out.println("введите количество выбранных единиц:");
             double z = scanner.nextDouble();
-            switch (y){
+            switch (y) {
                 case 1:
                     double resM = z * 1;
                     double resMil = z / 1609.34;

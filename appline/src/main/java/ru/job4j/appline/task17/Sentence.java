@@ -27,7 +27,7 @@ public class Sentence {
         scanner.nextLine();
         String[] myArray = new String[l];
         // заполним массив строк
-        for(int i = 0; i < l; i++) {
+        for (int i = 0; i < l; i++) {
             System.out.println("Введите строку " + (i + 1));
             myArray[i] = scanner.nextLine();
         }
@@ -40,19 +40,19 @@ public class Sentence {
             long max = countA[0];
             int resImax = 0;
             // вычислим максимальное значение
-            for(int i = 1; i < countA.length; i++) {
+            for (int i = 1; i < countA.length; i++) {
                 max = Math.max(max, countA[i]);
             }
             // находим порядковый номер первой строчки с максимальным значением
-            for(int i = 0; i < countA.length; i++) {
-                if(max == countA[i]) {
+            for (int i = 0; i < countA.length; i++) {
+                if (max == countA[i]) {
                     resImax = i;
                     break;
                 }
             }
             // сформируем ответ
             System.out.println("Количество строк: " + myArray.length);
-            for(int i = 0; i < myArray.length; i++) {
+            for (int i = 0; i < myArray.length; i++) {
                 System.out.println("Строка " + (i + 1) + ":" + " " + myArray[i]);
             }
             System.out.println("Ответ: " + " Кол-во разл букв = " + max + "  фраза: " + myArray[resImax]);

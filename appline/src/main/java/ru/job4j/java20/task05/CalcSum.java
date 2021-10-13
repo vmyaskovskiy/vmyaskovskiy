@@ -1,4 +1,4 @@
-package ru.job4j.java2_0.task05;
+package ru.job4j.java20.task05;
 
 public class CalcSum implements Calc {
     @Override

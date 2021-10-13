@@ -17,7 +17,7 @@ public class Converter {
         Double cur = scanner.nextDouble();
         System.out.println("Введите количество рублей");
         Double rub = scanner.nextDouble();
-        Double res = rub/cur;
+        Double res = rub / cur;
         System.out.println("Курс доллара: " + cur);
         System.out.println("Количество рублей: " + rub);
         System.out.print("Итого: " + String.format("%.2f", res) + " долларов");

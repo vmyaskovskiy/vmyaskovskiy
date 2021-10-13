@@ -1,4 +1,4 @@
-package ru.job4j.java2_0.task04;
+package ru.job4j.java20.task04;
 
 public class Candy extends Sweets {
     private String wrapper;

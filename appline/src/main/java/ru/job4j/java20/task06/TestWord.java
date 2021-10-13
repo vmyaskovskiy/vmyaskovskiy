@@ -1,4 +1,4 @@
-package ru.job4j.java2_0.task06;
+package ru.job4j.java20.task06;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class TestWord {
         Set<String> set = new HashSet<>();
         // запишем в MAP пары ключ значение - слово : количество повторений
         // затем избавимся от дубликатов , записав в SET
-        for(String str: strW) {
+        for (String str: strW) {
             String tempStr = str;
             if (!map.containsKey(tempStr)) {
                 map.put(tempStr, 1);
@@ -48,8 +48,8 @@ public class TestWord {
         resList.addAll(set);
         int max = 0;
         String resStr = null;
-        for(String str: resList) {
-            if(map.get(str).intValue() > max) {
+        for (String str: resList) {
+            if (map.get(str).intValue() > max) {
                 max = map.get(str).intValue();
                 resStr = str;
             }
@@ -59,7 +59,7 @@ public class TestWord {
         // выведем на экран статистику
         System.out.println("статистика");
         System.out.println("слово" + " : " + "количество повторений");
-        for(String str: resList) {
+        for (String str: resList) {
             System.out.println(str + " : " + map.get(str).intValue());
         }
         System.out.println("выведем на консоль слово с максимальным количеством повторений");

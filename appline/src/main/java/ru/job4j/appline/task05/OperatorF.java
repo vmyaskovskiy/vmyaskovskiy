@@ -29,11 +29,11 @@ public class OperatorF {
                 System.out.println(String.format("%.4f", mul));
                 break;
             case "/":
-                if(y != 0) {
+                if (y != 0) {
                     double div = x / y;
                     System.out.println(String.format("%.4f", div));
                 }
-                else{
+                else {
                     System.out.println("на ноль делить нельзя");
                 }
                 break;

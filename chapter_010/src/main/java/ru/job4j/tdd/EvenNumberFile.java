@@ -1,4 +1,4 @@
-package ru.job4j.Tdd;
+package ru.job4j.tdd;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class EvenNumberFile {
             }
             String[] lines = text.toString().split(System.lineSeparator());
             for (String line : lines) {
-                if(Integer.parseInt(line) % 2 == 0) {
+                if (Integer.parseInt(line) % 2 == 0) {
                     System.out.println(line);
                 }
             }

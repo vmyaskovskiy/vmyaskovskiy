@@ -1,4 +1,4 @@
-package ru.job4j.Tdd;
+package ru.job4j.tdd;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,8 +11,8 @@ public class LogFilter {
         String substring = "404";
         try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             String line;
-            while((line = in.readLine()) != null) {
-                if(line.contains(substring)){
+            while ((line = in.readLine()) != null) {
+                if (line.contains(substring)) {
                     list.add(line);
                 }
             }
@@ -27,7 +27,7 @@ public class LogFilter {
                 new BufferedOutputStream(
                         new FileOutputStream(file)
                 ))) {
-            for(String str: log) {
+            for (String str: log) {
                 out.println(str);
             }
         } catch (Exception e) {

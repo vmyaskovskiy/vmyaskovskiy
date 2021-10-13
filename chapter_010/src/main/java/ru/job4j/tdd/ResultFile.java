@@ -1,4 +1,4 @@
-package ru.job4j.Tdd;
+package ru.job4j.tdd;
 
 import java.io.FileOutputStream;
 
@@ -7,9 +7,9 @@ public class ResultFile {
     public void mul() {
         try (FileOutputStream out = new FileOutputStream("result.txt")) {
         int[][] res = new int[10][11];
-        for(int i = 1; i < 10; i++) {
-            for(int j = 1; j <= 10; j++) {
-                res[i][j] = i*j;
+        for (int i = 1; i < 10; i++) {
+            for (int j = 1; j <= 10; j++) {
+                res[i][j] = i * j;
                 Integer int3 = res[i][j];
                 out.write(int3.toString().getBytes());
                 out.write(" ".getBytes());

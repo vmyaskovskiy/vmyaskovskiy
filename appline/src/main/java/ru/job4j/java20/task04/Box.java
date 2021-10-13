@@ -1,4 +1,4 @@
-package ru.job4j.java2_0.task04;
+package ru.job4j.java20.task04;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class Box {
         int weight = 0;
         double cost = 0;
         System.out.println(" информация о подарке ");
-        for(Sweets sw: box) {
+        for (Sweets sw: box) {
             weight = weight + sw.getWeight();
             cost = cost + sw.getCost();
             System.out.println("название: " + sw.getName());

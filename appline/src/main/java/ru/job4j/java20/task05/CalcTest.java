@@ -1,4 +1,4 @@
-package ru.job4j.java2_0.task05;
+package ru.job4j.java20.task05;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -36,7 +36,7 @@ public class CalcTest {
                     break;
                 case "/":
                         double div = calcDiv.calc(x, y);
-                        if(Double.isInfinite(div)) {
+                        if (Double.isInfinite(div)) {
                             System.out.println("исключение - делить на ноль нельзя");
                         } else {
                             System.out.println(String.format("%.4f", div));

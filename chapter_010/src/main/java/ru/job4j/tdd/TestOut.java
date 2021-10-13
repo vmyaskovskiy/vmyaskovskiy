@@ -1,4 +1,4 @@
-package ru.job4j.Tdd;
+package ru.job4j.tdd;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;

@@ -12,17 +12,17 @@ public class Operator {
         System.out.println("введите число z = ");
         double z = scanner.nextDouble();
         System.out.println(x + " " + y + " " + z);
-        double a = (x + y + z)/3;
+        double a = (x + y + z) / 3;
         System.out.println(" среднее " + a);
-        double d = a/2; // без округления
-        int b = (int) a/2; // округление путем отбрасывания дробной части
+        double d = a / 2; // без округления
+        int b = (int) a / 2; // округление путем отбрасывания дробной части
         double result = Math.floor(d); // округление в меньшую сторону
         double resultTwo = Math.ceil(d); // округление в большую сторону
         System.out.println(" без округления " + d);
         System.out.println(" округление в меньшую сторону путем отбрасывания дробной части " + b);
         System.out.println(" округление в меньшую сторону " + result);
         System.out.println(" округление в большую сторону " + resultTwo);
-        if(result > 3) {
+        if (result > 3) {
             System.out.println("Программа выполнена корректно");
         }
     }

@@ -15,15 +15,15 @@ public class CircleThree {
         scanner.nextLine();
         Double[] myArray = new Double[l];
         System.out.println(" введите элементы массива вида x,y тип double");
-        for(int i = 0; i < l; i++) {
+        for (int i = 0; i < l; i++) {
             double m = scanner.nextDouble();
             myArray[i] = m;
             res = res + m;
         }
         System.out.println(" сумма элементов массива " + res);
-        double resL = res/l;
+        double resL = res / l;
         System.out.println("среднеарифмитическое " + resL);
-        for(double k: myArray) {
+        for (double k: myArray) {
             System.out.println(k * resL);
         }
     }

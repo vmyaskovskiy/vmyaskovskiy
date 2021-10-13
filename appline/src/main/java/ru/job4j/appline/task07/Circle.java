@@ -16,14 +16,14 @@ public class Circle {
         scanner.nextLine();
         String[] myArray = new String[l];
         System.out.println("введите введите данные массива");
-        for(int i = 0; i < l; i++) {
+        for (int i = 0; i < l; i++) {
             String s = scanner.nextLine();
             myArray[i] = s;
         }
         String x1 = Integer.toString(x);
         String y1 = Double.toString(y);
-        for(String array: myArray) {
-            if(array.equals(x1) || array.equals(y1) || array.equals(z)) {
+        for (String array: myArray) {
+            if (array.equals(x1) || array.equals(y1) || array.equals(z)) {
                 System.out.println("Данное значение " + array +  " имеется в константах");
                 break;
             }

@@ -27,7 +27,7 @@ public class InsuranceTest {
         driver.get(baseUrl);
     }
     @Test
-    public void testAutotest () {
+    public void testAutotest() {
        // закрываем всплывающее окно предупреждение про куки
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
         WebElement closeBtn = driver.findElement(By.xpath("//*[text()='Закрыть']"));

@@ -18,13 +18,13 @@ public class Puzzle {
         System.out.println("Отгодайте загадку - Сидит дед, во сто шуб одет, кто его раздевает, тот слезы проливает");
         System.out.println("Если вам нужна подсказка, то при первом ответе вы можете ею воспользоваться, напишите - Подсказка");
         String eq = scanner.nextLine();
-        if(eq.equals("Заархивированный вирус")) {
+        if (eq.equals("Заархивированный вирус")) {
             System.out.println("ответ верный");
-        } else if(eq.equals("Подсказка")) {
+        } else if (eq.equals("Подсказка")) {
             System.out.println("Вы попросили подсказку, это связанно с архивацией и вирусом");
             System.out.println("Введите ваш ответ");
             String eqOne = scanner.nextLine();
-            if(eqOne.equals("Заархивированный вирус")){
+            if (eqOne.equals("Заархивированный вирус")) {
                 System.out.println("ответ верный");
             } else {
                 System.out.println("Обидно, приходи в другой раз");
@@ -34,13 +34,13 @@ public class Puzzle {
             System.out.println("Подумай еще!");
             System.out.println("У вас вторая попытка, подсказок больше нет");
             String eqTwo = scanner.nextLine();
-            if(eqTwo.equals("Заархивированный вирус")) {
+            if (eqTwo.equals("Заархивированный вирус")) {
                 System.out.println("ответ верный");
             } else {
                 System.out.println("Подумай еще!");
                 System.out.println("У вас третья попытка, подсказок больше нет");
                 String eqThree = scanner.nextLine();
-                if(eqThree.equals("Заархивированный вирус")) {
+                if (eqThree.equals("Заархивированный вирус")) {
                     System.out.println("ответ верный");
                 } else {
                     System.out.println("Обидно, приходи в другой раз");

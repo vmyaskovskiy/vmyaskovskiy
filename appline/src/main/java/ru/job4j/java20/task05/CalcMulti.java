@@ -1,8 +1,8 @@
-package ru.job4j.java2_0.task05;
+package ru.job4j.java20.task05;
 
 public class CalcMulti implements Calc {
     @Override
     public double calc(double a, double b) {
-        return a*b;
+        return a * b;
     }
 }

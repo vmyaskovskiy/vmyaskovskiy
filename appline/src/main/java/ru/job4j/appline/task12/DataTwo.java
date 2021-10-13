@@ -18,11 +18,11 @@ public class DataTwo {
         boolean two = str.startsWith("I like");
         boolean three = str.endsWith("!!!");
         //Если 3 предыдущих условия верны, выведите данную строку, преобразованную к верхнему регистру.
-        if(one && two && three == true ) {
+        if (one && two && three == true) {
             System.out.println(str.toUpperCase());
         }
         //Замените все символы ‘a’ на ‘о’ и введите подстроку “Jovo” на экран  (используйте substring()).
         String replace = str.replace("a", "o");
-        System.out.println(replace.substring(7,11));
+        System.out.println(replace.substring(7, 11));
     }
 }

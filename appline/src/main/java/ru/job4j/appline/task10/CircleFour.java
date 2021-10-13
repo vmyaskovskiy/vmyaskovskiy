@@ -15,13 +15,13 @@ public class CircleFour {
         int m = scanner.nextInt();
         Double[][] myArray = new Double[k][m];
         System.out.println("введите элементы массива");
-        for(int i = 0; i < k; i++){
-            for(int j = 0; j < m; j++) {
+        for (int i = 0; i < k; i++) {
+            for (int j = 0; j < m; j++) {
                 Double l = scanner.nextDouble();
                 myArray[i][j] = l;
             }
         }
-        for(int j = 0; j < m; j++) {
+        for (int j = 0; j < m; j++) {
             System.out.print(myArray[0][j] * 3 + " ");
         }
         System.out.println();

@@ -1,4 +1,4 @@
-package ru.job4j.java2_0.task02;
+package ru.job4j.java20.task02;
 
 import java.util.Scanner;
 
@@ -36,11 +36,11 @@ public class Calc {
                 System.out.println(String.format("%.4f", mul));
                 break;
             case "/":
-                if(y != 0) {
+                if (y != 0) {
                     double div = x / y;
                     System.out.println(String.format("%.4f", div));
                 }
-                else{
+                else {
                     System.out.println("на ноль делить нельзя");
                 }
                 break;
